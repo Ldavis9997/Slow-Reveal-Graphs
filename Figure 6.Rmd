@@ -55,7 +55,7 @@ area<- (ggplot(vote_data, aes(x = pop_groups,
   geom_col(color = "black", size= .2,width= .7, position= position_dodge(width= .8)) +
   scale_fill_manual(values = pop_colors) 
 +
- labs(title = "<span style = 'font-size:11pt; color:#000000'>Figure 6.</span><br><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of Voters by Age and Race and Hispanic Origin: 2016</span>",
+ labs(title = "<span style = 'font-size:11pt; color:#000000'>Figure 6.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of Voters by Age and Race and Hispanic Origin: 2016</span></p>",
        subtitle = "<span style = 'font-size:10pt; color:#000000'>(In Percent)</span>",
        y = "",
        x = "",
