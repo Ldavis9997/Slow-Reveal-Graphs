@@ -69,6 +69,7 @@ area<- ((ggplot(vote_data, aes(x = pop_group,
            axis.text.x= element_blank(),
            legend.key.height = unit(.2, "cm"), legend.key.width= unit(.9, "cm")))
   
+  
      
       
 new+ coord_flip() 
