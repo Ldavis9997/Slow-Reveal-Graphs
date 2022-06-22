@@ -1,0 +1,323 @@
+### Census Bureau
+## Lauryn Davis 
+## The following data visualizations are from the U.S. Census Bureau and involved data concerning the characteristics of voters in the presidential election of 2016
+```{r}
+library(tidyverse)
+# library(readxl) # I do not think that this is used...
+# I like this for coloring text: https://wilkelab.org/ggtext/
+# install.packages("ggtext") # Only need to do one of these - either install.packages or install_github
+# remotes::install_github("wilkelab/ggtext")
+library(ggtext)
+
+# Colors from https://imagecolorpicker.com/
+# Main text: #a21e3c
+# Noncit: #af5d62
+# No resp: #e6cdcb
+# Nonvote: #c58887
+# Voters: #971c3c
+
+# Create group levels
+type_levels <- c("<p style='text-align:right'>Noncitizens</p>", 
+                 "<p style='text-align:right'>No Response to<br>voting question</p>", 
+                 "<p style='text-align:right'>Nonvoters</p>", 
+                 "<p style='text-align:right'>Voters</p>")
+pop_levels <- c("Voting-age\npopulation\n245,502", "Citizen\npopulation\n224,059", "Registered\npopulation\n157,596")
+pop_colors <- c("#af5d62", "#e6cdcb", "#c58887", "#971c3c")
+
+# Create data for graph
+vote_data <- tibble(
+  vote_type = rep(type_levels, 3),
+  # Need to rep the pop_group within each vote_type
+  pop_group = rep(pop_levels, c(4, 4, 4)),
+  amount = c(21433, 32662, 53860, 137537, 0, 32662, 53860, 137537, 0, 1127, 18933, 137537),
+  fill = rep(pop_colors, 3),
+    amount1 = c("21,433", "32,662", "53,860", "137,537\n\n (56.0%)", "", "32,662", "53,860", "137,537\n\n(61.4%)", "", "", "18,933", "137,537\n\n(87.3%)")
+)
+
+vote_data <- vote_data %>% 
+  mutate(vote_type = factor(vote_type, levels = type_levels),
+         pop_group = factor(pop_group, levels = c("", pop_levels)),
+         fill = factor(fill, levels = pop_colors))
+
+# Create text "dataset"
+# Determine height of text based on midpoint of bar
+heights <- c(137537 + 53860 + 32662 + (21443/2),
+             137537 + 53860 + (32662/2),
+             137537 + (53860/2),
+             (137537*2/3),
+             (137537/3),
+             137537 + 53860 + 32662 + (21443/2),
+             137537 + 53860 + (32662/2),
+             137537 + (53860/2),
+             (137537*2/3),
+             (137537/3),
+             NA,
+             137537 + 53860 + (32662/2),
+             137537 + (53860/2),
+             (137537*2/3),
+             (137537/3),
+             NA,
+             NA,
+             137537 + (18933/2),
+             (137537*2/3),
+             (137537/3))
+
+vote_labels <- tibble(
+  pop_group = rep(c("", pop_levels), c(5, 5, 5, 5)),
+  amount = heights,
+  label = c(type_levels, "(Voting rate)", 
+            "21,433", "32,662", "53,860", "137,537", "(56.0%)", 
+            NA, "32,662", "53,860", "137,537", "(61.4%)", 
+            NA, NA, "18,933", "137,537", "(87.3%)"),
+  color = c(rep("b", 5), rep(c("a", "b", "a", "a", "a"), 3))
+) %>% 
+  mutate(pop_group = factor(pop_group, levels = c("", pop_levels)))
+
+```
+```{r}
+area <- ggplot(vote_data, aes(x = pop_group, y = amount)) +
+          geom_col(aes(fill = vote_type), color = "black", size = .2)+
+  geom_segment(aes(x=4.45,xend=4.5,y=156550,yend=156550), size= .1)+ 
+  geom_segment(aes(x=4.5,xend=4.5,y=156500,yend=170000), size= .1)+
+  geom_segment(aes(x=4.45,xend=4.5,y=170000,yend=170000), size= .1)+
+  geom_segment(aes(x=.5,xend=7,y=0,yend=0), size=.1)+
+  
+          # Plot labels "dataset"
+          geom_richtext(data = vote_labels, aes(x = pop_group, y = amount, label = label, color = color), 
+                        fill = NA, label.color = NA, size = 4, lineheight= .8) +
+  # This is similar to geom_bar except don't need to specify stat = "identity"
+  # Add black border around bars
+  scale_fill_manual(values = pop_colors, guide = "none") +
+    scale_color_manual(values = c("white", "black"), guide = "none") +
+  # Using ggtext + HTML syntax to color text
+  # For some reason '\n' doesn't work here so I used <br> instead.
+  labs(title = "Figure 1.\nVoters Among the Total, Citizen, and Registered\nVoting-Age Population: 2016",
+       subtitle = "(Population 18 years and older, in thousands)",
+       y = "",
+       x = "",
+       caption = "* Represents those who were registered with no response to initial voting question.\nSource: U.S. Census Bureau, Current Population Survey, November 2016")
+
+
+new<- (area +
+  theme(
+    # Needed for using HTML syntax in plot title
+    # plot.title = element_markdown(), 
+    # Cleaned up some redundancies and combined your theme changes into one layer
+    panel.grid = element_blank(),
+    plot.background = element_rect(fill = "white", color = "black"),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.text.y = element_blank(),
+    plot.title = element_markdown(), 
+    plot.subtitle = element_text(size= 8, color= "black"), 
+    plot.caption = element_text(size= 8, color= "black", hjust=0),
+    axis.ticks = element_blank(), 
+    axis.line.y = element_blank(), 
+    legend.position = "none") +
+    theme_classic()+
+    scale_x_discrete(expand = c(-1.1, 0), limits = c("", pop_levels))+ 
+    scale_y_discrete(expand=c(0,0))+ 
+  theme(axis.ticks=element_blank())
+)
+
+new1<-(new +theme(plot.title= element_text(color = "red4", face="bold"), axis.line.y= element_blank(), plot.caption= element_text(hjust=0), axis.line.x= element_blank()))
+
+
+vote_data <- vote_data %>% 
+  mutate(vote_type = factor(vote_type, levels = type_levels),
+         pop_group = factor(pop_group, levels = c("", pop_levels)),
+         fill = factor(fill, levels = pop_colors))
+
+
+new1 + annotate("text", x = 4.25, y = 175000, label = "1,127*", size= 4) 
+```
+
+
+
+
+
+
+```{r}
+#This code uses the annotate command for the labels column to make spacing more accuate. Was unsure how to fix spacing on code above. 
+type_levels <- c("Noncitizens", "No Response to\nvoting question", "Nonvoters", "Voters")
+pop_levels <- c("Voting-age\npopulation\n245,502", "Citizen\npopulation\n224,059", "Registered\npopulation\n157,596")
+pop_colors <- c("#af5d62", "#e6cdcb", "#c58887", "#971c3c")
+
+vote_data <- tibble(
+  vote_type = rep(type_levels, 3),
+  # Need to rep the pop_group within each vote_type
+  pop_group = rep(pop_levels, c(4, 4, 4)),
+  amount = c(21433, 32662, 53860, 137537, 0, 32662, 53860, 137537, 0, 1127, 18933, 137537),
+  fill = rep(pop_colors, 3),
+    amount1 = c("21,433", "", "53,860", "137,537\n\n (56.0%)", "", "", "53,860", "137,537\n\n(61.4%)", "", "", "18,933", "137,537\n\n(87.3%)")
+)
+
+vote_labels <- tibble(
+  vote_type = factor(type_levels, levels = type_levels),
+  
+)
+
+vote_data <- vote_data %>% 
+  mutate(vote_type = factor(vote_type, levels = type_levels),
+         pop_group = factor(pop_group, levels = pop_levels),
+         fill = factor(fill, levels = pop_colors))
+
+area<- (ggplot(vote_data, aes(x = pop_group, 
+                      y = amount, 
+                      fill = fill, 
+                      label = amount1)) +
+  # This is similar to geom_bar except don't need to specify stat = "identity"
+  # Add black border around bars
+  geom_col(color = "black", size= .2) +
+  geom_segment(aes(x=4.45,xend=4.5,y=156550,yend=156550), size= .1)+ 
+  geom_segment(aes(x=4.5,xend=4.5,y=156500,yend=170000), size= .1)+
+  geom_segment(aes(x=4.45,xend=4.5,y=170000,yend=170000), size= .1)+
+  geom_segment(aes(x=.5,xend=7,y=0,yend=0), size=.1, show.legend= T)+
+    
+     
+  geom_text(size = 4, 
+            position = position_stack(vjust = 0.5), color= "white") +
+  scale_fill_manual(values = pop_colors) +
+  # Using ggtext + HTML syntax to color text
+  # For some reason '\n' doesn't work here so I used <br> instead.
+  labs(title = "Figure 1.\nVoters Among the Total, Citizen, and Registered\nVoting-Age Population: 2016",
+       subtitle = "(Population 18 years and older, in thousands)",
+       y = "",
+       x = "",
+       caption = "* Represents those who were registered with no response to initial voting question.\nSource: U.S. Census Bureau, Current Population Survey, November 2016"))
+new<- (area +
+  theme(
+    # Needed for using HTML syntax in plot title
+    # plot.title = element_markdown(), 
+    # Cleaned up some redundancies and combined your theme changes into one layer
+    panel.grid = element_blank(),
+    plot.background = element_rect(fill = "white", color = "black"),
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.text.y = element_blank(),
+    plot.title = element_markdown(), 
+    plot.subtitle = element_text(size= 8, color= "black"), 
+    plot.caption = element_text(size= 8, color= "black", hjust=0),
+    axis.ticks = element_blank(), 
+    axis.line.y = element_blank(), 
+    ) +
+    theme_classic()+
+    scale_x_discrete(expand = c(-1.1, 0), limits = c("", pop_levels))+ 
+    scale_y_discrete(expand=c(0,0))+ 
+  theme(axis.ticks=element_blank())
+ + 
+  theme(
+    plot.title = element_text(face = "bold", color= "red4"))+ 
+  theme(axis.ticks=element_blank()))
+
+new + theme(axis.line.y = element_blank(), legend.position = "none", plot.caption= element_text(hjust=0))+
+   annotate("text", x = 4.25, y = 175000, label = "1,127*", size= 4) + annotate("text", x = 1.1, y = 137537 + 53860 + 32662 + (21443/2), label = "Noncitizens", size=3.8) + annotate("text", x = 1, y = 137537 + 53860 + (32662/2), label = str_wrap("No response to voting question", 20), size= 3.8, lineheight= .8)+  annotate("text", x = 1.1, y =  137537 + (53860/2), label = "Nonvoters", size=3.8) + annotate("text", x = 1.2, y =  (137537*2/3), label = "Voters", size=3.8) + annotate("text", x = 1.05, y =  (137537/3), label = "(Voting Rate)", size=3.8) + annotate("text", x = 2, y =  137537 + 53860 + (32662/2), label = "32,622", size=4)+ annotate("text", x = 3, y =  137537 + 53860 + (32662/2), label = "32,622", size=4)
+
+
+
+```
+
+```{r, fig.height= 5, fig.width=5}
+# Create group levels
+type_levels <- c("Noncitizens", 
+                 "No response to\nvoting question", 
+                 "Nonvoters", 
+                 "Voters")
+pop_levels <- c("Voting-age\npopulation\n245,502", "Citizen\npopulation\n224,059", "Registered\npopulation\n157,596")
+pop_colors <- c("#af5d62", "#e6cdcb", "#c58887", "#971c3c")
+
+# Create data for graph
+vote_data <- tibble(
+  vote_type = rep(type_levels, 3),
+  # Need to rep the pop_group within each vote_type
+  pop_group = rep(pop_levels, c(4, 4, 4)),
+  amount = c(21433, 32662, 53860, 137537, 0, 32662, 53860, 137537, 0, 1127, 18933, 137537),
+  fill = rep(pop_colors, 3),
+    amount1 = c("21,433", "32,662", "53,860", "137,537\n\n (56.0%)", "", "32,662", "53,860", "137,537\n\n(61.4%)", "", "", "18,933", "137,537\n\n(87.3%)")
+)
+
+vote_data <- vote_data %>% 
+  mutate(vote_type = factor(vote_type, levels = type_levels),
+         pop_group = factor(pop_group, levels = c("", pop_levels)),
+         fill = factor(fill, levels = pop_colors))
+
+# Create text "dataset"
+# Determine height of text based on midpoint of bar
+heights <- c(137537 + 53860 + 32662 + (21443/2),
+             137537 + 53860 + (32662/2),
+             137537 + (53860/2),
+             (137537*2/3),
+             (137537/3),
+             NA,
+             137537 + 53860 + (32662/2),
+             137537 + (53860/2),
+             (137537*2/3),
+             (137537/3),
+             NA,
+             NA,
+             137537 + (18933/2),
+             (137537*2/3),
+             (137537/3))
+
+vote_labels <- tibble(
+  pop_group = rep(c(pop_levels), c(5, 5, 5)),
+  amount = heights,
+  label = c("21,433", "32,662", "53,860", "137,537", "(56.0%)", 
+            NA, "32,662", "53,860", "137,537", "(61.4%)", 
+            NA, NA, "18,933", "137,537", "(87.3%)"),
+  color = c(rep(c("a", "b", "a", "a", "a"), 3))
+) %>% 
+  mutate(pop_group = factor(pop_group, levels = c("", pop_levels)))
+
+area <- ggplot(vote_data, aes(x = pop_group, y = amount)) +
+  geom_col(aes(fill = vote_type), color = "black", size = .2) +
+  geom_segment(aes(x = 3.43, xend = 3.53, y = 157000, yend = 157000), size=.1) +
+  geom_segment(aes(x = 3.53, xend = 3.53, y = 157000, yend = 170000), size= .05) +
+  geom_segment(aes(x = 3.35, xend = 3.53, y = 170000, yend = 170000), size=.1) +
+  # geom_segment(aes(x = .5, xend = 7, y = 0, yend = 0)) +
+  # Plot labels "dataset"
+  geom_richtext(data = vote_labels, aes(x = pop_group, y = amount, label = label, color = color),
+                fill = NA, label.color = NA, size = 3.5) +
+  # This is similar to geom_bar except don't need to specify stat = "identity"
+  # Add black border around bars
+  scale_fill_manual(values = pop_colors, guide = "none") +
+  scale_color_manual(values = c("white", "black"), guide = "none") +
+  # Using ggtext + HTML syntax to color text
+  # For some reason '\n' doesn't work here so I used <br> instead.
+  labs(title = "<span style = 'font-size:10pt; color:#000000'>Figure 1.</span><br><span style = 'font-size:12pt; color:#a21e3c'><b>Voters Among the Total, Citizen, and Registered<br>Voting-Age Population: 2016</span>",
+       subtitle = "(Population 18 years and older, in thousands)",
+       y = "",
+       x = "",
+       caption = "* Represents those who were registered with no response to initial voting question.\nSource: U.S. Census Bureau, Current Population Survey, November 2016")
+
+
+new <- area +
+         theme_classic() +
+         scale_x_discrete(limits = c(pop_levels)) + 
+         scale_y_continuous(breaks = c(137537 + 53860 + 32662 + (21443/2),
+                                       137537 + 53860 + (32662/2),
+                                       137537 + (53860/2),
+                                       (137537*2/3),
+                                       (137537/3)), 
+                            labels = c(type_levels, "(Voting rate)"),
+                            expand = expansion(mult = c(0, 0.2))) + 
+         theme(
+           # Needed for using HTML syntax in plot title
+           # plot.title = element_markdown(), 
+           # Cleaned up some redundancies and combined your theme changes into one layer
+           panel.grid = element_blank(),
+           plot.background = element_rect(fill = "white", color = "black"),
+           panel.grid.major = element_blank(),
+           panel.grid.minor = element_blank(),
+           plot.title = element_markdown(),
+           plot.title.position = "plot",
+           plot.caption.position = "plot",
+           plot.subtitle = element_text(size = 10, color = "black"), 
+           plot.caption = element_text(size = 8, color = "black", hjust = 0),
+           axis.ticks = element_blank(),
+           axis.line.y = element_blank(),
+           axis.text.y = element_text(size = 10)) +
+         annotate("text", x = 3.15, y = 172000, label = "1,127*", size = 3.5) 
+
+new
+```
