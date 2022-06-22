@@ -63,7 +63,7 @@ vote_labels <- tibble(
   mutate(pop_group = factor(pop_group, levels = c("", pop_levels)))
 
 area <- ggplot(vote_data, aes(x = pop_group, y = amount)) +
-  geom_col(aes(fill = vote_type), color = "black", size = .2) +
+  geom_col(aes(fill = vote_type), color = "black", size = .2, width=.9) +
   geom_segment(aes(x = 3.43, xend = 3.53, y = 157000, yend = 157000), size=.1) +
   geom_segment(aes(x = 3.53, xend = 3.53, y = 157000, yend = 170000), size= .05) +
   geom_segment(aes(x = 3.35, xend = 3.53, y = 170000, yend = 170000), size=.1) +
