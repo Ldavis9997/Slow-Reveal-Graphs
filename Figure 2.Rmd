@@ -12,9 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(tidyverse)
-# I like this for coloring text: https://wilkelab.org/ggtext/
-install.packages("ggtext")
-remotes::install_github("wilkelab/ggtext")
 library("ggtext")
 
 
@@ -60,7 +57,7 @@ area<- ((ggplot(vote_data, aes(x = pop_group,
            plot.title = element_markdown(hjust=.02),
            plot.title.position = "plot",
            plot.caption.position = "plot",
-           plot.subtitle = element_markdown(), 
+           plot.subtitle = element_markdown(hjust= .01), 
            plot.caption = element_text(size = 8, color = "black", hjust = 0),
            axis.ticks = element_blank(),
            axis.line.y = element_blank(),
