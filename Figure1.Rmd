@@ -93,7 +93,7 @@ new <- area +
                                        (137537*2/3),
                                        (137537/3)), 
                             labels = c(type_levels, "(Voting rate)"),
-                            expand = expansion(mult = c(0, 0.2))) + 
+                            expand = expansion(mult = c(0, 0.15))) + 
          theme(
            # Needed for using HTML syntax in plot title
            # plot.title = element_markdown(), 
