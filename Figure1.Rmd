@@ -109,9 +109,10 @@ new <- area +
            plot.caption = element_text(size = 8, color = "black", hjust = 0),
            axis.ticks = element_blank(),
            axis.line.y = element_blank(),
-           axis.text.y = element_text(size = 10)) +
+           axis.text.y = element_text(size = 10),
+           plot.margin = unit(c(.5,.5,.5,.5), "cm")) +
          annotate("text", x = 3.15, y = 172000, label = "1,127*", size = 3.5) 
 
 new
-ggsave("new.png")
+
 ```
