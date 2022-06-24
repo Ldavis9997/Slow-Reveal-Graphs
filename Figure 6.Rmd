@@ -73,7 +73,7 @@ new<- (area + theme_classic()+
            plot.title = element_markdown(hjust= .05),
            plot.title.position = "plot",
            plot.caption.position = "plot",
-           plot.subtitle = element_markdown(hjust=.02), 
+           plot.subtitle = element_markdown(hjust=.01), 
            plot.caption = element_text(size = 8, color = "black", hjust = 0),
            axis.ticks = element_blank(),
            axis.line.y = element_blank(),
@@ -91,7 +91,7 @@ new<- (area + theme_classic()+
 new + theme(legend.position="top",legend.text=element_text(margin=margin(r=.3,unit="inch")))+guides(fill=guide_legend(title=NULL))
 
 
-
+ggsave("new.png")
 
 
 

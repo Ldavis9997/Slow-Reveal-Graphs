@@ -28,7 +28,7 @@ library("ggtext")
 
 ```{r, fig.height= 5, fig.width= 8}
 age_groups= c("White non-Hispanic", "Black non-Hispanic", "Other race non-Hispanic", "Hispanic")
-types= c("Less than high school", "High school diploma", str_wrap("Some college or associate's degree", 30), "Bachelor's degree or more")
+types= c("Less than high school", "High school diploma", "Some college or", "Bachelor's degree")
 
 pop_colors <- c("#e6cdcb", "#c58887", "#af5d62", "#971c3c")
 
@@ -56,7 +56,7 @@ area<- (ggplot(vote_data, aes(x = pop_groups,
             position = position_dodge(width=1), aes(y= amount), vjust =-.8, color= "black")+
   scale_fill_manual(values = pop_colors) 
 +
- labs(title =  "<span style = 'font-size:11pt; color:#000000'>Figure 7.</span><br><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of American Voters by Educational Detainment and Race<br>and Hispanic Origin: 2016</span>",
+ labs(title =  "<span style = 'font-size:11pt; color:#000000'>Figure 7.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of American Voters by Educational Detainment and Race</p><p><span style = 'font-size:12pt; color:#a21e3c'><b>and Hispanic Origin: 2016</span></p>",
        subtitle = "(In Percent)",
        y = "",
        x = "",
@@ -74,7 +74,7 @@ new2<- (area + theme_classic()+
            plot.title = element_markdown(hjust=.1),
            plot.title.position = "plot",
            plot.caption.position = "plot",
-           plot.subtitle = element_text(size = 10, color = "black", hjust=.05), 
+           plot.subtitle = element_text(size = 10, color = "black", hjust=.03), 
            plot.caption = element_text(size = 8, color = "black", hjust = 0),
            axis.ticks = element_blank(),
            axis.line.y = element_blank(),
@@ -82,10 +82,11 @@ new2<- (area + theme_classic()+
            legend.position= "top",
            axis.line.x = element_line(size=.1),
            axis.text.x= element_text(color= "black"),
-           legend.key.height= unit(.2, 'cm'), legend.key.width= unit(.7, 'cm'))
+           legend.key.height= unit(.2, 'cm'), legend.key.width= unit(.7, 'cm'),
+           plot.margin = unit(c(.5,.5,.5,.5), "cm"))
 + scale_x_discrete(expand=c(.2,0))
-+ scale_y_continuous(expand = expansion(mult = c(0, 0.15))))
-new2 + theme(legend.position="top",legend.text=element_text(margin=margin(r=.2,unit="inch")))+guides(fill=guide_legend(title=NULL))
++ scale_y_continuous(expand = expansion(mult = c(0, 0.21))))
+new2 + theme(legend.position="top",legend.text=element_text(margin=margin(r=.2,unit="inch")))+guides(fill=guide_legend(title=NULL))+annotate("text", x= 3.19, y= 62.4, label= "associate's degree", size= 3.5)+coord_cartesian(ylim=c(0,49.5),clip="off")+annotate("text", x= 3.88, y= 62.5, label= "or more", size= 3.5)+coord_cartesian(ylim=c(0,49.5),clip="off")
 
 ```
 
