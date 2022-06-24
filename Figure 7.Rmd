@@ -12,8 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(tidyverse)
 # I like this for coloring text: https://wilkelab.org/ggtext/
-install.packages("ggtext")
-remotes::install_github("wilkelab/ggtext")
 library("ggtext")
 
 
@@ -86,7 +84,7 @@ new2<- (area + theme_classic()+
            plot.margin = unit(c(.5,.5,.5,.5), "cm"))
 + scale_x_discrete(expand=c(.2,0))
 + scale_y_continuous(expand = expansion(mult = c(0, 0.21))))
-new2 + theme(legend.position="top",legend.text=element_text(margin=margin(r=.2,unit="inch")))+guides(fill=guide_legend(title=NULL))+annotate("text", x= 3.19, y= 62.4, label= "associate's degree", size= 3.5)+coord_cartesian(ylim=c(0,49.5),clip="off")+annotate("text", x= 3.88, y= 62.5, label= "or more", size= 3.5)+coord_cartesian(ylim=c(0,49.5),clip="off")
-
+new2 + theme(legend.position="top",legend.text=element_text(margin=margin(r=.2,unit="inch")))+guides(fill=guide_legend(title=NULL))+annotate("text", x= 3.21, y= 62.4, label= "associate's degree", size= 3.1)+coord_cartesian(ylim=c(0,49.5),clip="off")+annotate("text", x= 3.93, y= 62.5, label= "or more", size= 3.1)+coord_cartesian(ylim=c(0,49.5),clip="off")
+ggsave("new2.png")
 ```
 
