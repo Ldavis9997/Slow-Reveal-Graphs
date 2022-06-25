@@ -18,10 +18,10 @@ library("ggtext")
 ```
 
 ```{r, fig.height= 5, fig.width= 10}
-type_levels= c("18-29 year olds", "30-44 year olds", "45-64 year olds", "65 years and older")
+type_levels= c("65 years and older", "45-64 year olds", "30-44 year olds", "18-29 year olds")
+
 year_levels <- c("1980","1984", "1988", "1992","1996","2000", "2004", "2008", "2012","2016")
 pop_colors <- c("#971c3c", "#af5d62","#c58887", "#e6cdcb" )
-
 
 vote_data <- tibble(
   vote_type = rep(type_levels, 10),
@@ -36,20 +36,23 @@ vote_labels <- tibble(
 vote_data <- vote_data %>% 
   mutate(vote_type = factor(vote_type, levels = type_levels),
          pop_group = factor(pop_group, levels = year_levels),
-         fill = factor(fill, levels = c("#e6cdcb","#c58887","#af5d62" ,"#971c3c")))
+         fill = factor(fill, levels = pop_colors))
 
-
-area<- ((ggplot(vote_data, aes(x = pop_group, 
+vote_data2<- vote_data 
+vote_data2<- vote_data%>% dplyr::filter(vote_type %in% c("65 years and older", "45-64 year olds", "30-44 year olds", "18-29 year olds"))
+vote_data2$vote_type<- factor(vote_data2$vote_type, levels= c("18-29 year olds","30-44 year olds", "45-64 year olds" , "65 years and older"))
+levels(vote_data2$vote_type)
+area<- ((ggplot(vote_data2, aes(x = pop_group, 
                       y = amount, 
                       fill = fill, 
                       label = amount_1))+
   geom_col(color = "black", size= .2, width=.7)+ geom_text(size = 4, 
-            position = position_stack(vjust = 0.5), color=ifelse(vote_data$vote_type=="65 years and older", 'black', 'white')) + scale_fill_manual(values = pop_colors))+
+            position = position_stack(vjust = 0.5), color=ifelse(vote_data$vote_type=="18-29 year olds", 'black', 'white')) + scale_fill_manual(values = pop_colors))+
  labs(title =  "<p><span style = 'font-size:11pt; color:#000000'>Figure 2.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of American Voters by Age: Presidential Elections, 1980-2016</span></p>",
        subtitle = "<span style = 'font-size:10pt; color:#000000'>(In Percent).</span>",
        y = "",
        x = "",
-       caption = "Source: U.S. Census Bureau, Current Population Survey, November 1980-2016.") + scale_fill_manual(labels= type_levels, values= c("#e6cdcb","#c58887","#af5d62" ,"#971c3c"), name = ""))
+       caption = "Source: U.S. Census Bureau, Current Population Survey, November 1980-2016.") + scale_fill_manual(labels= type_levels, values= pop_colors, name = ""))
   new<- (area+ theme_classic()+
     theme( panel.grid = element_blank(),
            plot.background = element_rect(fill = "white", color = "black"),
@@ -71,6 +74,5 @@ area<- ((ggplot(vote_data, aes(x = pop_group,
   
      
       
-new2<-new+ coord_flip()
-
+new+ coord_flip()
 ```
