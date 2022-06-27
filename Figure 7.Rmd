@@ -54,7 +54,7 @@ area<- (ggplot(vote_data, aes(x = pop_groups,
             position = position_dodge(width=1), aes(y= amount), vjust =-.8, color= "black")+
   scale_fill_manual(values = pop_colors) 
 +
- labs(title =  "<span style = 'font-size:11pt; color:#000000'>Figure 7.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of American Voters by Educational Detainment and Race</p><p><span style = 'font-size:12pt; color:#a21e3c'><b>and Hispanic Origin: 2016</span></p>",
+ labs(title =  "<span style = 'font-size:11pt; color:#000000'><b>Figure 7.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of American Voters by Educational Detainment and Race</p><p><span style = 'font-size:12pt; color:#a21e3c'><b>and Hispanic Origin: 2016</span></p>",
        subtitle = "(In Percent)",
        y = "",
        x = "",

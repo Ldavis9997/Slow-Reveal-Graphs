@@ -28,7 +28,7 @@ library("ggtext")
 
 ```{r,fig.height= 5, fig.width= 8}
 age_groups= c("18-29 year olds", "30-44 year olds", "45-64 year olds", "65 years and older")
-types= c("Less than high school", "High school diploma", "Some college or\nassociate's degree", "Bachelor's degree\nor more")
+types= c("Less than high school", "High school diploma", "Some college or", "Bachelor's degree")
 
 pop_colors <- c("#e6cdcb", "#c58887", "#af5d62", "#971c3c")
 
@@ -56,7 +56,7 @@ area<- (ggplot(vote_data, aes(x = pop_groups,
             position = position_dodge(width=1), aes(y= amount), vjust =-.8, color= "black")+
   scale_fill_manual(values = pop_colors) 
 +
- labs(title =  "<span style = 'font-size:10pt; color:#000000'>Figure 8.</span><br><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of American Voters by Age and Educational Detainment: 2016</span>",
+ labs(title =  "<span style = 'font-size:11pt; color:#000000'><b>Figure 8.</span><br><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of American Voters by Age and Educational Detainment: 2016</span>",
        subtitle = "(In Percent)",
        y = "",
        x = "",
@@ -82,9 +82,11 @@ new3<- (area + theme_classic()+
            legend.position= "top",
            axis.line.x = element_line(size=.1),
            axis.text.x= element_text(color= "black"),
-           legend.key.height = unit(.2, "cm"), legend.key.width= unit(.9, "cm"))
+           legend.key.height = unit(.2, "cm"), legend.key.width= unit(.7, "cm"),
+           plot.margin = unit(c(.5,.5,.5,.5), "cm"),
+           legend.text=element_text(margin=margin(r=0,unit="inch")))
 + scale_x_discrete(expand=c(.2,0))
-+ scale_y_continuous(expand = expansion(mult = c(0, 0.15))))
-new3
-
++ scale_y_continuous(expand = expansion(mult = c(0, 0.145))))
+new3+annotate("text", x= 3.21, y= 58.8, label= "associate's degree", size= 3.1)+coord_cartesian(ylim=c(0,49.5),clip="off")+annotate("text", x= 3.85, y= 59, label= "or more", size= 3.1)+coord_cartesian(ylim=c(0,49.5),clip="off")
+ggsave("new3.png")
 ```
