@@ -44,13 +44,14 @@ area<- ((ggplot(vote_data2, aes(x = pop_group,
                       fill = fill, 
                       label = amount_1))+
   geom_col(color = "black", size= .2, width=.7)+ geom_text(size = 4, 
-            position = position_stack(vjust = 0.5), color=ifelse(vote_data$vote_type=="18-29 year olds", 'black', 'white')) + scale_fill_manual(values = pop_colors))+
+            position = position_stack(vjust = 0.5), color=ifelse(vote_data$vote_type=="18-29 year olds", 'black', 'white')) +
+    scale_fill_manual(values = pop_colors))+
  labs(title =  "<p><span style = 'font-size:11pt; color:#000000'>Figure 2.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of American Voters by Age: Presidential Elections, 1980-2016</span></p>",
        subtitle = "<span style = 'font-size:10pt; color:#000000'>(In Percent).</span>",
        y = "",
        x = "",
        caption = "Source: U.S. Census Bureau, Current Population Survey, November 1980-2016.") + scale_fill_manual(labels= type_levels, values= pop_colors, name = "", guide= guide_legend(reverse=TRUE)))
-  new<- (area+ theme_classic()+
+  new<- (area+ scale_y_continuous(limits= c(0,103),expand = c(0, 3))+ theme_classic()+
     theme( panel.grid = element_blank(),
            plot.background = element_rect(fill = "white", color = "black"),
            panel.grid.major = element_blank(),
@@ -61,7 +62,7 @@ area<- ((ggplot(vote_data2, aes(x = pop_group,
            plot.subtitle = element_markdown(hjust= .01), 
            plot.caption = element_text(size = 8, color = "black", hjust = 0),
            axis.ticks = element_blank(),
-           axis.line.y = element_line(size=.2),
+           axis.line.y = element_blank(),
            legend.position= "top",
            axis.line.x = element_blank(),
            axis.text.x= element_blank(),
@@ -72,8 +73,8 @@ area<- ((ggplot(vote_data2, aes(x = pop_group,
   
      
       
-new + scale_y_continuous(expand= expansion)
-
+new + coord_flip()
+ggsave("new.png")
   
 ```
 
