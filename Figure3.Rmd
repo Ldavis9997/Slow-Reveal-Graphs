@@ -12,8 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 library(tidyverse)
 # I like this for coloring text: https://wilkelab.org/ggtext/
-install.packages("ggtext")
-remotes::install_github("wilkelab/ggtext")
+
 library("ggtext")
 
 
@@ -29,7 +28,7 @@ vote_data <- tibble(
   vote_type = rep(type_levels, 10),
   # Need to rep the pop_group within each vote_type
   pop_group = rep(year_levels, c(4, 4, 4,4,4,4,4,4,4,4)),
-  amount =   c(2.6,1,8.9,87.6,3,1.4,10,85.5,3.6,1.7,9.8,84.9,3.7,1.7,9.9,84.6,
+  amount =   c(3,1,8.9,87,3,1.4,10,85.5,3.6,1.7,9.8,84.9,3.7,1.7,9.9,84.6,
                4.7,2.2,10.6,82.5,5.4,2.4,11.5,80.7,6.0,3.8,11,79.2,7.4,4.2,12.1,76.3,8.4,
                4.9,12.9,73.7,9.2,5.5,11.9,73.3),
   amount_1 =   c(2.6,"",8.9,87.6,"3.0","","10.0",85.5,3.6,"",9.8,84.9,3.7,"",9.9,84.6,
@@ -76,5 +75,25 @@ area<- ((ggplot(vote_data, aes(x = pop_group,
            plot.margin = unit(c(.5,.5,.5,.5), "cm")))
      
       
-new+ coord_flip() 
+new+ coord_flip()+ 
+  annotate("text", x = 4, y = 103, label = "1.7", size = 4.5)+ 
+  annotate("text", x = 3, y = 103, label = "1.7", size = 4.5)+
+  annotate("text", x = 2, y = 103, label = "1.4", size = 4.5)+
+  annotate("text", x = 1, y = 103, label = "1.0", size = 4.5)+
+    geom_segment(aes(x = .7, xend = .5, y = 103, yend = 103), size=.05)+
+    geom_segment(aes(x = .5, xend = .5, y = 103, yend = 96.3), size=.05)+
+    geom_segment(aes(x = .5, xend = .7, y = 96.3, yend = 96.3), size=.05)+
+    #Second bar segemnt:
+    geom_segment(aes(x = 1.65, xend = 1.5, y = 103, yend = 103), size=.05)+
+    geom_segment(aes(x = 1.5, xend = 1.5, y = 103, yend = 96), size=.05)+
+    geom_segment(aes(x = 1.5, xend = 1.65, y = 96, yend = 96), size=.05)+
+    # Third Bar Segment:
+    geom_segment(aes(x = 2.6, xend = 2.45, y = 103, yend = 103), size=.05)+
+    geom_segment(aes(x = 2.45, xend = 2.45, y = 103, yend = 95), size=.05)+
+    geom_segment(aes(x = 2.45, xend = 2.6, y = 95, yend = 95), size=.05)+
+    #Fourth Bar Segment:
+    geom_segment(aes(x = 3.65, xend = 3.45, y = 103, yend = 103), size=.05)+
+    geom_segment(aes(x = 3.45, xend = 3.45, y = 103, yend = 95), size=.05)+
+    geom_segment(aes(x = 3.45, xend = 3.65, y = 95, yend = 95), size=.05)
+  ggsave("new.png")
 ```
