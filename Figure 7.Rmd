@@ -27,7 +27,7 @@ library(rlang)
 
 ```{r, fig.height= 5, fig.width= 8}
 age_groups= c("White non-Hispanic", "Black non-Hispanic", "Other race non-Hispanic", "Hispanic")
-types= c("Less than high school", "High school diploma", "\nSome college or\n associate's degree", "\nBachelor's degree\nor more")
+types= c("Less than high school", "High school diploma", "\nSome college or\nassociate's degree", "\nBachelor's degree\nor more")
 
 pop_colors <- c("#e6cdcb", "#c58887", "#af5d62", "#971c3c")
 
