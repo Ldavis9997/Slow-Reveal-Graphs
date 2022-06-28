@@ -70,8 +70,7 @@ area<- (ggplot(vote_data, aes(x = pop_groups,
                       label = amount1)) +
   geom_col(color = "black", size= .2, width= .8, position= position_dodge(width= .9), key_glyph= draw_square)+
     geom_text(size = 3, 
-            position = position_dodge(width=1), aes(y= amount), vjust =-.8, color= "black")+
-  scale_fill_manual(values = pop_colors) 
+            position = position_dodge(width=1), aes(y= amount), vjust =-.8, color= "black") 
 +
  labs(title =  "<span style = 'font-size:11pt; color:#000000'><b>Figure 8.</span><br><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of American Voters by Age and Educational Detainment: 2016</span>",
        subtitle = "(In Percent)",
@@ -104,5 +103,5 @@ new3<- (area + theme_classic()+
 + scale_x_discrete(expand=c(.2,0))
 + scale_y_continuous(expand = expansion(mult = c(0, 0.145))))
 new3
-ggsave("new3.pdf")
+
 ```

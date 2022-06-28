@@ -49,7 +49,7 @@ area<- ((ggplot(vote_data, aes(x = pop_group,
                       fill = fill, 
                       label = amount_1))+
   geom_col(color = "black", size= .2, width=.7)+ geom_text(size = 4, 
-            position = position_stack(vjust = 0.5), color=ifelse(vote_data$vote_type=="Hispanic", 'black', 'white')) + scale_fill_manual(values = pop_colors, guide= guide_legend(reverse=TRUE)))+
+            position = position_stack(vjust = 0.5), color=ifelse(vote_data$vote_type=="Hispanic", 'black', 'white'))) +
  labs(title =  "<span style = 'font-size:11pt; color:#000000'><b>Figure 3.</span></p><span style = 'font-size:12pt; color:#a21e3c'><p><b>Composition of American Voters by Race and Hispanic Origin: Presidential Elections,</p><p><span style = 'font-size:12pt; color:#a21e3c'><b> 1980-2016</p></span>",
        subtitle = "<span style = 'font-size:10pt; color:#000000'>(In Percent).</span>",
        y = "",
