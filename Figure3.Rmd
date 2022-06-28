@@ -95,5 +95,5 @@ new+ coord_flip()+
     geom_segment(aes(x = 3.65, xend = 3.45, y = 103, yend = 103), size=.05)+
     geom_segment(aes(x = 3.45, xend = 3.45, y = 103, yend = 95), size=.05)+
     geom_segment(aes(x = 3.45, xend = 3.65, y = 95, yend = 95), size=.05)
-  ggsave("new.png")
+
 ```
