@@ -78,20 +78,18 @@ new<- (area + theme_classic()+
            axis.ticks = element_blank(),
            axis.line.y = element_blank(),
            axis.text.y= element_blank(),
-           legend.position= "top",
            axis.line.x = element_line(size=.1),
            axis.text.x= element_text(color= "black"),
            legend.key.height= unit(.2, 'cm'), legend.key.width= unit(.7, 'cm'),
            legend.spacing.x = unit(.1, 'cm'),
-            plot.margin = unit(c(.5,.5,.5,.5), "cm"))
+            plot.margin = unit(c(.5,.5,.5,.5), "cm"),
+           legend.position="top",
+           legend.text=element_text(margin=margin(r=.3,unit="inch")))
 + scale_x_discrete(expand=c(.2,0))
 + guides(fill = guide_legend(byrow = TRUE))
 + scale_y_continuous(expand = expansion(mult = c(0, .15))))
 
-
-new + theme(legend.position="top",legend.text=element_text(margin=margin(r=.3,unit="inch")))+guides(fill=guide_legend(title=NULL))
-
-ggsave("new.pdf")
+new
 
 
 
