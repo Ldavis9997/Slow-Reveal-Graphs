@@ -39,13 +39,12 @@ vote_data <- vote_data %>%
          fill = factor(fill, levels = pop_colors))
 
 
-area<- ((ggplot(vote_data2, aes(x = pop_group, 
+area<- ((ggplot(vote_data, aes(x = pop_group, 
                       y = amount, 
                       fill = fill, 
                       label = amount_1))+
   geom_col(color = "black", size= .2, width=.7)+ geom_text(size = 4, 
-            position = position_stack(vjust = 0.5), color=ifelse(vote_data$vote_type=="18-29 year olds", 'black', 'white')) +
-    scale_fill_manual(values = pop_colors))+
+            position = position_stack(vjust = 0.5), color=ifelse(vote_data$vote_type=="18-29 year olds", 'black', 'white')))+
  labs(title =  "<p><span style = 'font-size:11pt; color:#000000'><b>Figure 2.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of American Voters by Age: Presidential Elections, 1980-2016</span></p>",
        subtitle = "<span style = 'font-size:10pt; color:#000000'>(In Percent).</span>",
        y = "",
