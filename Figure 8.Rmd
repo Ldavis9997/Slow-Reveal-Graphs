@@ -11,10 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(tidyverse)
-# I like this for coloring text: https://wilkelab.org/ggtext/
-install.packages("ggtext")
-remotes::install_github("wilkelab/ggtext")
 library("ggtext")
+library(grid)
+library(rlang)
 
 
 
@@ -28,9 +27,27 @@ library("ggtext")
 
 ```{r,fig.height= 5, fig.width= 8}
 age_groups= c("18-29 year olds", "30-44 year olds", "45-64 year olds", "65 years and older")
-types= c("Less than high school", "High school diploma", "Some college or", "Bachelor's degree")
+types= c("Less than high school", "High school diploma", "\nSome college or\nassociate's degree", "\nBachelor's degree\nor more")
 
 pop_colors <- c("#e6cdcb", "#c58887", "#af5d62", "#971c3c")
+draw_square <- function(data, params, size) {
+  if (is.null(data$size)) {
+    data$size <- 0.5
+  }
+  lwd <- min(data$size, min(size) /4)
+  grid::rectGrob(
+    width  = unit(.5, "snpc") - unit(lwd, "mm"),
+    height = unit(1.2, "snpc") - unit(lwd, "mm"),
+    gp = gpar(
+      col = data$colour %||% NA,
+      fill = alpha(data$fill %||% "grey20", data$alpha),
+      lty = data$linetype %||% 1,
+      lwd = lwd * .pt,
+      linejoin = params$linejoin %||% "mitre",
+      lineend = if (identical(params$linejoin, "round")) "round" else "square"
+    )
+  )
+}
 
 
 vote_data<- tibble(
@@ -51,7 +68,7 @@ area<- (ggplot(vote_data, aes(x = pop_groups,
                       y = amount, 
                       fill = fill, 
                       label = amount1)) +
-  geom_col(color = "black", size= .2, width= .8, position= position_dodge(width= .9))+
+  geom_col(color = "black", size= .2, width= .8, position= position_dodge(width= .9), key_glyph= draw_square)+
     geom_text(size = 3, 
             position = position_dodge(width=1), aes(y= amount), vjust =-.8, color= "black")+
   scale_fill_manual(values = pop_colors) 
@@ -82,11 +99,10 @@ new3<- (area + theme_classic()+
            legend.position= "top",
            axis.line.x = element_line(size=.1),
            axis.text.x= element_text(color= "black"),
-           legend.key.height = unit(.2, "cm"), legend.key.width= unit(.7, "cm"),
-           plot.margin = unit(c(.5,.5,.5,.5), "cm"),
-           legend.text=element_text(margin=margin(r=0,unit="inch")))
+           plot.margin = unit(c(.5,.5,.5,.5), "cm"))
+           
 + scale_x_discrete(expand=c(.2,0))
 + scale_y_continuous(expand = expansion(mult = c(0, 0.145))))
-new3+annotate("text", x= 3.21, y= 58.8, label= "associate's degree", size= 3.1)+coord_cartesian(ylim=c(0,49.5),clip="off")+annotate("text", x= 3.85, y= 59, label= "or more", size= 3.1)+coord_cartesian(ylim=c(0,49.5),clip="off")
-ggsave("new3.png")
+new3
+
 ```

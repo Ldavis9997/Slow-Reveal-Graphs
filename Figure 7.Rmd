@@ -13,7 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 # I like this for coloring text: https://wilkelab.org/ggtext/
 library("ggtext")
-
+library(grid)
+library(rlang)
 
 
 # Colors from https://imagecolorpicker.com/
@@ -26,11 +27,31 @@ library("ggtext")
 
 ```{r, fig.height= 5, fig.width= 8}
 age_groups= c("White non-Hispanic", "Black non-Hispanic", "Other race non-Hispanic", "Hispanic")
-types= c("Less than high school", "High school diploma", "Some college or", "Bachelor's degree")
+types= c("Less than high school", "High school diploma", "\nSome college or\nassociates degree", "\nBachelor's degree\nor more")
 
 pop_colors <- c("#e6cdcb", "#c58887", "#af5d62", "#971c3c")
 
+draw_square <- function(data, params, size) {
+  if (is.null(data$size)) {
+    data$size <- 0.5
+  }
+  lwd <- min(data$size, min(size) /4)
+  grid::rectGrob(
+    width  = unit(1.2, "snpc") - unit(lwd, "mm"),
+    height = unit(.5, "snpc") - unit(lwd, "mm"),
+    gp = gpar(
+      col = data$colour %||% NA,
+      fill = alpha(data$fill %||% "grey20", data$alpha),
+      lty = data$linetype %||% 1,
+      lwd = lwd * .pt,
+      linejoin = params$linejoin %||% "mitre",
+      lineend = if (identical(params$linejoin, "round")) "round" else "square"
+    )
+  )
+}
 
+
+  
 vote_data<- tibble(
   vote_type = rep(types, 4),
   pop_groups= rep(age_groups, c(4,4,4,4)),
@@ -49,10 +70,9 @@ area<- (ggplot(vote_data, aes(x = pop_groups,
                       y = amount, 
                       fill = fill, 
                       label = amount1)) +
-  geom_col(color = "black", size= .2, width= .8, position= position_dodge(width= .9))+
+  geom_col(color = "black", size= .2, width= .8, position= position_dodge(width= .9), key_glyph= draw_square)+
     geom_text(size = 3, 
-            position = position_dodge(width=1), aes(y= amount), vjust =-.8, color= "black")+
-  scale_fill_manual(values = pop_colors) 
+            position = position_dodge(width=1), aes(y= amount), vjust =-.8, color= "black")
 +
  labs(title =  "<span style = 'font-size:11pt; color:#000000'><b>Figure 7.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of American Voters by Educational Detainment and Race</p><p><span style = 'font-size:12pt; color:#a21e3c'><b>and Hispanic Origin: 2016</span></p>",
        subtitle = "(In Percent)",
@@ -80,11 +100,13 @@ new2<- (area + theme_classic()+
            legend.position= "top",
            axis.line.x = element_line(size=.1),
            axis.text.x= element_text(color= "black"),
-           legend.key.height= unit(.2, 'cm'), legend.key.width= unit(.7, 'cm'),
            plot.margin = unit(c(.5,.5,.5,.5), "cm"))
 + scale_x_discrete(expand=c(.2,0))
 + scale_y_continuous(expand = expansion(mult = c(0, 0.21))))
-new2 + theme(legend.position="top",legend.text=element_text(margin=margin(r=.2,unit="inch")))+guides(fill=guide_legend(title=NULL))+annotate("text", x= 3.21, y= 62.4, label= "associate's degree", size= 3.1)+coord_cartesian(ylim=c(0,49.5),clip="off")+annotate("text", x= 3.93, y= 62.5, label= "or more", size= 3.1)+coord_cartesian(ylim=c(0,49.5),clip="off")
-ggsave("new2.png")
+new2 
+
 ```
+
+
+
 
