@@ -36,8 +36,8 @@ draw_square <- function(data, params, size) {
   }
   lwd <- min(data$size, min(size) /4)
   grid::rectGrob(
-    width  = unit(.5, "snpc") - unit(lwd, "mm"),
-    height = unit(1.2, "snpc") - unit(lwd, "mm"),
+    width  = unit(1.2, "snpc") - unit(lwd, "mm"),
+    height = unit(.5, "snpc") - unit(lwd, "mm"),
     gp = gpar(
       col = data$colour %||% NA,
       fill = alpha(data$fill %||% "grey20", data$alpha),
@@ -104,5 +104,5 @@ new3<- (area + theme_classic()+
 + scale_x_discrete(expand=c(.2,0))
 + scale_y_continuous(expand = expansion(mult = c(0, 0.145))))
 new3
-
+ggsave("new3.pdf")
 ```

@@ -91,7 +91,7 @@ new<- (area + theme_classic()+
 
 new + theme(legend.position="top",legend.text=element_text(margin=margin(r=.3,unit="inch")))+guides(fill=guide_legend(title=NULL))
 
-ggsave("new.png")
+ggsave("new.pdf")
 
 
 
