@@ -40,8 +40,7 @@ area<- ((ggplot(vote_data, aes(x = pop_groups,
                       fill = fill, 
                       label = amount_1))+
   geom_col(color = "black", size= .2, width=.7)+ geom_text(size = 4, 
-            position = position_stack(vjust = 0.5), color=ifelse(vote_data$vote_type=="Female Voters", 'black', 'white')) +
-    scale_fill_manual(values = pop_colors))+
+            position = position_stack(vjust = 0.5), color=ifelse(vote_data$vote_type=="Female Voters", 'black', 'white'))) +
  labs(title =  "<p><span style = 'font-size:11pt; color:#000000'><b>Figure 2.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Composition of American Voters by Age: Presidential Elections, 1980-2016</span></p>",
        subtitle = "<span style = 'font-size:10pt; color:#000000'>(In Percent).</span>",
        y = "",
@@ -65,11 +64,15 @@ area<- ((ggplot(vote_data, aes(x = pop_groups,
            axis.text.y= element_text(margin = margin(r = -5), color= "black", size=12),
            legend.key.height = unit(.2, "cm"), legend.key.width= unit(.9, "cm"),
            plot.margin = unit(c(.5,.5,.5,.5), "cm"),
-           legend.spacing.x = unit(2.5, 'cm')))
+           legend.justification = c(8, 5),
+    legend.title = element_blank(),
+    legend.margin = margin(c(0, 13, 10, 0)),
+    legend.text = element_text(margin = margin(r = 155, unit = "pt"))))
   
   
      
       
+
 new + coord_flip()
 
 
