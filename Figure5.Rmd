@@ -76,3 +76,6 @@ new + coord_flip()+ scale_x_discrete(expand=c(.1,0))
 
 
 ```
+
+
+
