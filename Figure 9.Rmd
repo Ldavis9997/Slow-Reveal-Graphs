@@ -28,7 +28,7 @@ pop_colors <- c("#971c3c","#e6cdcb","#c58887")
 vote_data<- tibble(
   vote_type = rep(types, 11),
   pop_groups= rep(year_levels, c(3,3,3,3,3,3,3,3,3,3,3)),
-  amount= c(11,5,10,11,6,11,14,7,15,13,7.5,14.5,22,11,22.5,20,10,21,30,31,30,28,20,29,33,32.7,36,33,27,37,39,37,42), 
+  amount= c(11,5,10,11,6,11,14,7,15,13,7.5,14.5,22,11,22.5,20,10,21,30,31,30,28,20,29,33,32.7,36,33,27,36,44,42,48), 
   fill= rep(pop_colors, 11)
 )
 
@@ -37,7 +37,7 @@ vote_data<- vote_data%>%
   mutate(vote_type = factor(vote_type, levels= types),
          pop_groups= factor(pop_groups, levels=  year_levels),
          fill= factor(fill, levels= pop_colors))
-area<- (ggplot(data= vote_data, aes(x= pop_groups, y= amount, group = vote_type))+ geom_line(aes(color=vote_type), size =1)+ geom_point()+ scale_color_manual(values=pop_colors)+
+area<- (ggplot(data= vote_data, aes(x= pop_groups, y= amount, group = vote_type, color= vote_type))+ geom_line(aes(color=vote_type), size =1)+ geom_point(aes(color=vote_type),size=2.3)+ scale_color_manual(values=pop_colors, guide_legend(label.vjust=2))+
 
  labs(title = "<span style = 'font-size:11pt; color:#000000'><b>Figure 9.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Alternative Method of Voting, by Race and Hispanic Origin: 1996 to 2016</span></p>",
        subtitle = "<span style = 'font-size:10pt; color:#000000'>(In Percent)</span>",
@@ -61,20 +61,21 @@ new<- (area + theme_classic()+
            plot.subtitle = element_markdown(hjust=.01), 
            plot.caption = element_text(size = 8, color = "black", hjust = 0),
            axis.ticks = element_blank(),
-           axis.line.y = element_line(size=.2),
-           axis.text.y= element_text(size=11),
-           axis.line.x = element_line(size=.1),
+           axis.line.y = element_line(size=.2, color= "black"),
+           axis.text.y= element_text(size=10, color="black"),
+           axis.ticks.y= element_line(size=.2),
+           axis.line.x.bottom = element_line(size=.2, color= "black", linetype="solid"),
            axis.text.x= element_text(color= "black"),
-           legend.key.height= unit(.2, 'cm'), legend.key.width= unit(.7, 'cm'),
+           legend.key.height= unit(.2, 'cm'), legend.key.width= unit(.9, 'cm'),
            legend.spacing.x = unit(.1, 'cm'),
             plot.margin = unit(c(.5,.5,.5,.5), "cm"),
            legend.position="top",
            legend.text=element_text(margin=margin(r=.3,unit="inch")),
            legend.title= element_blank(),
-           legend.direction='vertical')
+           legend.direction='vertical',
+           legend.spacing = unit(10, 'cm'))
 + scale_x_discrete(expand=c(.05,0))
-+ guides(fill = guide_legend(byrow = TRUE))
-+ scale_y_continuous(expand = c(0,5)))
-new
++ scale_y_continuous(breaks = c(0,5,10,15,20,25,30,35,40,45,50)))
+new 
 
 ```
