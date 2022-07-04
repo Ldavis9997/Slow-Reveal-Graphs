@@ -63,9 +63,9 @@ area<- ((ggplot(vote_data, aes(x = pop_groups,
            axis.text.x= element_blank(),
            axis.text.y= element_text(margin = margin(r = -5), color= "black", size=12),
            legend.key.height = unit(.2, "cm"), legend.key.width= unit(.9, "cm"),
-           plot.margin = unit(c(.5,.1,.5,.5), "cm"),
+           plot.margin = unit(c(.5,.8,.5,.5), "cm"),
            legend.justification = c(0, 0),
-    legend.margin = margin(c(10, 0, 0, 70), "cm"),
+    legend.margin = margin(c(10, 0, 0, 50), "cm"),
     legend.text = element_text(margin = margin(r = 5, unit = "cm"))))
   
   
