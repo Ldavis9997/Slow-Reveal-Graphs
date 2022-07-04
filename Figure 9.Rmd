@@ -75,7 +75,7 @@ new<- (area + theme_classic()+
            legend.direction='vertical',
            legend.spacing = unit(10, 'cm'))
 + scale_x_discrete(expand=c(.05,0))
-+ scale_y_continuous(breaks = c(0,5,10,15,20,25,30,35,40,45,50)))
++ scale_y_continuous(breaks = c(0,5,10,15,20,25,30,35,40,45,50), limits= c(0,50)))
 new 
 
 ```
