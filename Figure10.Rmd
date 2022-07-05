@@ -1,0 +1,82 @@
+---
+title: "Figure 10"
+author: "lauryn davis"
+date: "7/5/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(tidyverse)
+# I like this for coloring text: https://wilkelab.org/ggtext/
+library("ggtext")
+library(grid)
+library(rlang)
+```
+
+```{r,fig.height= 5, fig.width= 8}
+types= c("Too busy, conflicting work or school schedule", "Illness or disability (own or familys)", "Not interested, felt vote wouldn't make a difference", "Out of town or away from home", "Didn't like candidates or campaign issues")
+year_levels <- c("2000", "2004", "2008", "2012", "2016")
+pop_colors <- c("#c58887","#763516","#971c3c", "#e6cdcb", "#76162f")
+
+# "#c58887"- first legend #763516 second"#971c3c"- 3rd legend "#e6cdcb" fourth legend #76162f fifth legend
+
+
+
+vote_data<- tibble(
+  vote_type = rep(types, 4),
+  pop_groups= rep(year_levels, c(5,5,5,5)),
+  amount= c(11,12,13,14,15,16,17,12,31,21,22,24,13,16,14,25,40,14,30,10), 
+  fill= rep(pop_colors, 4)
+)
+
+
+vote_data<- vote_data%>%
+  mutate(vote_type = factor(vote_type, levels= types),
+         pop_groups= factor(pop_groups, levels=  year_levels),
+         fill= factor(fill, levels= pop_colors))
+area<- (ggplot(data= vote_data, aes(x= pop_groups, y= amount, group = vote_type, color= vote_type))+ geom_line(aes(color=vote_type), size =1)+ geom_point(aes(color=vote_type),size=2.3)+ scale_color_manual(values=pop_colors, guide_legend(label.vjust=2))+
+
+ labs(title = "<span style = 'font-size:11pt; color:#000000'><b>Figure 9.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Alternative Method of Voting, by Race and Hispanic Origin: 1996 to 2016</span></p>",
+       subtitle = "<span style = 'font-size:10pt; color:#000000'>(In Percent)</span>",
+       y = "",
+       x = "",
+       caption = "*Presidential election year\nNote: Alternative method includes those who voted early and/or by absentee ballot.\nThe estimates presented in this section are only for individuals with valid responses to both the method and timing questions.\nSource: U.S. Census Bureau, Current Population Survey, November 1996-2016."))
+
+
+new<- (area + theme_classic()+
+  theme(
+           # Needed for using HTML syntax in plot title
+           # plot.title = element_markdown(), 
+           # Cleaned up some redundancies and combined your theme changes into one layer
+           panel.grid = element_blank(),
+           plot.background = element_rect(fill = "white", color = "black"),
+           panel.grid.major = element_blank(),
+           panel.grid.minor = element_blank(),
+           plot.title = element_markdown(hjust= .05),
+           plot.title.position = "plot",
+           plot.caption.position = "plot",
+           plot.subtitle = element_markdown(hjust=.01), 
+           plot.caption = element_text(size = 8, color = "black", hjust = 0),
+           axis.ticks = element_blank(),
+           axis.line.y = element_blank(),
+           axis.text.y= element_text(size=11, color="black"),
+           axis.ticks.y= element_line(size=.2, color= "black"),
+           axis.line.x.bottom = element_blank(),
+           axis.text.x= element_text(color= "black", size=10),
+           legend.key.height= unit(.2, 'cm'), legend.key.width= unit(.9, 'cm'),
+           legend.spacing.x = unit(.1, 'cm'),
+            plot.margin = unit(c(.5,.3,.5,.5), "cm"),
+           legend.position=c(.35,.95),
+           legend.text=element_text(margin=margin(t= 3, b=2), size=11),
+           legend.title= element_blank(),
+           legend.direction='vertical',
+           legend.spacing = unit(10, 'cm'),
+           axis.ticks.length=unit(0.1,"inch"))
++ scale_x_discrete(expand=expansion(mult=c(.1,.1)))
++ scale_y_continuous(breaks = c(0,5,10,15,20,25,30,35,40,45,50), limits= c(0,50), expand= expansion(mult=c(0,.2))))
+new + annotate(x=0, xend= 0, y=0, yend=50, color="black", lwd=.75, geom= "segment")+ annotate(x=0, xend= 11.47, y=0, yend=0, lwd=.75, geom="segment")
+
+```
