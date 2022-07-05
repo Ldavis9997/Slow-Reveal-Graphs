@@ -20,7 +20,7 @@ library(rlang)
 #Using custom line segments but changes the spacing of the x axis labeling in comparision to y axis line. 
 age_groups= c("18-29 year olds", "30-44 year olds", "45-64 year olds", "65 years and older")
 types= c("White, non-Hispanic", "Black, non-Hispanic", "Hispanic")
-year_levels <- c("*1996", "1=998", "*2000", "2002", "*2004", "2006", "*2008", "2010", "*2012", "2014", "*2016")
+year_levels <- c("*1996", "1998", "*2000", "2002", "*2004", "2006", "*2008", "2010", "*2012", "2014", "*2016")
 percent<- c(5,10,15,20,25,30,35,40,45,50)
 pop_colors <- c("#971c3c","#e6cdcb","#c58887")
 # "#c58887" - Hispanic color "#971c3c"- White, non-hispanic color "#e6cdcb" - Black non hispanic color
