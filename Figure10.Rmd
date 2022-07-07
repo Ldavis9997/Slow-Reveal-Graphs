@@ -26,10 +26,10 @@ pop_colors <- c("#c58887","#763516","#971c3c", "#e6cdcb", "#76162f")
 
 
 vote_data<- tibble(
-  vote_type = rep(types, 4),
-  pop_groups= rep(year_levels, c(5,5,5,5)),
-  amount= c(11,12,13,14,15,16,17,12,31,21,22,24,13,16,14,25,40,14,30,10), 
-  fill= rep(pop_colors, 4)
+  vote_type = rep(types, 5),
+  pop_groups= rep(year_levels, c(5,5,5,5,5)),
+  amount= c(11,12,13,14,15,16,17,12,31,21,22,24,13,16,14,25,40,14,30,10,21,12,30,12,11), 
+  fill= rep(pop_colors, 5)
 )
 
 
