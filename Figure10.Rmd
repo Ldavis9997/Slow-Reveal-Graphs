@@ -67,7 +67,7 @@ vote_data<- vote_data%>%
          fill= factor(fill, levels= pop_colors))
 
 area<- (ggplot(data= vote_data, aes(x= pop_groups, y= amount, group = vote_type, linetype=vote_type))+ geom_line(aes( color=vote_type), size =1)+ geom_point(aes(color= vote_type), size=2.3)+ scale_color_manual(values=pop_colors, guide_legend(label.vjust=5))+ scale_linetype_manual(breaks = types, values=c("dashed", "solid", "dashed", "solid", "dashed"), labels= types)+
- labs(title = "<span style = 'font-size:11pt; color:#000000'><b>Figure 10.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Alternative Method of Voting, by Race and Hispanic Origin: 1996 to 2016</span></p>",
+ labs(title = "<span style = 'font-size:11pt; color:#000000'><b>Figure 10.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Reasons for Not Voting: Presidential Elections, 2000-2016</span></p>",
        subtitle = "<span style = 'font-size:10pt; color:#000000'>(In Percent)</span>",
        y = "",
        x = "",
@@ -110,5 +110,5 @@ new1<- (new + coord_capped_cart(left='top')+
 annotation_custom(grob = grid::textGrob(label = "Percent", hjust=0, gp=gpar(col="black", cex=.78)),
     xmin = 1, xmax = .5, ymin = 27.5, ymax = 27.5))
 
-
+new1
 ```
