@@ -1,13 +1,14 @@
 ---
-title: "Figure 10"
+title: "Figure11.Rmd"
 author: "lauryn davis"
-date: "7/5/2022"
+date: "7/9/2022"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
 ```{r}
 library(tidyverse)
 # I like this for coloring text: https://wilkelab.org/ggtext/
@@ -16,11 +17,10 @@ library(grid)
 library(rlang)
 library(lemon)
 ```
-
 ```{r,fig.height= 6, fig.width= 8}
 types= c("Too busy, conflicting work or school schedule", "Illness or disability (own or familys)", "Not interested, felt vote wouldn't make a difference", "Out of town or away from home", "Didn't like candidates or campaign issues")
-year_levels <- c("2000", "2004", "2008", "2012", "2016")
-pop_colors <- c('#D6A6A6',"#9c3a4b","#f97610", "#c58887", "#8b0433")
+year_levels <- c("2000", "2004", "2008", "2012")
+pop_colors <- c('#BD6D6D',"#723417","#94011f", "#e8c6c0", "#7a021a")
 
 
 
@@ -30,34 +30,29 @@ pop_colors <- c('#D6A6A6',"#9c3a4b","#f97610", "#c58887", "#8b0433")
 
 
 vote_data<- tibble(
-  vote_type = rep(types, 5),
-  pop_groups= rep(year_levels, c(5,5,5,5,5)),
-  amount= c(22.15697,
-15.72408,
-12.95218,
-10.86018,
-8.14058,
-21.21557,
-16.40398,
-11.38318,
-9.55268,
-10.54638,
-18.44367,
-15.72408,
-14.10278,
-9.23888,
-13.52748,
-19.01897,
-14.10278,
-15.77638,
-8.66358,
-12.79528,
-14.41658,
-11.74928,
-15.51488,
-7.98368,
-24.98117), 
-  fill= rep(pop_colors, 5)
+  vote_type = rep(types, 4),
+  pop_groups= rep(year_levels, c(5,5,5,5)),
+  amount= c(39.038712921065900,
+16.590246354952200,
+6.201860231271980,
+5.3660130718954200,
+4.052538964303670,
+39.15811965811970,
+14.560331825037700,
+8.2317747611865,
+5.6048265460029800,
+4.4107591754650300,
+41.06862745098040,
+14.321518350930100,
+7.515334338863720,
+5.366013071895410,
+4.888386123680210,
+42.02388134741070,
+12.649824032177000,
+7.873554550025120,
+5.72423328305679,
+5.246606334841600), 
+  fill= rep(pop_colors, 4)
 )
 
 
@@ -67,7 +62,7 @@ vote_data<- vote_data%>%
          fill= factor(fill, levels= pop_colors))
 
 area<- (ggplot(data= vote_data, aes(x= pop_groups, y= amount, group = vote_type, linetype=vote_type, color=vote_type))+ geom_line(size =1.1)+ geom_point(aes(color= vote_type), size=2.3)+ scale_color_manual(values=pop_colors, guide_legend(label.vjust=5))+ scale_linetype_manual(breaks = types, values=c(5,1,5,1,5), labels= types)+
- labs(title = "<span style = 'font-size:11pt; color:#000000'><b>Figure 10.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Alternative Method of Voting, by Race and Hispanic Origin: 1996 to 2016</span></p>",
+ labs(title = "<span style = 'font-size:11pt; color:#000000'><b>Figure 11.</span></p><p><span style = 'font-size:12pt; color:#a21e3c'><b>Reasons for Not Registering: Presidential Elections, 2004-2016</span></p>",
        subtitle = "<span style = 'font-size:10pt; color:#000000'>(In Percent)</span>",
        y = "",
        x = "",
@@ -105,10 +100,10 @@ new<- (area + theme_classic()+
            legend.spacing = unit(10, 'cm'),
            axis.ticks.length=unit(0.15,"inch"))
 + scale_x_discrete(expand=c(.05,.05))
-+ scale_y_continuous(breaks = c(0,5,10,15,20,25), limits= c(0,25), expand= expansion(mult=c(0,.6))))
++ scale_y_continuous(breaks = c(0,5,10,15,20,25,30,35,40,45,50), limits= c(0,50), expand= expansion(mult=c(0,.65))))
 new1<- (new + coord_capped_cart(left='top')+
 annotation_custom(grob = grid::textGrob(label = "Percent", hjust=0, gp=gpar(col="black", cex=.78)),
-    xmin = 1, xmax = .5, ymin = 27.5, ymax = 27.5))
+    xmin = 1.1, xmax = .5, ymin = 52.5, ymax = 52.5))
 
 new1+ guides(color= guide_legend(override.aes=list(linetype=c(5,1,5,1,5))))
 ```
