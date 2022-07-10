@@ -73,7 +73,7 @@ area<- ((ggplot(vote_data, aes(x = pop_groups,
       
 
 new + coord_flip()+ scale_x_discrete(expand=c(.1,0))+ theme(plot.margin = unit(c(.5,.5,.5,.5), "cm"))
-
+ggsave("new.png")
 
 ```
 
