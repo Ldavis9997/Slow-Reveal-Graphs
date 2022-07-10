@@ -111,4 +111,5 @@ annotation_custom(grob = grid::textGrob(label = "Percent", hjust=0, gp=gpar(col=
     xmin = 1, xmax = .5, ymin = 27.5, ymax = 27.5))
 
 new1+ guides(color= guide_legend(override.aes=list(linetype=c(5,1,5,1,5))))
+ggsave("new1.png")
 ```
