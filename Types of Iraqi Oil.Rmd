@@ -63,7 +63,7 @@ library(ggrepel)
 df<- data.frame(
   type_levels= c("Very Heavy","Light", "Medium", "Regular", "Heavy"),
   value= c(5,7,18,27,43), 
-  Label= c("Very heavy\n(20),5", "Light (38 +), 7", "Medium\n(27 -33),\n18", "Regular (34 -37),\n27", "Heavy (20 -26),\n43"), 
+  Label= c("Very heavy\n(20°),5", "Light (38° +), 7", "Medium\n(27° -33°),\n18", "Regular (34° -37°),\n27", "Heavy (20° -26°),\n43"), 
   pop_colors = c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
 )
 df2<- df%>%
@@ -81,7 +81,7 @@ pie<- (bp+ coord_polar("y", start=0) +  # Using ggtext + HTML syntax to color te
        subtitle = "<p><span style = 'font-size:11pt; color:#0c64a4'>Numbers in Parenthesis are American</p><p><span style= 'font-size 11pt; color: #0c64a4'> Petroleum Institute (API) degrees gravity.</span></p>",
        y = "",
        x = "",
-       caption ="<p><span style = 'font-size:10pt; color:#000000'>Iraq markets two crude blends: 60 percent</p><p><span style = 'font-size:10pt; color:#000000'>of exports is Basrah Light (34.4 API) and</p><p><span style = 'font-size:10pt; color:#000000'>40 percent is Kirkuk(37 API).</p><p><span style = 'font-size:10pt; color:#000000'>API gravity is a measure of crude oil density,</p><p><span style = 'font-size:10pt; color:#000000'>with higher numbers denoting lighter, more</p><p><span style = 'font-size:10pt; color:#000000'>valuable crude oil</p></span>")
+       caption ="<p><span style = 'font-size:10pt; color:#000000'>Iraq markets two crude blends: 60 percent</p><p><span style = 'font-size:10pt; color:#000000'>of exports is Basrah Light (34.4° API) and</p><p><span style = 'font-size:10pt; color:#000000'>40 percent is Kirkuk(37° API).</p><p><span style = 'font-size:10pt; color:#000000'>API gravity is a measure of crude oil density,</p><p><span style = 'font-size:10pt; color:#000000'>with higher numbers denoting lighter, more</p><p><span style = 'font-size:10pt; color:#000000'>valuable crude oil</p></span>")
 + 
   theme_classic()
 + theme(axis.line=element_blank(),
