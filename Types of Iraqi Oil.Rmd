@@ -58,7 +58,7 @@ ggplot(df)+
 
 
 ```
-```{r}
+```{r, fig.height= 6, fig.width=4}
 library(ggrepel)
 df<- data.frame(
   type_levels= c("Very Heavy","Light", "Medium", "Regular", "Heavy"),
@@ -72,7 +72,7 @@ df2<- df%>%
          pos = if_else(is.na(pos), value/2, pos))
   
 bp<- ggplot(df2, aes(x="", y=value, fill= reorder(type_levels, value)))+ 
-  geom_bar(width=1, stat= "identity") +
+  geom_bar(width=1, stat= "identity", color="black") +
   geom_text(aes(x=1.8, label=Label),
             position = position_stack(vjust=0.2))
 pie<- (bp+ coord_polar("y", start=0) +  # Using ggtext + HTML syntax to color text
@@ -81,7 +81,7 @@ pie<- (bp+ coord_polar("y", start=0) +  # Using ggtext + HTML syntax to color te
        subtitle = "<p><span style = 'font-size:11pt; color:#0c64a4'>Numbers in Parenthesis are American</p><p><span style= 'font-size 11pt; color: #0c64a4'> Petroleum Institute (API) degrees gravity.</span></p>",
        y = "",
        x = "",
-       caption ="<p><span style = 'font-size:11pt; color:#000000'>Iraq markets two crude blends: 60 percent</p><p><span style = 'font-size:11pt; color:#000000'>of exports is Basrah Light
+       caption ="<p><span style = 'font-size:10pt; color:#000000'>Iraq markets two crude blends: 60 percent</p><p><span style = 'font-size:10pt; color:#000000'>of exports is Basrah Light (34.4 API) and</p><p><span style = 'font-size:10pt; color:#000000'>40 percent is Kirkuk(37 API).</p><p><span style = 'font-size:10pt; color:#000000'>API gravity is a measure of crude oil density,</p><p><span style = 'font-size:10pt; color:#000000'>with higher numbers denoting lighter, more</p><p><span style = 'font-size:10pt; color:#000000'>valuable crude oil</p></span>")
 + 
   theme_classic()
 + theme(axis.line=element_blank(),
@@ -91,7 +91,8 @@ pie<- (bp+ coord_polar("y", start=0) +  # Using ggtext + HTML syntax to color te
                                   axis.title.y= element_blank(),
                                   legend.position = "none",
                          plot.title= element_markdown(),
-                         plot.subtitle = element_markdown())
+                         plot.subtitle = element_markdown(),
+        plot.caption= element_markdown(hjust=0))
 + scale_fill_manual(values= pop_colors))
 pie
 
