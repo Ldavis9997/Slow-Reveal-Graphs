@@ -95,7 +95,7 @@ pie<- (bp+ coord_polar("y", start=0) +  # Using ggtext + HTML syntax to color te
         plot.caption= element_markdown(hjust=0))
 + scale_fill_manual(values= pop_colors))
 pie
-
+ggsave("pie.png")
   
 
  
