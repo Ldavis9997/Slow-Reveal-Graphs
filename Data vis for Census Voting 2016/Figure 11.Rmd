@@ -90,7 +90,7 @@ new<- (area + theme_classic()+
            axis.ticks.y= element_line(size=.2),
            axis.line.x.bottom = element_line(size=.2, color= "black", linetype="solid"),
            axis.text.x= element_text(color= "black", size=11),
-           legend.key.height= unit(.2, 'cm'), legend.key.width= unit(2.3, 'cm'),
+           legend.key.height= unit(.2, 'cm'), legend.key.width= unit(2.85, 'cm'),
            legend.spacing.x = unit(.1, 'cm'),
             plot.margin = unit(c(.5,2.7,.5,.5), "cm"),
            legend.position=c(.5,1.5),

@@ -22,6 +22,22 @@ types= c("Too busy, conflicting work or school schedule", "Illness or disability
 year_levels <- c("2000", "2004", "2008", "2012", "2016")
 pop_colors <- c('#D6A6A6',"#9c3a4b","#f97610", "#c58887", "#8b0433")
 
+library(grid)
+library(rlang)
+draw_key_smile <- function(data, params, size) {
+  grobTree(
+    pointsGrob(0.25, 0.75, size = unit(.25, "npc"), pch = 16),
+    pointsGrob(0.75, 0.75, size = unit(.25, "npc"), pch = 16),
+    linesGrob(c(0.9, 0.87, 0.78, 0.65, 0.5, 0.35, 0.22, 0.13, 0.1), 
+              c(0.5, 0.35, 0.22, 0.13, 0.1, 0.13, 0.22, 0.35, 0.5)),
+    gp = gpar(
+      col = data$colour %||% "grey20",
+      fill = alpha(data$fill %||% "white", data$alpha),
+      lwd = (data$size %||% 0.5) * .pt,
+      lty = data$linetype %||% 1
+    )
+  )
+}
 
 
 
@@ -95,7 +111,7 @@ new<- (area + theme_classic()+
            axis.ticks.y= element_line(size=.2),
            axis.line.x.bottom = element_line(size=.2, color= "black", linetype="solid"),
            axis.text.x= element_text(color= "black", size=11),
-           legend.key.height= unit(.2, 'cm'), legend.key.width= unit(2.3, 'cm'),
+           legend.key.height= unit(.2, 'cm'), legend.key.width= unit(2.85, 'cm'),
            legend.spacing.x = unit(.1, 'cm'),
             plot.margin = unit(c(.5,2.7,.5,.5), "cm"),
            legend.position=c(.5,1.5),
