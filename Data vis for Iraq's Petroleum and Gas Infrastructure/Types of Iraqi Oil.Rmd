@@ -10,12 +10,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r}
 library(tidyverse)
-# I like this for coloring text: https://wilkelab.org/ggtext/
+library(ggplot2)
+library(dplyr)
 library(grid)
 library(rlang)
-library("ggtext")
+library(ggtext)
 library(ggrepel)
 
+library(glue)
 
 ```
 
@@ -41,12 +43,69 @@ df<- data.frame(
 df2<- df%>%
   mutate(csum = rev(cumsum(rev(value))), 
          pos = value/2 + lead(csum, 1),
-         pos = if_else(is.na(pos), value/2, pos))
+         pos = if_else(is.na(pos), value/4, pos))
+
   
 bp<- ggplot(df2, aes(x="", y=value, fill= reorder(type_levels, value)))+ 
   geom_bar(width=1, stat= "identity", color="black") +
   geom_text(aes(x=1.8, label=Label),
             position = position_stack(vjust=0.2))
+pie<- (bp+ coord_polar("y", start=0) +  # Using ggtext + HTML syntax to color text
+  # For some reason '\n' doesn't work here so I used <br> instead.
+  labs(title = "<p><span style = 'font-size:11pt; color:#000000'><i>Percent</span></p>",
+       subtitle = "<p><span style = 'font-size:11pt; color:#0c64a4'>Numbers in Parenthesis are American</p><p><span style= 'font-size 11pt; color: #0c64a4'> Petroleum Institute (API) degrees gravity.<sup>b</sup></span></p>",
+       y = "",
+       x = "",
+       caption ="<p><span style = 'font-size:10pt; color:#000000'><sup>a</sup>Iraq markets two crude blends: 60 percent</p><p><span style = 'font-size:10pt; color:#000000'>of exports is Basrah Light (34.4° API) and</p><p><span style = 'font-size:10pt; color:#000000'>40 percent is Kirkuk(37° API).</p><p><span style = 'font-size:10pt; color:#000000'><sup>b</sup>API gravity is a measure of crude oil density,</p><p><span style = 'font-size:10pt; color:#000000'>with higher numbers denoting lighter, more</p><p><span style = 'font-size:10pt; color:#000000'>valuable crude oil</p></span>")
++ 
+  theme_classic()
++ theme(axis.line=element_blank(),
+                                  axis.text.x = element_blank(),
+                                  axis.text.y= element_blank(),
+                                  axis.title.x = element_blank(),
+                                  axis.title.y= element_blank(),
+                                  legend.position = "none",
+                         plot.title= element_markdown(),
+                         plot.subtitle = element_markdown(),
+        plot.caption= element_markdown(hjust=0))
++ scale_fill_manual(values= pop_colors))
+pie 
+
+ 
+ 
+  
+  
+```
+
+```{r, fig.height= 6, fig.width= 4}
+
+pop_colors = c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
+#black, blue, red, yellow, green
+
+df<- data.frame(
+  type_levels= c("Very Heavy","Light", "Medium", "Regular", "Heavy"),
+  value= c(5,7,18,27,43), 
+  Label= c("Very heavy\n(20),5", "Light (38 +), 7", "Medium\n(27 -33),\n18", "Regular (34 -37),\n27", "Heavy (20 -26),\n43"), 
+  pop_colors = c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
+)
+
+
+df<- data.frame(
+  type_levels= c("Very Heavy","Light", "Medium", "Regular", "Heavy"),
+  value= c(5,7,18,27,43), 
+  Label= c("Very heavy\n(20°),5", "Light (38° +), 7", "Medium\n(27° -33°),\n18", "Regular (34° -37°),\n27", "Heavy (20° -26°),\n43"), 
+  pop_colors = c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
+)
+df2<- df%>%
+  mutate(csum = rev(cumsum(rev(value))), 
+         pos = value/2 + lead(csum, 1),
+         pos = if_else(is.na(pos), value/2, pos),
+         label= glue("hi"))
+
+  
+bp<- ggplot(df2, aes(x="", y=value, fill= reorder(type_levels, value)))+ 
+  geom_bar(width=1, stat= "identity", color="black") +
+  geom_richtext(data= df2, aes(label=label), hjust=1, vjust=1)
 pie<- (bp+ coord_polar("y", start=0) +  # Using ggtext + HTML syntax to color text
   # For some reason '\n' doesn't work here so I used <br> instead.
   labs(title = "<p><span style = 'font-size:11pt; color:#000000'><i>Percent</span></p>",
