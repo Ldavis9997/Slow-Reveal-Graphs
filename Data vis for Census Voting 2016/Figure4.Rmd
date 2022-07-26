@@ -91,6 +91,6 @@ area<- ((ggplot(vote_data, aes(x = pop_group,
            plot.margin = unit(c(.5,.5,.5,.5), "cm")))
      
       
-new+ coord_flip()
+new + coord_flip()
 
 ```
