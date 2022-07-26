@@ -72,6 +72,7 @@ pie
 ```
 
 ```{r, fig.height= 6, fig.width= 4}
+#Here's where I started trying to use the Geom_richtext option. 
 
 pop_colors = c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
 #black, blue, red, yellow, green
@@ -93,8 +94,8 @@ df<- data.frame(
 df2<- df%>%
   mutate(csum = rev(cumsum(rev(value))), 
          pos = value/2 + lead(csum, 1),
-         pos = if_else(is.na(pos), value/2, pos),
-         label= glue("hi"))
+         pos = if_else(is.na(pos), value/2, pos,
+         label= glue(c("1","2", "3", "4", "5"))))
 
   
 bp<- ggplot(df2, aes(x="", y=value, fill= reorder(type_levels, value)))+ 
