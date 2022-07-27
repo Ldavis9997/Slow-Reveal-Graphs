@@ -73,7 +73,32 @@ initial<- (ggplot(data, aes(x= iraq_year,
   labs(caption= "<p><span style = 'font-size:10pt; color:#000000'><sup>a</sup>Adapted from published oil ministry plans (assumes no sanctions constraints).</p></span>",
        title= "<p><span style = 'font-size:16pt; color: #FFFFFF'><b>O</span><span style = 'font-size:11pt; color: #FFFFFF'>IL</span><span style = 'font-size:16pt; color: #FFFFFF'> M</span><span style = 'font-size:11pt; color: #FFFFFF'>INISTRY</span><span style = 'font-size:16pt; color: #FFFFFF'> P</span><span style = 'font-size:11pt; color: #FFFFFF'>RODUCTION</span><span style = 'font-size:16pt; color: #FFFFFF'> G</span><span style = 'font-size:11pt; color: #FFFFFF'>OALS<sup>a</sup></p></span>"))
   
-initial
+initial + 
+  annotate(geom="text", x=.15, y=.75, label="1",
+              color="black", size= 2.8)+
+  annotate(geom="text", x=.15, y=1.75, label="2",
+              color="black", size= 2.8)+
+  annotate(geom="text", x=.15, y=.75, label="1",
+              color="black", size= 2.8)+
+  annotate(geom="text", x=.15, y=2.75, label="3",
+              color="black", size= 2.8)+
+  annotate(geom="text", x=.15, y=3.75, label="4",
+              color="black", size= 2.8)+
+  annotate(geom="text", x=.15, y=4.75, label="5",
+              color="black", size= 2.8)+
+  annotate(geom="text", x=.15, y=5.75, label="6",
+              color="black", size= 2.8)+
+  annotate(geom="text", x=.88, y=6.1, label="Million b/d",
+              color="black", size= 2.8)+coord_cartesian(ylim=c(0,6),clip="off")
+
+
+  
+
+
+
+
+
+  
 
 
 
