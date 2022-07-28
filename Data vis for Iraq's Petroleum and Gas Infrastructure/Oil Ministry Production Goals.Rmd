@@ -73,12 +73,10 @@ initial<- (ggplot(data, aes(x= iraq_year,
   labs(caption= "<p><span style = 'font-size:10pt; color:#000000'><sup>a</sup>Adapted from published oil ministry plans (assumes no sanctions constraints).</p></span>",
        title= "<p><span style = 'font-size:16pt; color: #FFFFFF'><b>O</span><span style = 'font-size:11pt; color: #FFFFFF'>IL</span><span style = 'font-size:16pt; color: #FFFFFF'> M</span><span style = 'font-size:11pt; color: #FFFFFF'>INISTRY</span><span style = 'font-size:16pt; color: #FFFFFF'> P</span><span style = 'font-size:11pt; color: #FFFFFF'>RODUCTION</span><span style = 'font-size:16pt; color: #FFFFFF'> G</span><span style = 'font-size:11pt; color: #FFFFFF'>OALS<sup>a</sup></p></span>"))
   
-initial + 
+final<- initial + 
   annotate(geom="text", x=.15, y=.75, label="1",
               color="black", size= 2.8)+
   annotate(geom="text", x=.15, y=1.75, label="2",
-              color="black", size= 2.8)+
-  annotate(geom="text", x=.15, y=.75, label="1",
               color="black", size= 2.8)+
   annotate(geom="text", x=.15, y=2.75, label="3",
               color="black", size= 2.8)+
@@ -89,7 +87,31 @@ initial +
   annotate(geom="text", x=.15, y=5.75, label="6",
               color="black", size= 2.8)+
   annotate(geom="text", x=.88, y=6.1, label="Million b/d",
-              color="black", size= 2.8)+coord_cartesian(ylim=c(0,6),clip="off")
+              color="", size= 2.8)+
+  geom_segment(aes(x = 20.27, 
+                   y = 6, 
+                   xend = 25.3, 
+                   yend = 6
+                  ),
+               col = "#bcc0c2", size=.08)+
+   geom_segment(aes(x = 20, 
+                   y = 0, 
+                   xend = 25.3, 
+                   yend = 0
+                  ),
+               col = "black", size=.27)+
+  coord_cartesian(ylim=c(0,6), xlim= c(0,20),clip="off")+
+annotation_custom(grob = grid::textGrob(label = "Million b/d", hjust=0, gp=gpar(col="black", cex=.74, fontface="italic")),xmin = 0, xmax = .1, ymin = 6.1, ymax = 6.3)+
+  annotation_custom(grob = grid::textGrob(label = "Undiscovered fields", hjust=0, gp=gpar(col="black", cex=.77)),xmin = 21, xmax = 21, ymin = 5.8, ymax = 5.8)+
+  annotation_custom(grob = grid::textGrob(label = "Undeveloped\ndiscovered fields\n(foreign participation)", hjust=0, gp=gpar(col="black", cex=.77, lineheight= .8)),xmin = 21, xmax = 21, ymin = 4, ymax = 4)+ 
+  annotation_custom(grob = grid::textGrob(label = "Improved production\nfrom existing fields\n(national effort)", hjust=0, gp=gpar(col="black", cex=.77, lineheight= .8)),xmin = 21, xmax = 21, ymin = 2, ymax = 2)+
+  annotation_custom(grob = grid::textGrob(label = "Unimproved\nexisting fields", hjust=0, gp=gpar(col="black", cex=.77, lineheight= .8)),xmin = 21, xmax = 21, ymin = .7, ymax = .7)+
+  annotation_custom(grob = linesGrob(), xmin = 20.27, xmax = 20.85, ymin = 5.8, ymax = 5.8)+
+  annotation_custom(grob = linesGrob(), xmin = 20.27, xmax = 20.85, ymin = 4.35, ymax = 4.35)+
+  annotation_custom(grob = linesGrob(), xmin = 20.27, xmax = 20.85, ymin = 2.35, ymax = 2.35)+
+  annotation_custom(grob = linesGrob(), xmin = 20.27, xmax = 20.85, ymin = .5, ymax = .75)
+
+ggsave("final.png")
 
 
   
