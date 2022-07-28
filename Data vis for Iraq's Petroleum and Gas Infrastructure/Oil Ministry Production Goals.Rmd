@@ -112,10 +112,18 @@ annotation_custom(grob = grid::textGrob(label = "Million b/d", hjust=0, gp=gpar(
   annotation_custom(grob = linesGrob(), xmin = 20.27, xmax = 20.85, ymin = 2.35, ymax = 2.35)+
   annotation_custom(grob = linesGrob(), xmin = 20.27, xmax = 20.85, ymin = .5, ymax = .75)
 
+final
 
 
-```
-```{r,fig.height= 4, fig.width= 7.5}
-ggsave("final.png")
+  
+
+
+
+
+
+  
+
+
+
 ```
 
