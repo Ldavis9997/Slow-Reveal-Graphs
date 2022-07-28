@@ -95,7 +95,7 @@ df2<- df%>%
   mutate(csum = rev(cumsum(rev(value))), 
          pos = value/2 + lead(csum, 1),
          pos = if_else(is.na(pos), value/2, pos,
-         label= glue(c("1","2", "3", "4", "5"))))
+         label= csglue::glue(c("1","2", "3", "4", "5"))))
 
   
 bp<- ggplot(df2, aes(x="", y=value, fill= reorder(type_levels, value)))+ 
