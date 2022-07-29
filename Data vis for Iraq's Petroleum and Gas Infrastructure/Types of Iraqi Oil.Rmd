@@ -12,6 +12,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggtext)
 library(ggrepel)
+library(grid)
+library(ggforce)
 
 ```
 
@@ -19,6 +21,7 @@ library(ggrepel)
 
 pop_colors = c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
 #black, blue, red, yellow, green
+Label= c("Very heavy\n(20),5", "Light (38 +), 7", "Medium\n(27 -33),\n18", "Regular (34 -37),\n27", "Heavy (20 -26),\n43")
 
 df<- data.frame(
   type_levels= c("Very Heavy","Light", "Medium", "Regular", "Heavy"),
@@ -35,15 +38,15 @@ df<- data.frame(
   pop_colors = c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
 )
 df2<- df%>%
-  mutate(csum = rev(cumsum(rev(value))), 
-         pos = value/2 + lead(csum, 1),
-         pos = if_else(is.na(pos), value/4, pos))
+  mutate(end = 2 * pi * cumsum(value)/sum(value),
+          start = lag(end, default = 0),
+          middle = 0.5 * (start + end),
+          hjust = ifelse(middle > pi, 1, 0),
+          vjust = ifelse(middle < pi/2 | middle > 3 * pi/2, 0, 1))
 
   
 bp<- ggplot(df2, aes(x="", y=value, fill= reorder(type_levels, value)))+ 
-  geom_bar(width=1, stat= "identity", color="black") +
-  geom_text(aes(x=1.8, label=Label),
-            position = position_stack(vjust=0.2))
+  geom_bar(width=1, stat= "identity", color="black")
 pie<- (bp+ coord_polar("y", start=0) +  # Using ggtext + HTML syntax to color text
   # For some reason '\n' doesn't work here so I used <br> instead.
   labs(title = "<p><span style = 'font-size:11pt; color:#000000'><i>Percent</span></p>",
@@ -63,67 +66,18 @@ pie<- (bp+ coord_polar("y", start=0) +  # Using ggtext + HTML syntax to color te
                          plot.subtitle = element_markdown(),
         plot.caption= element_markdown(hjust=0))
 + scale_fill_manual(values= pop_colors))
-pie 
-
+pie +geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0, r = 1,
+                    start = start, end = end, fill = Label)) +
+   geom_text(aes(x = 1.05 * sin(middle), y = 1.05 * cos(middle), label = Label,
+                 hjust = hjust, vjust = vjust))+
+   scale_x_continuous(limits = c(-1.5, 1.5),  # Adjust so labels are not cut off
+                      name = "", breaks = NULL, labels = NULL) +
+   scale_y_continuous(limits = c(-1, 1.1),    # Adjust so labels are not cut off
+                      name = "", breaks = NULL, labels = NULL)
  
  
   
   
 ```
 
-```{r, fig.height= 6, fig.width= 4}
-#Here's where I started trying to use the Geom_richtext option. 
 
-pop_colors = c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
-#black, blue, red, yellow, green
-
-df<- data.frame(
-  type_levels= c("Very Heavy","Light", "Medium", "Regular", "Heavy"),
-  value= c(5,7,18,27,43), 
-  Label= c("Very heavy\n(20),5", "Light (38 +), 7", "Medium\n(27 -33),\n18", "Regular (34 -37),\n27", "Heavy (20 -26),\n43"), 
-  pop_colors = c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
-)
-
-
-df<- data.frame(
-  type_levels= c("Very Heavy","Light", "Medium", "Regular", "Heavy"),
-  value= c(5,7,18,27,43), 
-  Label= c("Very heavy\n(20°),5", "Light (38° +), 7", "Medium\n(27° -33°),\n18", "Regular (34° -37°),\n27", "Heavy (20° -26°),\n43"), 
-  pop_colors = c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
-)
-df2<- df%>%
-  mutate(csum = rev(cumsum(rev(value))), 
-         pos = value/2 + lead(csum, 1),
-         pos = if_else(is.na(pos), value/2, pos,
-         label= csglue::glue(c("1","2", "3", "4", "5"))))
-
-  
-bp<- ggplot(df2, aes(x="", y=value, fill= reorder(type_levels, value)))+ 
-  geom_bar(width=1, stat= "identity", color="black") +
-  geom_richtext(data= df2, aes(label=label), hjust=1, vjust=1)
-pie<- (bp+ coord_polar("y", start=0) +  # Using ggtext + HTML syntax to color text
-  # For some reason '\n' doesn't work here so I used <br> instead.
-  labs(title = "<p><span style = 'font-size:11pt; color:#000000'><i>Percent</span></p>",
-       subtitle = "<p><span style = 'font-size:11pt; color:#0c64a4'>Numbers in Parenthesis are American</p><p><span style= 'font-size 11pt; color: #0c64a4'> Petroleum Institute (API) degrees gravity.<sup>b</sup></span></p>",
-       y = "",
-       x = "",
-       caption ="<p><span style = 'font-size:10pt; color:#000000'><sup>a</sup>Iraq markets two crude blends: 60 percent</p><p><span style = 'font-size:10pt; color:#000000'>of exports is Basrah Light (34.4° API) and</p><p><span style = 'font-size:10pt; color:#000000'>40 percent is Kirkuk(37° API).</p><p><span style = 'font-size:10pt; color:#000000'><sup>b</sup>API gravity is a measure of crude oil density,</p><p><span style = 'font-size:10pt; color:#000000'>with higher numbers denoting lighter, more</p><p><span style = 'font-size:10pt; color:#000000'>valuable crude oil</p></span>")
-+ 
-  theme_classic()
-+ theme(axis.line=element_blank(),
-                                  axis.text.x = element_blank(),
-                                  axis.text.y= element_blank(),
-                                  axis.title.x = element_blank(),
-                                  axis.title.y= element_blank(),
-                                  legend.position = "none",
-                         plot.title= element_markdown(),
-                         plot.subtitle = element_markdown(),
-        plot.caption= element_markdown(hjust=0))
-+ scale_fill_manual(values= pop_colors))
-pie 
-
- 
- 
-  
-  
-```
