@@ -14,6 +14,7 @@ library(ggtext)
 library(ggrepel)
 library(grid)
 library(ggforce)
+library(showtext)
 
 ```
 
@@ -78,6 +79,49 @@ pie<- (bp+ coord_polar("y", start=0) +  # Using ggtext + HTML syntax to color te
 + scale_fill_manual(values= pop_colors))
 pie 
   
+  
+```
+```{r}
+Product <- c("Heavy", "Regular", "Medium", "Light", "Very Heavy")
+pop_colors <- c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
+Value <- c(43,27,18,7,5)
+
+df <- data.frame(Product,Value)
+df$Label <- paste(Product, paste(c("(20-26),\n43","\n(20),5","(38 +),7","\n(27-33),\n18","(34-37),\n27")), sep=" ")
+
+library(ggplot2)
+
+p <-  ggplot(df, aes(x = 1, y = Value, fill = Product)) + geom_bar(stat = "identity")
+p <- p + coord_polar(theta = 'y') + theme_void() 
+p <- p + geom_text(aes(label = Label),size=4, position = position_stack(vjust = 0.5))
+p<- p + scale_fill_manual(values= pop_colors)
+
+                  
+df <- df %>% 
+  mutate(end = 2 * pi * cumsum(Value)/sum(Value),
+         start = lag(end, default = 0),
+         middle = 0.5 * (start + end),
+         hjust = ifelse(middle > pi, 1, 0),
+         vjust = ifelse(middle < pi/2 | middle > 3 * pi/2, 0, 1))
+
+library(ggforce) # for 'geom_arc_bar'
+p<-ggplot(df) + 
+  geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0, r = 1,
+                   start = start, end = end, fill = Product)) +
+  geom_text(aes(x = 1.1* sin(middle), y = 1.1 * cos(middle), label = Label,
+                hjust = hjust, vjust = vjust), size=4) +
+  coord_fixed() +
+  scale_x_continuous(limits = c(-2, 2),  # Adjust so labels are not cut off
+                     name = "", breaks = NULL, labels = NULL) +
+  scale_y_continuous(limits = c(-1.5, 1.5),    # Adjust so labels are not cut off
+                     name = "", breaks = NULL, labels = NULL)
+before_theme<- p + scale_fill_manual(values= c("#8fa800", "#1566ac", "#ed1f02", "#e1eb00", "#010102"))
+
+before_theme+ theme_classic() +theme(
+  legend.position= "none",
+  axis.line= element_blank()
+)
+
   
 ```
 
