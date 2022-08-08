@@ -25,13 +25,13 @@ df<- data.frame(
   type_levels= c("Very Heavy","Light", "Medium", "Regular", "Heavy"),
   value= c(5,7,18,27,43), 
   #Label= c("Very heavy\n(20°),5", "Light (38° +), 7", "Medium\n(27° -33°),\n18", "Regular (34° -37°),\n27", "Heavy (20° -26°),\n43"),
-  Label= c(
-    "<p><span style = 'font-size:11pt; color: #000000'>Heavy</span><span style = 'font-size:11pt; color: #0c64a4'>(20°-26°)</span></p><p><span style = 'font-size:11pt; color: #000000'>43</span></p>",
-    "<p><span style = 'font-size:11pt; color: #000000'>Very heavy</span></p><p><span style = 'font-size:11pt; color: #0c64a4'>(20°)</span><span style = 'font-size:11pt; color: #000000'>, 5</span></p>",
-    "<p><span style = 'font-size:11pt; color: #000000'>Light</span><span style = 'font-size:11pt; color: #0c64a4'> (38° +)</span><span style = 'font-size:11pt; color: #000000'>, 7</span></p>",
-    "<p><span style = 'font-size:11pt; color: #000000'>Medium</span></p><p><span style = 'font-size:11pt; color: #0c64a4'>(27°-33°),</span></p><p><span style = 'font-size:11pt; color: #000000'>18</span></p>",
-    "<p><span style = 'font-size:11pt; color: #000000'>Regular</span><span style = 'font-size:11pt; color: #0c64a4'> (34°-47°),</span></p><p><span style = 'font-size:11pt; color: #000000'>27</span></p>"
-  ),
+  Label= c("<p><span style = 'font-size:11pt; color: #000000'>Very heavy</span></p><p><span style = 'font-size:11pt; color: #0c64a4'>(20°)</span><span style = 'font-size:11pt; color: #000000'>, 5</span></p>",
+           "<p><span style = 'font-size:11pt; color: #000000'>Light</span><span style = 'font-size:11pt; color: #0c64a4'> (38° +)</span><span style = 'font-size:11pt; color: #000000'>, 7</span></p>",
+           "<p><span style = 'font-size:11pt; color: #000000'>Medium</span></p><p><span style = 'font-size:11pt; color: #0c64a4'>(27°-33°),</span></p><p><span style = 'font-size:11pt; color: #000000'>18</span></p>",
+           "<p><span style = 'font-size:11pt; color: #000000'>Regular</span><span style = 'font-size:11pt; color: #0c64a4'> (34°-47°),</span></p><p><span style = 'font-size:11pt; color: #000000'>27</span></p>",
+           "<p><span style = 'font-size:11pt; color: #000000'>Heavy</span><span style = 'font-size:11pt; color: #0c64a4'>(20°-26°)</span></p><p><span style = 'font-size:11pt; color: #000000'>43</span></p>"
+           ),
+
   pop_colors = c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
 )
 df2<- df%>%
@@ -72,9 +72,70 @@ pie<- (bp+ coord_polar("y", start=0) +  # Using ggtext + HTML syntax to color te
         plot.caption= element_markdown(hjust=0))
 + scale_fill_manual(values= pop_colors))
 pie
-ggsave("pie.pdf")
+
   
 ```
+```{r}
+library(dplyr)
+font_add(family="Open", regular= 	"OpenSans-Bold.ttf")
+showtext_auto()
+df<- data.frame(
+  type_levels= c("Very Heavy","Light", "Medium", "Regular", "Heavy"),
+  value= c(5,7,18,27,43), 
+  #Label= c("Very heavy\n(20°),5", "Light (38° +), 7", "Medium\n(27° -33°),\n18", "Regular (34° -37°),\n27", "Heavy (20° -26°),\n43"),
+  Label= c("<p><span style = 'font-size:11pt; color: #000000'>Very heavy</span></p><p><span style = 'font-size:11pt; color: #0c64a4'>(20°)</span><span style = 'font-size:11pt; color: #000000'>, 5</span></p>",
+           "<p><span style = 'font-size:11pt; color: #000000'>Light</span><span style = 'font-size:11pt; color: #0c64a4'> (38° +)</span><span style = 'font-size:11pt; color: #000000'>, 7</span></p>",
+           "<p><span style = 'font-size:11pt; color: #000000'>Medium</span></p><p><span style = 'font-size:11pt; color: #0c64a4'>(27°-33°),</span></p><p><span style = 'font-size:11pt; color: #000000'>18</span></p>",
+           "<p><span style = 'font-size:11pt; color: #000000'>Regular</span><span style = 'font-size:11pt; color: #0c64a4'> (34°-47°),</span></p><p><span style = 'font-size:11pt; color: #000000'>27</span></p>",
+           "<p><span style = 'font-size:11pt; color: #000000'>Heavy</span><span style = 'font-size:11pt; color: #0c64a4'>(20°-26°)</span></p><p><span style = 'font-size:11pt; color: #000000'>43</span></p>"
+           ),
 
+  pop_colors = c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
+)
+  
+df2 <- df %>% 
+  mutate(end = 2 * pi * cumsum(value)/sum(value),
+         start = lag(end, default = 0),
+         middle = 0.5 * (start + end),
+         hjust = ifelse(middle > pi, 1, 0),
+         vjust = ifelse(middle < pi/2 | middle > 3 * pi/2, 0, 1))
+
+library(ggforce) # for 'geom_arc_bar'
+ggplot(df2) + 
+  geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0, r = 1,
+                   start = end, end = start, fill = reorder(type_levels, value)))+
+  geom_richtext(aes(x = 1.05 * sin(middle), y = 1.05 * cos(middle), label = Label,
+                hjust = hjust, vjust = vjust), fill =NA, label.color = NA) +
+  coord_fixed() +
+  scale_x_continuous(limits = c(-1.5, 3),  # Adjust so labels are not cut off
+                     name = "", breaks = NULL, labels = NULL) +
+  scale_y_continuous(limits = c(-1, 1.4),    # Adjust so labels are not cut off
+                     name = "", breaks = NULL, labels = NULL)+
+  labs(title = "<p><span style = 'font-size:16pt; color:#FFFFFF'><i>T</span><span style = 'font-size:11pt; color:#FFFFFF'>YPES</span><span style = 'font-size:16pt; color:#FFFFFF'> O</span><span style = 'font-size:11pt; color:#FFFFFF'>F</span><span style = 'font-size:16pt; color:#FFFFFF'> I</span><span style = 'font-size:11pt; color:#FFFFFF'>RAQI</span><span style = 'font-size:16pt; color:#FFFFFF'> O</span><span style = 'font-size:11pt; color:#FFFFFF'>IL<sup>a</sup></span></p>",
+       subtitle = "<p><span style = 'font-size:11pt; color: #000000'><i>Percent</p><p></p><p><span style = 'font-size:11pt; color:#0c64a4'>Numbers in Parenthesis are American</p><p><span style= 'font-size 11pt; color: #0c64a4'> Petroleum Institute (API) degrees gravity.<sup>b</sup></span></p>",
+       y = "",
+       x = "",
+       caption ="<p><span style = 'font-size:10pt; color:#000000'>Iraq markets two crude blends: 60 percent</p><p><span style = 'font-size:10pt; color:#000000'>of exports is Basrah Light (34.4° API) and</p><p><span style = 'font-size:10pt; color:#000000'>40 percent is Kirkuk(37° API).</p><p><span style = 'font-size:10pt; color:#000000'>API gravity is a measure of crude oil density,</p><p><span style = 'font-size:10pt; color:#000000'>with higher numbers denoting lighter, more</p><p><span style = 'font-size:10pt; color:#000000'>valuable crude oil</p></span>")+
+       
+  theme_classic() + theme(axis.line=element_blank(),
+        plot.margin =  unit(c(0,0,0,0), "cm"),
+        plot.title= element_textbox_simple(family= "Open",size = 10, lineheight = 2, 
+      width = grid::unit(4, "in"), # fixed width
+      hjust = .5, # alignment of box relative to plot
+      linetype = 0, # turn on border
+      box.color = "black", # border color
+      fill = "#6D7166", # background fill color
+      r = grid::unit(0, "pt"), # radius for rounded corners
+      padding = margin(7, 0, 7, 7), # padding around text inside the box
+      margin = margin(0, 0, 0, 0)),
+                                  axis.text.x = element_blank(),
+                                  axis.text.y= element_blank(),
+                                  axis.title.x = element_blank(),
+                                  axis.title.y= element_blank(),
+                                  legend.position = "none",
+                         plot.subtitle = element_markdown(),
+        plot.caption= element_markdown(hjust=0))+ scale_fill_manual(values= pop_colors)
+  
+```
 
 
