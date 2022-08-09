@@ -76,11 +76,12 @@ data<- tibble(
 ```{r, fig.height= 4, fig.width= 7}
 line<- (ggplot(data) +geom_area(mapping = aes(x = year_levels, y = amount), fill = "#6D8E2C", color= "black", size= .2)+
           scale_x_continuous(breaks = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49), labels= x_label, limits= c(0,50), expand= expansion(mult=c(.01,.0)))+
-          scale_y_continuous(breaks = c(0,.5,1,1.5,2,2.5,3,3.5,4), limits= c(0,5)))
+          scale_y_continuous(breaks = c(0,.5,1,1.5,2,2.5,3,3.5,4), limits= c(0,4.5)))
 theme<- line+theme_classic()+
   theme(legend.position= "none",
         axis.title = element_blank(),
-        axis.ticks= element_blank(),
+        axis.ticks.x= element_line(size=.5),
+        axis.ticks.y= element_blank(),
         axis.line.y= element_blank(),
         panel.grid.major.x= element_blank(),
         panel.grid.minor.x= element_blank(),
@@ -91,7 +92,7 @@ theme<- line+theme_classic()+
         plot.margin=unit(c(0,.5,.5,.5), "cm"),
         plot.background= element_rect(color="black"),
         plot.title= element_textbox_simple(family= "Open",size = 8, lineheight = 1, 
-      width = grid::unit(7.28, "in"), # fixed width
+      width = grid::unit(7.08, "in"), # fixed width
       hjust = .45, # alignment of box relative to plot
       linetype = 0, # turn on border
       box.color = "black", # border color
@@ -99,7 +100,7 @@ theme<- line+theme_classic()+
       r = grid::unit(0, "pt"), # radius for rounded corners
       padding = margin(0, 5, 7, 10), # padding around text inside the box
       margin = margin(0, 0, 0, 0)))+
-  labs(caption= "<p><span style = 'font-size:10pt; color:#000000'><sup>a</sup>Adapted from published oil ministry plans (assumes no sanctions constraints).</p></span>",
+  labs(caption= "<p><span style = 'font-size:9pt; color:#000000'><sup>a</sup>Assumes pricing dispute with UN is resolved allowing Oil-for-Food exports</p><p><span style = 'font-size:9pt; color:#000000'>to increase and that production from new oilfields gradually comes on line.</span>",
        title= "<p><span style = 'font-size:16pt; color: #FFFFFF'>C</span><span style = 'font-size:11pt; color: #FFFFFF'>RUDE</span><span style = 'font-size:16pt; color: #FFFFFF'> O</span><span style = 'font-size:11pt; color: #FFFFFF'>IL</span><span style = 'font-size:16pt; color: #FFFFFF'> P</span><span style = 'font-size:11pt; color: #FFFFFF'>RODUCTION</span><span style = 'font-size:16pt; color: #FFFFFF'> A</span><span style = 'font-size:11pt; color: #FFFFFF'>ND</span><span style = 'font-size:16pt; color: #FFFFFF'> P</span><span style = 'font-size:11pt; color: #FFFFFF'>ROJECTIONS</span>")
 final<- theme +  annotate(geom="text", x=.1, y=.3, label=".5",
               color="black", size= 2.8)+
@@ -116,7 +117,13 @@ final<- theme +  annotate(geom="text", x=.1, y=.3, label=".5",
   annotate(geom="text", x=.1, y=3.3, label="3.5",
               color="black", size= 2.8)+
   annotate(geom="text", x=.1, y=3.8, label="4.0",
-              color="black", size= 2.8)
+              color="black", size= 2.8)+
+annotation_custom(grob = grid::textGrob(label = "Million b/d", hjust=0, gp=gpar(col="black", cex=.72, fontface="italic")),xmin = 0, xmax = -1, ymin = 4.15, ymax = 4.15)+
+  annotation_custom(grob = grid::textGrob(label = "Iran-Iraq war", hjust=0, gp=gpar(col="black", cex=.7)),xmin = 0, xmax = 4.5, ymin = 1.8, ymax = 1.8)+
+  annotation_custom(grob = grid::textGrob(label = "Gulf war", hjust=0, gp=gpar(col="black", cex=.7)),xmin = 0, xmax = 48, ymin = 1.2, ymax = 1.2 )+
+  annotation_custom(grob = grid::textGrob(label = "UN begins\nOil-for-Food\nProgram", hjust=0,  gp=gpar(col="black", cex=.7, lineheight=1)),xmin = 0, xmax = 59, ymin = 1.5, ymax = 1.5)+
+  annotation_custom(grob = grid::textGrob(label = "Pre=Gulf war OPEC\nquota, 3.14 million\nbarrels per day", hjust=0, gp=gpar(col="black", cex=.7, lineheight=1)),xmin = 0, xmax = 27, ymin = 0, ymax = 7)+
+  annotation_custom(grob = grid::textGrob(label = "UN begins\nretroactive\npricing policy", hjust=0, gp=gpar(col="black", cex=.7, lineheight=1)),xmin = 0, xmax = 75, ymin = 0, ymax = 6.27)
 final
 
 ```
