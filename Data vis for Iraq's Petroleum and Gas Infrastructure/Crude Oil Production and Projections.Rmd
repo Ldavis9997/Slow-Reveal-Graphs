@@ -159,7 +159,7 @@ annotation_custom(grob = grid::textGrob(label = "Million b/d", hjust=0, gp=gpar(
   )+
   geom_richtext(aes(x= 40, y=3.7, label=Label, size=4.5), fill= NA, label.color=NA)
 final
-ggsave("final.pdf")
+
 
 ```
 
