@@ -70,7 +70,8 @@ data<- tibble(
 1.92,
 3.02,
 3.28,
-3.51)
+3.51),
+Label= "<span style = 'font-size:9pt; color:#000000'><i><b>Projected production<sup>a</sup></span>" 
 )
 ```
 ```{r, fig.height= 4, fig.width= 7}
@@ -123,11 +124,42 @@ annotation_custom(grob = grid::textGrob(label = "Million b/d", hjust=0, gp=gpar(
   
   annotation_custom(grob = grid::textGrob(label = "Iran-Iraq war", hjust=0, gp=gpar(col="black", cex=.7)),xmin = 0, xmax = 4.5, ymin = 1.8, ymax = 1.8)+
   annotation_custom(grob = grid::textGrob(label = "Gulf war", hjust=0, gp=gpar(col="black", cex=.7)),xmin = 0, xmax = 48, ymin = 1.2, ymax = 1.2 )+
-  annotation_custom(grob = grid::textGrob(label = "UN begins\nOil-for-Food\nProgram", hjust=0,  gp=gpar(col="black", cex=.7, lineheight=1)),xmin = 0, xmax = 59, ymin = 1.5, ymax = 1.5)+
-  annotation_custom(grob = grid::textGrob(label = "Pre-Gulf war OPEC\nquota, 3.14 million\nbarrels per day", hjust=0, gp=gpar(col="black", cex=.7, lineheight=1)),xmin = 0, xmax = 27, ymin = 0, ymax = 7)+
-  annotation_custom(grob = grid::textGrob(label = "UN begins\nretroactive\npricing policy", hjust=0, gp=gpar(col="black", cex=.7, lineheight=1)),xmin = 0, xmax = 75, ymin = 0, ymax = 6.27)+
-  annotation_custom(grob = grid::textGrob(label = "Projected production", hjust=0, gp=gpar(col="black", cex=.7, lineheight=1, fontface="bold.italic")),xmin = 0, xmax = 69, ymin = 0, ymax = 7.5)
+  geom_label(
+  label= "Pre-Gulf war OPEC\nquota, 3.14 million\nbarrels per day",
+  x= 17,
+  y=3.5,
+  label.padding = unit(0.1, "lines"), # Rectangle size around label
+    label.size = NA,
+    color = "black",
+    fill="white",
+  lineheight=1,
+  size=3
+  )+
+   geom_label(
+  label= "UN begins\nOil-for-Food\nProgram",
+  x= 32,
+  y=1.5,
+  label.padding = unit(0.1, "lines"), # Rectangle size around label
+    label.size = NA,
+    color = "black",
+    fill="white",
+  lineheight=1,
+  size=3
+  )+
+   geom_label(
+  label= "UN begins\nretroactive\npricing policy",
+  x= 40,
+  y=3.1,
+  label.padding = unit(0.1, "lines"), # Rectangle size around label
+    label.size = NA,
+    color = "black",
+    fill="white",
+  lineheight=1,
+  size=3
+  )+
+  geom_richtext(aes(x= 40, y=3.7, label=Label, size=4.5), fill= NA, label.color=NA)
 final
+ggsave("final.pdf")
 
 ```
 
