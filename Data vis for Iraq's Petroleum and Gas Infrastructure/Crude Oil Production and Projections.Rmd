@@ -168,9 +168,11 @@ annotation_custom(grob = grid::textGrob(label = "Million b/d", hjust=0, gp=gpar(
                   arrow = arrow(length = unit(0.1, "cm"), type="closed"))+
   geom_segment(aes(x = 42.3, y = 3.7, xend = 44.5, yend = 3.7),size=.02,
                   arrow = arrow(length = unit(0.1, "cm"), type="closed"))+
+  geom_segment(aes(x= 20, y= 3.1, xend= 22, yend= 3.1), size=.02)+
+  geom_segment(aes(x= 20, y= 3.15, xend= 20, yend= 3.05), size=.02)+
+  geom_segment(aes(x= 22, y= 3.15, xend= 22, yend= 3.05), size=.02)+
   geom_rect(aes(xmin = 45, xmax = 49, ymin = 0, ymax = 4), 
-            fill = "#E7E3FB", alpha=.05)
-
+            fill = "#E7E3FB", alpha=.048)
 ggsave("final.pdf", width=7, height=4)
 
 
