@@ -157,8 +157,18 @@ annotation_custom(grob = grid::textGrob(label = "Million b/d", hjust=0, gp=gpar(
   lineheight=1,
   size=3
   )+
-  geom_richtext(aes(x= 40, y=3.7, label=Label, size=4.5), fill= NA, label.color=NA)
-final
+  geom_richtext(aes(x= 40, y=3.7, label=Label, size=4.5), fill= NA, label.color=NA)+
+  geom_segment(aes(x = 3.2, y = 1.7, xend = 3.2, yend = .9),size=.05,
+                  arrow = arrow(length = unit(0.1, "cm"), type="closed"))+
+  geom_segment(aes(x = 25, y = 1.05, xend = 23.3, yend = .25),size=.02,
+                  arrow = arrow(length = unit(0.1, "cm"), type="closed"))+
+  geom_segment(aes(x = 32, y = 1.05, xend = 33.5, yend = .65),size=.02,
+                  arrow = arrow(length = unit(0.1, "cm"), type="closed"))+
+  geom_segment(aes(x = 42.5, y = 2.7, xend = 43.7, yend = 2.45),size=.02,
+                  arrow = arrow(length = unit(0.1, "cm"), type="closed"))+
+  geom_segment(aes(x = 45.3, y = 3.75, xend = 47, yend = 3.75),size=.02,
+                  arrow = arrow(length = unit(0.1, "cm"), type="closed"))
+ggsave("final.pdf")
 
 
 ```
