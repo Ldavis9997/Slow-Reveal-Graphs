@@ -171,7 +171,7 @@ annotation_custom(grob = grid::textGrob(label = "Million b/d", hjust=0, gp=gpar(
   geom_rect(aes(xmin = 45, xmax = 49, ymin = 0, ymax = 4), 
             fill = "#E7E3FB", alpha=.05)
 
-ggsave("final.pdf")
+ggsave("final.pdf", width=7, height=4)
 
 
 ```
