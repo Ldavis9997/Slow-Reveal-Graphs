@@ -20,17 +20,15 @@ library(googlesheets4)
 ```{r,fig.height= 10, fig.width= 16}
 pop_colors <- (rep(c('#39553A'), 40))
 iraq_data<- read_sheet('https://docs.google.com/spreadsheets/d/1Oegm5JgkLwkgHyIqE2-6j8TT6JvQ3gq61gB2FEXAxWk/edit?usp=sharing')
-
+font_add(family="Open", regular= 	"OpenSans-Bold.ttf")
+showtext_auto()
 ```
-
 ```{r, fig.height= 5, fig.width= 10}
-ggplot(iraq_data, 
-       aes(x = type, y= value, fill= fill))+
-  geom_bar(stat= 'identity',
-           position= position_dodge())+
-  scale_y_continuous(breaks = c(0,.5,1,1.5,2,2.5,3,3.5), limits= c(0,3.5), expand= expansion(mult=c(0,.3)))+  scale_fill_manual(values= pop_colors)+
-  theme_classic()+
-  theme(legend.position= "none",
+area<- (ggplot(iraq_data, 
+       aes(x = year, y= value))+
+  geom_bar(stat= 'identity', fill= '#37573E', width = .8))+ theme_classic()+ scale_x_discrete(expand= expansion(mult=c(.03,0))) +   scale_y_continuous(breaks = c(0,.5,1,1.5,2,2.5,3,3.5), limits= c(0,3.5), expand= expansion(mult=c(.15,.3)))+  
+  theme(legend.position= "none",                                                
+        axis.line.x=element_blank(),                                                                       
         axis.title = element_blank(),
         axis.ticks.x= element_blank(),
         axis.ticks.y= element_blank(),
@@ -41,16 +39,18 @@ ggplot(iraq_data,
         panel.grid.minor.y= element_blank(),
         plot.caption= element_markdown(hjust= 0),
         axis.text.x= element_blank(),
-        plot.margin=unit(c(0,.5,.5,.5), "cm"),
+        axis.text.y = element_blank(),
         plot.background= element_rect(color="black"),
-        plot.title= element_textbox_simple(family= "Open",size = 1, lineheight = 0, 
+        plot.title= element_textbox_simple(family= "Open",size = 2, lineheight = 1, 
       width = grid::unit(2, "in"), # fixed width
       hjust = .45, # alignment of box relative to plot
       linetype = 0, # turn on border
       box.color = "black", # border color
       fill = "#6D7166", # background fill color
       r = grid::unit(0, "pt"), # radius for rounded corners
-      padding = margin(0, 5, 7, 10), # padding around text inside the box
+      padding = margin(0, 0, 0, 0), # padding around text inside the box
       margin = margin(0, 0, 0, 0)))
 
+
+area
 ```
