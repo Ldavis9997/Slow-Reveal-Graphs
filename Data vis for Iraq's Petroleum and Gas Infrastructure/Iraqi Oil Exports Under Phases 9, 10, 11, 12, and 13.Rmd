@@ -23,12 +23,34 @@ iraq_data<- read_sheet('https://docs.google.com/spreadsheets/d/1Oegm5JgkLwkgHyIq
 
 ```
 
-```{r}
+```{r, fig.height= 5, fig.width= 10}
 ggplot(iraq_data, 
        aes(x = type, y= value, fill= fill))+
   geom_bar(stat= 'identity',
            position= position_dodge())+
-  scale_y_continuous(breaks = c(0,.5,1,1.5,2,2.5,3,3.5,4), limits= c(0,3.5), expand= expansion(mult=c(0,0)))+  scale_fill_manual(values= pop_colors)+
-  theme(legend.position= "none")
+  scale_y_continuous(breaks = c(0,.5,1,1.5,2,2.5,3,3.5), limits= c(0,3.5), expand= expansion(mult=c(0,.3)))+  scale_fill_manual(values= pop_colors)+
+  theme_classic()+
+  theme(legend.position= "none",
+        axis.title = element_blank(),
+        axis.ticks.x= element_blank(),
+        axis.ticks.y= element_blank(),
+        axis.line.y= element_blank(),
+        panel.grid.major.x= element_blank(),
+        panel.grid.minor.x= element_blank(),
+        panel.grid.major.y= element_line(color="black", size=.15),
+        panel.grid.minor.y= element_blank(),
+        plot.caption= element_markdown(hjust= 0),
+        axis.text.x= element_blank(),
+        plot.margin=unit(c(0,.5,.5,.5), "cm"),
+        plot.background= element_rect(color="black"),
+        plot.title= element_textbox_simple(family= "Open",size = 1, lineheight = 0, 
+      width = grid::unit(2, "in"), # fixed width
+      hjust = .45, # alignment of box relative to plot
+      linetype = 0, # turn on border
+      box.color = "black", # border color
+      fill = "#6D7166", # background fill color
+      r = grid::unit(0, "pt"), # radius for rounded corners
+      padding = margin(0, 5, 7, 10), # padding around text inside the box
+      margin = margin(0, 0, 0, 0)))
 
 ```
