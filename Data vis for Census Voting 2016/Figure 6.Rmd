@@ -11,8 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(tidyverse)
-# I like this for coloring text: https://wilkelab.org/ggtext/
-remotes::install_github("wilkelab/ggtext")
+
 library(ggtext)
 
 
@@ -46,6 +45,7 @@ vote_data<- vote_data%>%
   mutate(vote_type = factor(vote_type, levels= types),
          pop_groups= factor(pop_groups, levels= age_groups),
          fill= factor(fill, levels= pop_colors))
+vote_data
 area<- (ggplot(vote_data, aes(x = pop_groups, 
                       y = amount, 
                       fill = fill, 
@@ -88,7 +88,7 @@ new<- (area + theme_classic()+
 + scale_x_discrete(expand=c(.2,0))
 + guides(fill = guide_legend(byrow = TRUE))
 + scale_y_continuous(expand = expansion(mult = c(0, .15))))
-
+new
 
 
 
