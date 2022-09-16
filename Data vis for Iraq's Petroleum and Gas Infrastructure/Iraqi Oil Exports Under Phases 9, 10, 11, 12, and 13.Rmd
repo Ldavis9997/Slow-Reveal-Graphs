@@ -28,6 +28,7 @@ font_add(family="Open", regular= 	"OpenSans-Bold.ttf")
 showtext_auto()
 ```
 ```{r, fig.height= 5, fig.width= 10}
+
 area<- (ggplot(iraq_data, 
        aes(x = year, y= value))+
   geom_bar(stat= 'identity', fill= '#37573E', width = .8))+ theme_classic()+ scale_x_discrete(expand= expansion(mult=c(.03,0))) +   scale_y_continuous(breaks = c(0,.5,1,1.5,2,2.5,3,3.5), limits= c(0,3.5), expand= expansion(mult=c(.15,.3)))+  
