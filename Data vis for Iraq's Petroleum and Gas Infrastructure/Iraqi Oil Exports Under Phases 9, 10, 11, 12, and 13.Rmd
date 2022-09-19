@@ -105,7 +105,7 @@ geom_richtext(aes(x= 12.5, y=3.4, label=Label, size=4.5), fill= NA, label.color=
   geom_richtext(aes(x= 107.5, y=3.4, label=Label4, size=4.5), fill= NA, label.color=NA)
   
   
-  
+   
 
 
   
