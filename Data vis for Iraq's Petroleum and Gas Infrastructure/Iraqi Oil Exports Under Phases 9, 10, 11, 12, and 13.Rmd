@@ -28,7 +28,7 @@ font_add(family="Open", regular= 	"OpenSans-Bold.ttf")
 showtext_auto()
 ```
 ```{r, fig.height= 5, fig.width= 10}
-Label= "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 9</span>" 
+Label= "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 9</span>"  
 Label1= "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 10</span>"
 Label2 = "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 11</span>"
 Label3 = "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 12</span>"
@@ -117,6 +117,6 @@ geom_richtext(aes(x= 12.5, y=3.4, label=Label, size=4.5), fill= NA, label.color=
   geom_richtext(aes(x= 90.5, y=3.4, label=Label3, size=4.5), fill= NA, label.color=NA)+
   geom_richtext(aes(x= 107.5, y=3.4, label=Label4, size=4.5), fill= NA, label.color=NA)
   
-
+ 
 ```
 
