@@ -18,7 +18,7 @@ library(googlesheets4)
 library(ggrepel)
 library(showtext)
 library(grid)
-
+ 
 ```
 
 ```{r,fig.height= 10, fig.width= 16}
