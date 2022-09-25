@@ -131,7 +131,9 @@ geom_richtext(aes(x= 12.5, y=3.3, label=Label, size=4.5), fill= NA, label.color=
   geom_richtext(aes(x= 66.5, y=3.3, label=Label2, size=4.5), fill= NA, label.color=NA)+
   geom_richtext(aes(x= 91.5, y=3.3, label=Label3, size=4.5), fill= NA, label.color=NA)+
   geom_richtext(aes(x= 107.5, y=3.3, label=Label4, size=4.5), fill= NA, label.color=NA)
- ggsave('final.pdf') 
-
+final
 ```
 
+```{r, fig.height= 5, fig.width= 10}
+ggsave('final.pdf')
+```
