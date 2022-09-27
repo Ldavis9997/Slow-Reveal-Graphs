@@ -31,6 +31,8 @@ Label1= "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 10</span>"
 Label2 = "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 11</span>"
 Label3 = "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 12</span>"
 Label4 = "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 13</span>"
+Label5= paste0("Iraq halts expors\nfor 30 days during \"revised\" \nsanctions debate; start of\nPhase 10 delayed")
+Label6= paste0("Iraq halts exports for\n30 days in \"show of\n support\" for Palestines")
 
 area<- (ggplot(iraq_data, 
        aes(x = year, y= value))+
@@ -39,8 +41,8 @@ area<- (ggplot(iraq_data,
      geom_rect(aes(xmin = 80, xmax = 104, ymin = 0, ymax = 3.5), 
             fill = "#E7E3FB", alpha=.02)+
   geom_bar(stat= 'identity', fill= '#37573E', width = .8)+ theme_classic()+ scale_x_discrete(expand= expansion(mult=c(.03,0))) +   scale_y_continuous(breaks = c(0,.5,1,1.5,2,2.5,3,3.5), limits= c(0,3.5), expand= expansion(mult=c(.15,.4)))+ 
-  geom_line(aes(x= year, y= cumul_mean1, group =1), size=1, color='#c5494d'))
-area
+    geom_line(aes(x= year, y= cumul_mean1, group =1), size=1, color='white')+
+  geom_line(aes(x= year, y= cumul_mean1, group =1), size=.5, color='#c5494d'))
   new<- area +labs(title= "<p><span style = 'font-size:16pt; color: #FFFFFF'>I</span><span style = 'font-size:11pt; color: #FFFFFF'>RAQI</span><span style = 'font-size:16pt; color: #FFFFFF'> O</span><span style = 'font-size:11pt; color: #FFFFFF'>IL</span><span style = 'font-size:16pt; color: #FFFFFF'> E</span><span style = 'font-size:11pt; color: #FFFFFF'>XPORTS</span><span style = 'font-size:16pt; color: #FFFFFF'> U</span><span style = 'font-size:11pt; color: #FFFFFF'>NDER</span><span style = 'font-size:16pt; color: #FFFFFF'> P</span><span style = 'font-size:11pt; color: #FFFFFF'>HASES</span></span><span style = 'font-size:16pt; color: #FFFFFF'> 9,10,11,12</span><span style = 'font-size:11pt; color: #FFFFFF'> AND</span><span style = 'font-size:16pt; color: #FFFFFF'> 13</span><br><span style = 'font-size:10.5pt; color: #FFFFFF'>December 2000 Through January 2003</span>")+
        #subtitle= "<span style = 'font-size:8pt; color: #000000'>Weekly Average</span><br><span style = 'font-size:8pt; color: #000000'>Cumulatice average within phase</span>")+
   theme(plot.title= element_textbox_simple(family= "Open",size = 8.2, lineheight = 1, 
@@ -122,9 +124,16 @@ annotation_custom(grob = grid::textGrob(label = "0", hjust=0, gp=gpar(col="black
    annotation_custom(grob = grid::textGrob(label = "Nov", hjust=0, gp=gpar(col="black", cex=.7)),xmin = 99.5, xmax = 99.5, ymin = -.1, ymax = -.1)+
    annotation_custom(grob = grid::textGrob(label = "Dec", hjust=0, gp=gpar(col="black", cex=.7)),xmin = 104.5, xmax = 104.5, ymin = -.1, ymax = -.1)+
    annotation_custom(grob = grid::textGrob(label = "Jan", hjust=0, gp=gpar(col="black", cex=.7)),xmin = 109.11, xmax =109.11, ymin = -.1, ymax = -.1)+
-annotation_custom(grob = grid::textGrob(label = "Iraqi surcharges continue; first\neported in late 2000", hjust=0, gp=gpar(col="black", cex=.7, lineheight=1, fontface= "italic")),xmin = 5, xmax =5, ymin = 3.75, ymax = 3.75)+
+annotation_custom(grob = grid::textGrob(label = "Iraqi surcharges continue; first\neported in late 2000", hjust=0, gp=gpar(col="black", cex=.7, lineheight=1, fontface= "italic")),xmin = 0, xmax =5, ymin = 3.75, ymax = 3.75)+
   annotation_custom(grob = grid::textGrob(label = "UN begins retreoactove\npricing policy in late 2001;\nIraqi exports drop over\nPhases 11 and 12", hjust=0, gp=gpar(col="black", cex=.7, lineheight=1, fontface='italic')),xmin =44, xmax =44, ymin = 3.9, ymax = 3.9)+
+   annotation_custom(grob = grid::textGrob(label = Label5, hjust=0, gp=gpar(col="black", cex=.7, lineheight=1, fontface='italic')),xmin =25, xmax =25, ymin = 3.9, ymax = 3.9)+
+   annotation_custom(grob = grid::textGrob(label = Label6, hjust=0, gp=gpar(col="black", cex=.7, lineheight=1, fontface='italic')),xmin=67, xmax =67, ymin = 3.9, ymax = 3.9)+
   annotation_custom(grob = grid::textGrob(label = "Million\n b/d", hjust=0, gp=gpar(col="black", cex=.7, lineheight=1, fontface='italic')),xmin =-2.5, xmax =-2.5, ymin = 3.7, ymax = 3.7)+
+  annotation_custom(grob = grid::textGrob(label = "2000", hjust=0, gp=gpar(col="black", cex=.7, lineheight=1, fontface='italic')),xmin =.7, xmax =1, ymin = -3.6, ymax = 3)+
+  annotation_custom(grob = grid::textGrob(label = "2001", hjust=0, gp=gpar(col="black", cex=.7, lineheight=1, fontface='italic')),xmin =8, xmax =1, ymin = -3.6, ymax = 3)+
+  annotation_custom(grob = grid::textGrob(label = "2002", hjust=0, gp=gpar(col="black", cex=.7, lineheight=1, fontface='italic')),xmin =.9, xmax =112, ymin = -3.6, ymax = 3)+
+  annotation_custom(grob = grid::textGrob(label = "2003", hjust=0, gp=gpar(col="black", cex=.7, lineheight=1, fontface='italic')),xmin =.9, xmax =217, ymin = -3.6, ymax = 3)+
+  
 #Sector Labels
 geom_richtext(aes(x= 12.5, y=3.3, label=Label, size=4.5), fill= NA, label.color=NA)+
   geom_richtext(aes(x= 41, y=3.3, label=Label1, size=4.5), fill= NA, label.color=NA)+
