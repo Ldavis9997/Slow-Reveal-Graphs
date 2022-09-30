@@ -16,8 +16,10 @@ library(googlesheets4)
 library(ggrepel)
 library(showtext)
 library(grid)
+library(magick)
  
 ```
+
 
 ```{r,fig.height= 10, fig.width= 16}
 pop_colors <- (rep(c('#39553A'), 40))
@@ -25,6 +27,19 @@ iraq_data<- read_sheet('https://docs.google.com/spreadsheets/d/1Oegm5JgkLwkgHyIq
 font_add(family="Open", regular= 	"OpenSans-Bold.ttf")
 showtext_auto()
 ```
+
+```{r}
+#imports your image to be able to put onto the graph
+
+stamp <- image_read(here::here("Data vis for Iraq's Petroleum and Gas Infrastructure", "Picture1.png"))
+
+
+plot(as.raster(stamp))
+picture <- image_graph(width = 2000, height = 900)
+
+```
+
+#**your ggplot graph work**
 ```{r, fig.height= 5, fig.width= 10}
 Label= "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 9</span>"  
 Label1= "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 10</span>"
@@ -143,6 +158,4 @@ geom_richtext(aes(x= 12.5, y=3.3, label=Label, size=4.5), fill= NA, label.color=
 final
 ```
 
-```{r, fig.height= 5, fig.width= 10}
-ggsave('final.pdf')
-```
+
