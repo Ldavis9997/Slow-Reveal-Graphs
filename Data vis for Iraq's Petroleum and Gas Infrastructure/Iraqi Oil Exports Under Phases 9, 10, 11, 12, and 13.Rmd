@@ -30,11 +30,18 @@ showtext_auto()
 
 ```{r}
 #imports your image to be able to put onto the graph
+Label= "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 9</span>"  
+Label1= "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 10</span>"
+Label2 = "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 11</span>"
+Label3 = "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 12</span>"
+Label4 = "<span style = 'font-size:9pt; color:#000000'><i><b>Phase 13</span>"
+Label5= paste0("Iraq halts expors\nfor 30 days during \"revised\" \nsanctions debate; start of\nPhase 10 delayed")
+Label6= paste0("Iraq halts exports for\n30 days in \"show of\n support\" for Palestines")
 
 stamp <- image_read(here::here("Data vis for Iraq's Petroleum and Gas Infrastructure", "Picture2.png"))
-
-
+#key<- image_read(here::here("Data vis for Iraq's Petroleum and Gas Infrastructure", "Key.png"))
 plot(as.raster(stamp))
+plot(as.raster(key))
 picture <- image_graph(width = 900, height = 500)
 ggplot(iraq_data,  
        aes(x = year, y= value))+
@@ -140,10 +147,12 @@ geom_richtext(aes(x= 12.5, y=3.3, label=Label, size=4.5), fill= NA, label.color=
 img <- image_draw(picture)
 
 grid.raster(stamp, .9, .795, height = .2)
+#grid.raster(key, .3, .5, height = .1)
+text(10, 90, "BOHEMIAN", family = "sans", cex = 5, col = "black")
 dev.off()
 
-save<- image_write(img, path = here::here("Data vis for Iraq's Petroleum and Gas Infrastructure", "Picture1.png"), format = "png")
-
+#save<- image_write(img, path = here::here("Data vis for Iraq's Petroleum and Gas Infrastructure", "Picture1.png"), format = "png")
+#save
 ```
 
 #**your ggplot graph work**
