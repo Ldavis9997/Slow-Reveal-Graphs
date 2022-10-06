@@ -15,7 +15,6 @@ library(ggrepel)
 library(grid)
 library(ggforce)
 library(showtext)
-
 ```
 
 ```{r, fig.height= 6, fig.width= 4}
