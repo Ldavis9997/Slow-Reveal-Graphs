@@ -9,6 +9,10 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r}
+
+
+library(gridExtra)
+
 library(tidyverse)
 library(ggtext)
 library(ggrepel)
@@ -22,7 +26,7 @@ library(magick)
 ```{r, fig.height= 6, fig.width= 4}
 picture <- image_graph(width = 340, height = 490)
 annotation_custom2 <- 
-function (grob, xmin = -Inf, xmax = 340, ymin = -Inf, ymax = 470, data) 
+function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 470, data) 
 {
   layer(data = data, stat = StatIdentity, position = PositionIdentity, 
         geom = ggplot2:::GeomCustomAnn, 
@@ -54,7 +58,7 @@ pie<- bp +
               subtitle = " ",
               y = "",
               x = "",
-              caption ="<p><span style = 'font-size:11pt; color:#000000'><sup>a</sup> Iraq markets two crude blends: 60 percent</p><p><span style = 'font-size:11pt; color:#000000'>of exports is Basrah Light (34.4° API) and</p><p><span style = 'font-size:11pt; color:#000000'>40 percent is Kirkuk(37° API).</p><p><span style = 'font-size:11pt; color:#000000'><sup>b</sup> API gravity is a measure of crude oil density,</p><p><span style = 'font-size:11pt; color:#000000'>with higher numbers denoting lighter, more</p><p><span style = 'font-size:11pt; color:#000000'>valuable crude oil</p></span>") +
+              caption ="Iraq markets two crude blends: 60 percent\nof exports is Basrah Light (34.4 API) and\n40 percent is Kirkul(37 API).\n API gravity is a measure of crude oil density,\nwith higher numbers denoting lighter, more\nvaluable crude oil" ) +
          theme_classic() +
          theme(axis.line=element_blank(),
                plot.margin =  unit(c(0,0,2,0), "cm"),
@@ -72,9 +76,9 @@ pie<- bp +
                axis.title.x = element_blank(),
                axis.title.y= element_blank(),
                legend.position = "none",
-               plot.subtitle = element_markdown(hjust=-.5),
-               plot.caption= element_markdown(hjust=38, vjust = 5, lineheight=1)) + scale_fill_manual(values=pop_colors)
-pie
+               plot.subtitle = element_markdown(),
+               plot.caption = element_text(hjust = -10))+ scale_fill_manual(values=pop_colors)
+pie 
 dev.off()
 
 img <- image_draw(picture)
@@ -96,6 +100,10 @@ text(141, 136, "Very heavy", family = "Text", cex = .9, col = "black")+
   text(-1, 105, "Numbers in parenthesis are American\nPetrolium Institute (API) degrees gravity.", family = "Text", cex = .9, col = "#0c64a4", pos = 4)+
   text(202, 105, "b", family = "Text", cex = .6, col = "#0c64a4")+
   text(25, 75, substitute(paste(italic("Percent"))), family = "Text", cex = .9, col = "black")+
+  text(120, 385, "Iraq markets two crude blends: 60 percent", family = "Text", cex = .9, col = "black")+
+  text(117, 395, "of exports is Basrah Light (34.4 API) and", family = "Text", cex = .9, col = "black")+
+  text(87, 405, "40 percent is Kirkul(37 API).", family = "Text", cex = .9, col = "black")+
+  text(123, 415, "API gravity is a measure of crude oil density", family = "Text", cex = .9, col = "black")
   
   segments(x0=8, x1=333, y0=65, y1=65, lwd = 1, lty = "solid")
   
