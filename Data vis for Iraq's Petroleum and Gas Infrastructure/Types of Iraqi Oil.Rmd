@@ -24,6 +24,7 @@ library(magick)
 ```
 
 ```{r, fig.height= 6, fig.width= 4}
+font_files() %>% tibble() %>% filter(str_detect(family,"Open"))
 picture <- image_graph(width = 340, height = 490)
 annotation_custom2 <- 
 function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 470, data) 
@@ -35,7 +36,7 @@ function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 470, data)
                                           ymin = ymin, ymax = ymax))
 }
 
-#font_add(family="Open", regular=    "OpenSans-Bold.ttf")
+font_add(family="Open", regular="OpenSans-Bold.ttf")
 showtext_auto()
 type_levels <- c("Very Heavy","Light", "Medium", "Regular", "Heavy")
  pop_colors <- c("#010102" , "#1566ac","#ed1f02", "#e1eb00", "#8fa800" )
@@ -82,28 +83,33 @@ pie
 dev.off()
 
 img <- image_draw(picture)
-text(141, 136, "Very heavy", family = "Text", cex = .9, col = "black")+
-  text(126, 147, "(20°)", family = "Text", cex = .9, col = "#0c64a4")+
-  text(143, 147, substitute(paste(italic(" , 5"))), family = "Text", cex = .9, col = "black")+
-  text(235, 158, "Heavy", family = "Text", cex = .9, col = "black")+
-  text(277, 158, "(20°-26°),", family = "Text", cex = .9, col = "#0c64a4")+
-  text(227, 168, substitute(paste(italic("43"))), family = "Text", cex = .9, col = "black")+
-  text(48, 167, "Light", family = "Text", cex = .9, col = "black")+
-  text(80, 167, "(38° +),", family = "Text", cex = .9, col = "#0c64a4")+
-  text(104, 167, substitute(paste(italic("7"))), family = "Text", cex = .9, col = "black")+
-  text(43, 200, "Medium", family = "Text", cex = .9, col = "black")+
-  text(48, 215, "(27° -33°),", family = "Text", cex = .9, col = "#0c64a4")+
-  text(30, 228, substitute(paste(italic("18"))), family = "Text", cex = .9, col = "black")+
+text(147, 133, "Very heavy", family = "Text", cex = .9, col = "black")+
+  text(133, 147, "(20°)", family = "Text", cex = .9, col = "#0c64a4")+
+  text(149, 147, substitute(paste(italic(" , 5"))), family = "Text", cex = .9, col = "black")+
+  text(248, 158, "Heavy", family = "Text", cex = .9, col = "black")+
+  text(288, 158, "(20°-26°),", family = "Text", cex = .9, col = "#0c64a4")+
+  text(238, 168, substitute(paste(italic("43"))), family = "Text", cex = .9, col = "black")+
+  text(56, 164, "Light", family = "Text", cex = .9, col = "black")+
+  text(89, 164, "(38° +),", family = "Text", cex = .9, col = "#0c64a4")+
+  text(113, 164, substitute(paste(italic("7"))), family = "Text", cex = .9, col = "black")+
+  text(49, 200, "Medium", family = "Text", cex = .9, col = "black")+
+  text(54, 215, "(27° -33°),", family = "Text", cex = .9, col = "#0c64a4")+
+  text(36, 228, substitute(paste(italic("18"))), family = "Text", cex = .9, col = "black")+
   text(35, 326, "Regular", family = "Text", cex = .9, col = "black")+
   text(83, 326, "(34° -37°),", family = "Text", cex = .9, col = "#0c64a4")+
   text(23, 338, substitute(paste(italic("27"))), family = "Text", cex = .9, col = "black")+
   text(-1, 105, "Numbers in parenthesis are American\nPetrolium Institute (API) degrees gravity.", family = "Text", cex = .9, col = "#0c64a4", pos = 4)+
   text(202, 105, "b", family = "Text", cex = .6, col = "#0c64a4")+
   text(25, 75, substitute(paste(italic("Percent"))), family = "Text", cex = .9, col = "black")+
-  text(120, 385, "Iraq markets two crude blends: 60 percent", family = "Text", cex = .9, col = "black")+
+  text(120, 385, "    Iraq markets two crude blends: 60 percent", family = "Text", cex = .9, col = "black")+
   text(117, 395, "of exports is Basrah Light (34.4 API) and", family = "Text", cex = .9, col = "black")+
   text(87, 405, "40 percent is Kirkul(37 API).", family = "Text", cex = .9, col = "black")+
-  text(123, 415, "API gravity is a measure of crude oil density", family = "Text", cex = .9, col = "black")
+  text(124, 415, "    API gravity is a measure of crude oil density", family = "Text", cex = .9, col = "black")+
+  text(122, 425, "with higher numbers denoting lighter, more", family = "Text", cex = .9, col = "black")+
+  text(62, 435, "valuable crude oil", family = "Text", cex = .9, col = "black")+
+   text(21, 381, "a", family = "Text", cex = .8, col = "black")+
+   text(21, 411, "b", family = "Text", cex = .8, col = "black")
+  
   
   segments(x0=8, x1=333, y0=65, y1=65, lwd = 1, lty = "solid")
   
