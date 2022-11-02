@@ -92,6 +92,9 @@ area<- ((ggplot(vote_data, aes(x = pop_group,
      
       
 new1<- new + coord_flip()
-ggsave("new1.png")
 
+
+```
+```{r, fig.height = 2.5, fig.width   = 4}
+ggsave('new1.png', width = 8, height = 5)
 ```
