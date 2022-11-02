@@ -1,0 +1,30 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+
+
+library(gridExtra)
+
+library(tidyverse)
+library(ggtext)
+library(ggrepel)
+library(grid)
+library(ggforce)
+library(showtext)
+library(magick)
+library(googlesheets4)
+data<- read_sheet('https://docs.google.com/spreadsheets/d/1gANfa3d6Y4EGBuODZGbW4m6yHjCOSovfzkFLxvRhBrM/edit?usp=sharing')
+
+data$region <- factor(data$region, levels = unique(data$region))
+
+
+```
+```{r}
+
+pop_colors<- c('#cecfdb','#b6a6b8','#cecfdb','#b6a6b8','#cecfdb','#b6a6b8','#cecfdb','#b6a6b8','#f3b343','#7ba539','#d8252e','#e6e154','#3e6dbe')
+ggplot(data=data, aes(x=" ", y=rev(value), group=year,  fill=rev(region))) +
+         geom_bar(width = 1, stat = "identity") +
+         coord_polar("y", start=0) + 
+         facet_grid(.~ year) +theme_void()+ scale_fill_manual(values=pop_colors)
+```
