@@ -21,6 +21,18 @@ data$region <- factor(data$region, levels = unique(data$region))
 
 ```
 ```{r}
+
+picture <- image_graph(width = 740, height = 400)
+annotation_custom2 <- 
+function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 470, data) 
+{
+  layer(data = data, stat = StatIdentity, position = PositionIdentity, 
+        geom = ggplot2:::GeomCustomAnn, 
+        inherit.aes = TRUE, params = list(grob = grob, 
+                                          xmin = xmin, xmax = xmax, 
+                                          ymin = ymin, ymax = ymax))
+}
+
 font_add(family="Open", regular="OpenSans-Bold.ttf")
 showtext_auto()
 pop_colors<- c('#b6a6b8','#cecfdb','#b6a6b8','#cecfdb','#b6a6b8','#cecfdb','#b6a6b8','#cecfdb','#f3b343','#7ba539','#d8252e','#e6e154','#3e6dbe')
@@ -30,16 +42,16 @@ ggplot(data=data, aes(x=" ", y=rev(value), group=year, fill=rev(region))) +
          facet_grid(.~ year) +theme_void()+ scale_fill_manual(values=pop_colors)+
   labs(caption= "Source: US Energy and Information Administration.")+
   theme(legend.position = "none",
-        plot.margin =  unit(c(2.58,2,2.58,2), "cm"),
+        plot.margin =  unit(c(3.2,2.5,3.2,2.5), "cm"),
         axis.text = element_blank(),
         axis.ticks = element_blank(),
         panel.grid  = element_blank(),
         strip.text.x = element_blank(),
-        panel.spacing = unit(6, "lines"),
+        panel.spacing = unit(8, "lines"),
         plot.background= element_rect(color="black"),
         plot.title = element_textbox(vjust =125),
         plot.caption= element_text(vjust=-25, hjust = -.07))
-hi
+dev.off()
 
 
 #ggsave('hi.pdf', height  = 4.35)
