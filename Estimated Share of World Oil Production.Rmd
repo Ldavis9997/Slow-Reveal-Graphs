@@ -28,22 +28,20 @@ ggplot(data=data, aes(x=" ", y=rev(value), group=year, fill=rev(region))) +
          geom_bar(stat = "identity", color='black', size = .3) +
          coord_polar("y", start=0) + 
          facet_grid(.~ year) +theme_void()+ scale_fill_manual(values=pop_colors)+
+  labs(caption= "Source: US Energy and Information Administration.")+
   theme(legend.position = "none",
-        plot.margin =  unit(c(3,2,3,2), "cm"),
+        plot.margin =  unit(c(2.58,2,2.58,2), "cm"),
         axis.text = element_blank(),
         axis.ticks = element_blank(),
         panel.grid  = element_blank(),
         strip.text.x = element_blank(),
         panel.spacing = unit(6, "lines"),
         plot.background= element_rect(color="black"),
-           plot.title= element_textbox_simple(family= "Open",size = 10, lineheight = 0, 
-                                                  width = grid::unit(4.9, "in"), # fixed width
-                                                  hjust = .5, # alignment of box relative to plot
-                                                  linetype = 0, # turn on border
-                                                  box.color = "black", # border color
-                                                  fill = "#6D7166", # background fill color
-                                                  r = grid::unit(0, "pt"), # radius for rounded corners
-                                                  padding = margin(0, 0, 0, 0), # padding around text inside the box
-                                                  margin = margin(0, 0, 80, 0)))
-       
+        plot.title = element_textbox(vjust =125),
+        plot.caption= element_text(vjust=-25, hjust = -.07))
+hi
+
+
+#ggsave('hi.pdf', height  = 4.35)
+
 ```
