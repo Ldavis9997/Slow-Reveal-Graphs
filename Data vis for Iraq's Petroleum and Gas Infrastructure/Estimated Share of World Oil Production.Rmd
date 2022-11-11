@@ -49,7 +49,8 @@ ggplot(data=data, aes(x=" ", y=rev(value), group=year, fill=rev(region))) +
         strip.text.x = element_blank(),
         panel.spacing = unit(8, "lines"),
         plot.title = element_textbox(vjust =125),
-        plot.caption= element_text(vjust=-20, hjust = -.13, size = 13))
+        plot.caption= element_text(vjust=-20, hjust = -.13, size = 13),
+        plot.background= element_rect(color="black"))
 dev.off()
 img <- image_draw(picture)
  polygon(c(0, 760, 760, 0), c(0, 0, 50, 50), border = "#6D7166", col = "#6D7166")+
