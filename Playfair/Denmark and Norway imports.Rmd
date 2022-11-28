@@ -29,14 +29,15 @@ x_label<- c("1700",'','','',"1710",'','')
 
 year<- c(1700,1710, 1720,1730, 1740, 1750, 1760, 1770, 1780)
 ggplot(iraq_data)+
-   geom_line(aes(x= year, y=imports), size=.8, color='#daa855')+
-  geom_line(aes(x=year, y=exports,group=1), size=.8, color='#844747')+
-  scale_y_continuous(breaks = c(10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200), limits= c(0,200))+ scale_x_continuous(breaks = c(0,25,50,75,100), limits= c(1,74),expand= expansion(mult=c(0,.0)))+
+   geom_line(aes(x= year, y=imports), size=1.5, color='#daa855')+
+  geom_line(aes(x=year, y=exports,group=1), size=1.5, color='#844747')+
+  scale_y_continuous(breaks = c(0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,188,188), limits= c(0,190), expand= expansion(mult=c(0,0)))+ scale_x_continuous(breaks = c(0,30,50,75,100), limits= c(1,70),expand= expansion(mult=c(0,0)))+
   theme_bw()+
   theme(axis.ticks = element_blank(),
         axis.text.x= element_blank(),
         axis.title = element_blank(),
         panel.grid.major.y = element_blank(),
-        panel.grid=element_line(color='grey'),
-        panel.background= element_rect(color='#fdf8ee', fill= '#fdf8ee'))
+        panel.grid=element_line(color='black'),
+        panel.background= element_rect(color='#fdf8ee', fill= '#fdf8ee'),
+        axis.text.y = element_blank())
 ```
