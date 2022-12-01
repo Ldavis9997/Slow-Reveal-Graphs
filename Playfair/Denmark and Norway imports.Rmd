@@ -26,9 +26,9 @@ iraq_data<- read_sheet('https://docs.google.com/spreadsheets/d/1Lp2rckYcsKCbqbaU
 
 ```{r}
 x_label<- c("1700",'','','',"1710",'','')
-picture <- image_graph(width = 340, height = 490)
+picture <- image_graph(width = 780, height = 590)
 annotation_custom2 <- 
-function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 470, data) 
+function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax =Inf, data) 
 {
   layer(data = data, stat = StatIdentity, position = PositionIdentity, 
         geom = ggplot2:::GeomCustomAnn, 
@@ -37,12 +37,12 @@ function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = 470, data)
                                           ymin = ymin, ymax = ymax))
 }
 year<- c(1700,1710, 1720,1730, 1740, 1750, 1760, 1770, 1780)
-lines<- (ggplot(iraq_data)+
+ggplot(iraq_data)+
   geom_ribbon(aes(x=year1, ymax=exports, ymin=imports), fill='#844747', alpha=.2)+
   geom_ribbon(aes(x=year2, ymax=exports, ymin=imports), fill='#daa855', alpha=.2)+
    geom_line(aes(x= year, y=imports), size=1.5, color='#daa855')+
   geom_line(aes(x=year, y=exports,group=1), size=1.5, color='#844747')+
-  scale_y_continuous(breaks = c(0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,195), limits= c(5,200), expand= expansion(mult=c(0,0)))+ scale_x_continuous(breaks = c(0,10,30,50,70), limits= c(1,70),expand= expansion(mult=c(0,0)))+
+  scale_y_continuous(breaks = c(0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,195), limits= c(5,200), expand= expansion(mult=c(0,0)))+ scale_x_continuous(breaks = c(0,10,30,50,70), limits= c(1,70),expand= expansion(mult=c(0,.1)))+
   theme_bw()+
   theme(axis.ticks = element_blank(),
         panel.grid = element_blank(),
@@ -50,7 +50,21 @@ lines<- (ggplot(iraq_data)+
         axis.title = element_blank(),
         panel.background= element_rect(color='#fdf8ee', fill= '#fdf8ee'),
         plot.background =element_rect(color='#fdf8ee', fill= '#fdf8ee'),
-        plot.margin=margin(2, 1, 2, 1, "cm"),
-        axis.text.y = element_blank()))
+        plot.margin=margin(2, 1, 3, 1, "cm"),
+        axis.text.y = element_blank())
+
+dev.off()
+img <- image_draw(picture)
+segments(x0=25, x1=25, y0=52, y1=507, lwd = 3, lty = "solid")+
+  segments(x0=25, x1=756, y0=52, y1=52, lwd = 3, lty = "solid")+
+  segments(x0=756, x1=756, y0=507, y1=52, lwd = 3, lty = "solid")+
+  segments(x0=25, x1=756, y0=507, y1=507, lwd = 3, lty = "solid")+
+  segments(x0=105, x1=105, y0=57, y1=502, lwd = 1, lty = "solid")+
+  segments(x0=190, x1=190, y0=57, y1=502, lwd = 1, lty = "solid")+
+  segments(x0=270, x1=270, y0=57, y1=502, lwd = 1, lty = "solid")+
+  segments(x0=350, x1=350, y0=57, y1=502, lwd = 1, lty = "solid")+
+  segments(x0=430, x1=430, y0=57, y1=502, lwd = 1, lty = "solid")
+dev.off()
+image_write(img, path = here::here("Playfair", "lines.png"), format = "png")
 
 ```
