@@ -25,6 +25,8 @@ iraq_data<- read_sheet('https://docs.google.com/spreadsheets/d/1Lp2rckYcsKCbqbaU
 ```
 
 ```{r}
+font_add(family = "Noto", regular = "NotoSerifKhojki-Medium.ttf")
+#font_files()%>% tibble()%>%filter(str_detect(family, "Noto"))%>%pull(file)
 x_label<- c("1700",'','','',"1710",'','')
 picture <- image_graph(width = 780, height = 590)
 annotation_custom2 <- 
@@ -59,11 +61,37 @@ segments(x0=25, x1=25, y0=52, y1=507, lwd = 3, lty = "solid")+
   segments(x0=25, x1=756, y0=52, y1=52, lwd = 3, lty = "solid")+
   segments(x0=756, x1=756, y0=507, y1=52, lwd = 3, lty = "solid")+
   segments(x0=25, x1=756, y0=507, y1=507, lwd = 3, lty = "solid")+
-  segments(x0=105, x1=105, y0=57, y1=502, lwd = 1, lty = "solid")+
-  segments(x0=190, x1=190, y0=57, y1=502, lwd = 1, lty = "solid")+
-  segments(x0=270, x1=270, y0=57, y1=502, lwd = 1, lty = "solid")+
-  segments(x0=350, x1=350, y0=57, y1=502, lwd = 1, lty = "solid")+
-  segments(x0=430, x1=430, y0=57, y1=502, lwd = 1, lty = "solid")
+  segments(x0=115, x1=115, y0=57, y1=502, lwd = 1, lty = "solid", col = '#766558')+
+  segments(x0=205, x1=205, y0=57, y1=502, lwd = 1, lty = "solid", col = '#766558')+
+  segments(x0=285, x1=285, y0=57, y1=502, lwd = 1, lty = "solid", col = '#766558')+
+  segments(x0=365, x1=365, y0=57, y1=502, lwd = 1, lty = "solid", col = '#766558')+
+  segments(x0=445, x1=445, y0=57, y1=502, lwd = 1, lty = "solid", col = '#766558')+
+  segments(x0=525, x1=525, y0=57, y1=502, lwd = 1, lty = "solid", col = '#766558')+
+  segments(x0=605, x1=605, y0=57, y1=502, lwd = 1, lty = "solid", col = '#766558')+
+  segments(x0=685, x1=685, y0=57, y1=502, lwd = 1, lty = "solid", col = '#766558')+
+  segments(x0=32, x1=32, y0=58, y1=501, lwd = 1, lty = "solid", col = '#766558')+
+  
+  
+  segments(x0=32, x1=685, y0=480, y1=480, lwd = 1, lty = "solid", col = '#766558')+
+  segments(x0=32, x1=685, y0=459, y1=459, lwd = 1, lty = "solid", col= '#766558')+
+    segments(x0=32, x1=685, y0=439, y1=439, lwd = 1, lty = "solid", col = '#766558')+
+    segments(x0=32, x1=685, y0=419, y1=419, lwd = 1, lty = "solid", col = '#766558')+
+    segments(x0=32, x1=685, y0=399, y1=399, lwd = 1, lty = "solid", col= '#766558')+
+   segments(x0=32, x1=685, y0=377, y1=377, lwd = 1, lty = "solid", col= '#766558')+
+   segments(x0=32, x1=685, y0=357, y1=357, lwd = 1, lty = "solid", col = '#766558')+
+   segments(x0=32, x1=685, y0=333, y1=333, lwd = 1, lty = "solid", col= '#766558')+
+   segments(x0=32, x1=685, y0=310, y1=310, lwd = 1, lty = "solid",col='#766558')+
+   segments(x0=32, x1=756, y0=287, y1=287, lwd = 3, lty = "solid",col = '#766558')+
+   segments(x0=32, x1=685, y0=264, y1=264, lwd = 1, lty = "solid", col='#766558')+
+   segments(x0=32, x1=685, y0=241, y1=241, lwd = 1, lty = "solid", col='#766558')+
+   segments(x0=32, x1=685, y0=218, y1=218, lwd = 1, lty = "solid", col ='#766558')+
+    segments(x0=32, x1=685, y0=195, y1=195, lwd = 1, lty = "solid", col = '#766558')+
+    segments(x0=32, x1=685, y0=172, y1=172, lwd = 1, lty = "solid", col = '#766558')+
+    segments(x0=32, x1=685, y0=149, y1=149, lwd = 1, lty = "solid", col = '#766558')+
+    segments(x0=32, x1=685, y0=126, y1=126, lwd = 1, lty = "solid", col = '#766558')+
+    segments(x0=32, x1=685, y0=103, y1=103, lwd = 1, lty = "solid", col = '#766558')+
+    segments(x0=32, x1=685, y0=80, y1=80, lwd = 1, lty = "solid", col = '#766558')
+  
 dev.off()
 image_write(img, path = here::here("Playfair", "lines.png"), format = "png")
 
