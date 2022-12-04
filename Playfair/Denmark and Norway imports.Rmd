@@ -27,8 +27,9 @@ iraq_data<- read_sheet('https://docs.google.com/spreadsheets/d/1Lp2rckYcsKCbqbaU
 ```{r}
 font_add(family = "Playfair", regular = "PlayfairDisplay-MediumItalic.ttf")
 font_add(family = "Playball", regular = "Playball-Regular.ttf")
+font_add(family = "Noto", regular = "NotoSansTakri-Regular.ttf")
 
-font_files()%>% tibble()%>%filter(str_detect(family, "Playball"))%>%pull(file)
+font_files()%>% tibble()%>%filter(str_detect(family, "Noto"))%>%pull(file)
 x_label<- c("1700",'','','',"1710",'','')
 picture <- image_graph(width = 780, height = 590)
 annotation_custom2 <- 
@@ -94,36 +95,40 @@ segments(x0=25, x1=25, y0=52, y1=507, lwd = 3, lty = "solid")+
     segments(x0=32, x1=685, y0=103, y1=103, lwd = 1, lty = "solid", col = '#766558')+
     segments(x0=32, x1=685, y0=80, y1=80, lwd = 1, lty = "solid", col = '#766558')+
   
-  text(38, 518, substitute(paste(italic("1700"))), family = "Playfair", cex = 1.2, col = "black", degrees= 20)+
-  text(115, 518, substitute(paste(italic("1710"))), family = "Playfair", cex = 1.2, col = "black", degrees= 20)+
-  text(205, 518, substitute(paste(italic("1720"))), family = "Playfair", cex = 1.2, col = "black", degrees= 20)+
-  text(288, 518, substitute(paste(italic("1730"))), family = "Playfair", cex = 1.2, col = "black", degrees= 20)+
-  text(368, 518, substitute(paste(italic("1740"))), family = "Playfair", cex = 1.2, col = "black", degrees= 20)+
-  text(448, 518, substitute(paste(italic("1750"))), family = "Playfair", cex = 1.2, col = "black", degrees= 20)+
-  text(528, 518, substitute(paste(italic("1760"))), family = "Playfair", cex = 1.2, col = "black", degrees= 20)+
-  text(608, 518, substitute(paste(italic("1770"))), family = "Playfair", cex = 1.2, col = "black", degrees= 20)+
-  text(688, 518, substitute(paste(italic("1780"))), family = "Playfair", cex = 1.2, col = "black", degrees= 20)+
-  text(695, 483, substitute(paste(italic("10"))), family = "Playfair", cex = 1.15, col = "black", degrees= 20)+
-  text(697, 462, substitute(paste(italic("20"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-  text(697, 441, substitute(paste(italic("30"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-  text(697, 419, substitute(paste(italic("40"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-   text(697, 400, substitute(paste(italic("50"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-   text(697, 379, substitute(paste(italic("60"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-   text(697, 358, substitute(paste(italic("70"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-   text(697, 334, substitute(paste(italic("80"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-   text(697, 313, substitute(paste(italic("90"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-   text(708, 288, substitute(paste(italic("100,000"))), family = "Playfair", cex = 1, col = "black", degrees= 20)+
-   text(697, 267, substitute(paste(italic("110"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-  text(697, 244, substitute(paste(italic("120"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-  text(697, 223, substitute(paste(italic("130"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+ 
-  text(697, 199, substitute(paste(italic("140"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-  text(697, 176, substitute(paste(italic("150"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-  text(697, 153, substitute(paste(italic("160"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-  text(697, 130, substitute(paste(italic("170"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-  text(697, 107, substitute(paste(italic("180"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
-  text(697, 84, substitute(paste(italic("190"))), family = "Playfair", cex = 1.1, col = "black", degrees= 20)+
+  text(38, 518, substitute(paste(italic("1700"))), family = "Playball", cex = 1.2, col = "black")+
+  text(115, 518, substitute(paste(italic("1710"))), family = "Playball", cex = 1.2, col = "black")+
+  text(205, 518, substitute(paste(italic("1720"))), family = "Playball", cex = 1.2, col = "black")+
+  text(288, 518, substitute(paste(italic("1730"))), family = "Playball", cex = 1.2, col = "black")+
+  text(368, 518, substitute(paste(italic("1740"))), family = "Playball", cex = 1.2, col = "black")+
+  text(448, 518, substitute(paste(italic("1750"))), family = "Playball", cex = 1.2, col = "black")+
+  text(528, 518, substitute(paste(italic("1760"))), family = "Playball", cex = 1.2, col = "black")+
+  text(608, 518, substitute(paste(italic("1770"))), family = "Playball", cex = 1.2, col = "black")+
+  text(688, 518, substitute(paste(italic("1780"))), family = "Playball", cex = 1.2, col = "black")+
+  text(695, 483, substitute(paste(italic("10"))), family = "Playball", cex = 1.15, col = "black")+
+  text(697, 462, substitute(paste(italic("20"))), family = "Playball", cex = 1.1, col = "black")+
+  text(697, 441, substitute(paste(italic("30"))), family = "Playball", cex = 1.1, col = "black")+
+  text(697, 419, substitute(paste(italic("40"))), family = "Playball", cex = 1.1, col = "black")+
+   text(697, 400, substitute(paste(italic("50"))), family = "Playball", cex = 1.1, col = "black")+
+   text(697, 379, substitute(paste(italic("60"))), family = "Playball", cex = 1.1, col = "black")+
+   text(697, 358, substitute(paste(italic("70"))), family = "Playball", cex = 1.1, col = "black")+
+   text(697, 334, substitute(paste(italic("80"))), family = "Playball", cex = 1.1, col = "black")+
+   text(697, 313, substitute(paste(italic("90"))), family = "Playball", cex = 1.1, col = "black")+
+   text(709, 288, substitute(paste(italic("100,000"))), family = "Playball", cex = 1, col = "black")+
+   text(698, 267, substitute(paste(italic("110"))), family = "Playball", cex = 1.1, col = "black")+
+  text(700, 244, substitute(paste(italic("120"))), family = "Playball", cex = 1.1, col = "black")+
+  text(700, 223, substitute(paste(italic("130"))), family = "Playball", cex = 1.1, col = "black")+ 
+  text(700, 199, substitute(paste(italic("140"))), family = "Playball", cex = 1.1, col = "black")+
+  text(700, 176, substitute(paste(italic("150"))), family = "Playball", cex = 1.1, col = "black")+
+  text(700, 153, substitute(paste(italic("160"))), family = "Playball", cex = 1.1, col = "black")+
+  text(700, 130, substitute(paste(italic("170"))), family = "Playball", cex = 1.1, col = "black")+
+  text(700, 107, substitute(paste(italic("180"))), family = "Playball", cex = 1.1, col = "black")+
+  text(700, 84, substitute(paste(italic("190"))), family = "Playball", cex = 1.1, col = "black")+
   
-  text(300, 560, substitute(paste(italic("The Bottom line is divided into Years, the Right hand line into L10,000 each."))), family = "Playball", cex = 1.1, col = "black", degrees= 20)
+  text(390, 545, substitute(paste(italic("The Bottom line is divided into Years, the Right hand line into L10,000 each."))), family = "Playball", cex = 1.5, col = "black")+
+   text(673, 560, substitute(paste(italic("Neels Sculpt 352, Strand, London."))), family = "Playball", cex = .8, col = "black")+
+  text(133, 560, substitute(paste(italic("Published as the Act directs, 1st May 1786, by W. Playfair"))), family = "Playball", cex = .8, col = "black")+
+  text(200,347, substitute(paste(bold("Line"))), family = "Noto", cex = 1.2, col = "black", srt=-20)
+  
   
   
 dev.off()
