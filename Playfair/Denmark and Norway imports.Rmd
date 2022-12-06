@@ -27,9 +27,9 @@ iraq_data<- read_sheet('https://docs.google.com/spreadsheets/d/1Lp2rckYcsKCbqbaU
 ```{r}
 font_add(family = "Playfair", regular = "PlayfairDisplay-MediumItalic.ttf")
 font_add(family = "Playball", regular = "Playball-Regular.ttf")
-font_add(family = "Noto", regular = "NotoSansTakri-Regular.ttf")
+font_add(family = "Lora", regular = "Lora-Regular.ttf")
 
-font_files()%>% tibble()%>%filter(str_detect(family, "Noto"))%>%pull(file)
+font_files()%>% tibble()%>%filter(str_detect(family, "Lora"))%>%pull(file)
 x_label<- c("1700",'','','',"1710",'','')
 picture <- image_graph(width = 780, height = 590)
 annotation_custom2 <- 
@@ -127,7 +127,7 @@ segments(x0=25, x1=25, y0=52, y1=507, lwd = 3, lty = "solid")+
   text(390, 545, substitute(paste(italic("The Bottom line is divided into Years, the Right hand line into L10,000 each."))), family = "Playball", cex = 1.5, col = "black")+
    text(673, 560, substitute(paste(italic("Neels Sculpt 352, Strand, London."))), family = "Playball", cex = .8, col = "black")+
   text(133, 560, substitute(paste(italic("Published as the Act directs, 1st May 1786, by W. Playfair"))), family = "Playball", cex = .8, col = "black")+
-  text(200,347, substitute(paste(bold("Line"))), family = "Noto", cex = 1.2, col = "black", srt=-20)
+  text(200,347, substitute(paste(bold("Line"))), family = "Lora", cex = 1.2, col = "black", srt=-20)
   
   
   
