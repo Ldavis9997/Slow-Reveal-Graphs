@@ -25,11 +25,11 @@ iraq_data<- read_sheet('https://docs.google.com/spreadsheets/d/1Lp2rckYcsKCbqbaU
 ```
 
 ```{r}
-font_add(family = "Playfair", regular = "PlayfairDisplay-MediumItalic.ttf")
+font_add(family = "Playfair", regular = "PlayfairDisplay-Bold.ttf")
 font_add(family = "Playball", regular = "Playball-Regular.ttf")
 font_add(family = "Rokkitt", regular = "Rokkitt-Regular.ttf")
 
-font_files()%>% tibble()%>%filter(str_detect(family, "Rokkitt"))%>%pull(file)
+font_files()%>% tibble()%>%filter(str_detect(family, "Playfair"))%>%pull(file)
 x_label<- c("1700",'','','',"1710",'','')
 picture <- image_graph(width = 780, height = 590)
 annotation_custom2 <- 
@@ -128,17 +128,27 @@ segments(x0=25, x1=25, y0=52, y1=507, lwd = 3, lty = "solid")+
    text(673, 560, substitute(paste(italic("Neels Sculpt 352, Strand, London."))), family = "Playball", cex = .8, col = "black")+
   text(133, 560, substitute(paste(italic("Published as the Act directs, 1st May 1786, by W. Playfair"))), family = "Playball", cex = .8, col = "black")+
   text(140,35, substitute(paste(bold("Exports"))), family = "Rokkitt", cex = 1.35, col = "black")+
-  text(252,35, substitute(paste(bold("Imports"))), family = "Rokkitt", cex = 1.35, col = "black")+
-  text(193,35, substitute(paste(bold("and"))), family = "Rokkitt", cex = 1.3, col = "black")+
-  text(293,35, substitute(paste(bold("to"))), family = "Rokkitt", cex = 1.3, col = "black")+
-  text(318,35, substitute(paste(bold("and"))), family = "Rokkitt", cex = 1.3, col = "black")+
-  text(351,35, substitute(paste(bold("from"))), family = "Rokkitt", cex = 1.3, col = "black")+
-  text(418,35, substitute(paste(bold("DENMARK"))), family = "Rokkitt", cex = 1.65, col = "black")+
-  text(478,35, substitute(paste(bold("&"))), family = "Rokkitt", cex = 1.65, col = "black")+
-  text(534,35, substitute(paste(bold("NORWAY"))), family = "Rokkitt", cex = 1.65, col = "black")+
-  text(596,35, substitute(paste(bold("from"))), family = "Rokkitt", cex = 1.3, col = "black")+
-  text(631,35, substitute(paste(bold("1700"))), family = "Rokkitt", cex = 1.3, col = "black")+
-  text(671,35, substitute(paste(bold("to 1780."))), family = "Rokkitt", cex = 1.3, col = "black")
+  text(238,35, substitute(paste(bold("Imports"))), family = "Rokkitt", cex = 1.35, col = "black")+
+  text(187,35, substitute(paste(bold("and"))), family = "Rokkitt", cex = 1.3, col = "black")+
+  text(285,35, substitute(paste(bold("to"))), family = "Rokkitt", cex = 1.3, col = "black")+
+  text(310,35, substitute(paste(bold("and"))), family = "Rokkitt", cex = 1.3, col = "black")+
+  text(343,35, substitute(paste(bold("from"))), family = "Rokkitt", cex = 1.3, col = "black")+
+  text(410,35, substitute(paste(bold("DENMARK"))), family = "Rokkitt", cex = 1.65, col = "black")+
+  text(470,35, substitute(paste(bold("&"))), family = "Rokkitt", cex = 1.65, col = "black")+
+  text(526,35, substitute(paste(bold("NORWAY"))), family = "Rokkitt", cex = 1.65, col = "black")+
+  text(587,35, substitute(paste(bold("from"))), family = "Rokkitt", cex = 1.3, col = "black")+
+  text(623,35, substitute(paste(bold("1700"))), family = "Rokkitt", cex = 1.3, col = "black")+
+  text(664,35, substitute(paste(bold("to 1780."))), family = "Rokkitt", cex = 1.3, col = "black")+
+  text(217,350, substitute(paste(bold("Line"))), family = "Rokkitt", cex = 1.3, col = "black", srt=-10)+
+   text(240,359, substitute(paste(bold("of"))), family = "Rokkitt", cex = 1.3, col = "black", srt=-20)+
+  text(270,373, substitute(paste(bold("Exports"))), family = "Rokkitt", cex = 1.3, col = "black", srt=-25)+
+  text(212,282, substitute(paste(bold("Line"))), family = "Rokkitt", cex = 1.3, col = "black", srt=20)+
+  text(237,274, substitute(paste(bold("of"))), family = "Rokkitt", cex = 1.3, col = "black", srt=5)+
+  text(272,281, substitute(paste(bold("Imports"))), family = "Rokkitt", cex = 1.3, col = "black", srt=-15)+
+  text(272,381, substitute(paste(bold("BALANCE"))), family = "Playfair", cex = 3, col = "black", srt=-20)
+  
+  
+  
   
   
   
