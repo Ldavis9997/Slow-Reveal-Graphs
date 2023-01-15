@@ -22,6 +22,9 @@ library(magick)
 pop_colors <- (c('#844747','#daa855'))
 iraq_data<- read_sheet('https://docs.google.com/spreadsheets/d/1Lp2rckYcsKCbqbaUs_h16ubJ6hf2J69EGJbd0p9ISvo/edit?usp=sharing')
 
+iraq_data1<- read_sheet('https://docs.google.com/spreadsheets/d/1HiTvrMNR7SQ5K4amUPixDYVfJIWUEwPT09iOY0tqaug/edit?usp=sharing')
+
+
 ```
 
 ```{r}
@@ -41,7 +44,7 @@ function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax =Inf, data)
                                           xmin = xmin, xmax = xmax, 
                                           ymin = ymin, ymax = ymax))
 }
-year<- c(1700,1710, 1720,1730, 1740, 1750, 1760, 1770, 1780)
+
 ggplot(iraq_data)+
   geom_ribbon(aes(x=year1, ymax=exports, ymin=imports), fill='#844747', alpha=.2)+
   geom_ribbon(aes(x=year2, ymax=exports, ymin=imports), fill='#daa855', alpha=.2)+
@@ -176,4 +179,12 @@ segments(x0=25, x1=25, y0=52, y1=507, lwd = 3, lty = "solid")+
 dev.off()
 image_write(img, path = here::here("Playfair", "lines.png"), format = "png")
 
+```
+```{r}
+ggplot(iraq_data1)+
+  geom_line(aes(x=year, y=exports,group=1), size=1.5, color='#844747')+
+  geom_line(aes(x= year, y=imports), size=1.5, color='#daa855')
+
+
+  
 ```
