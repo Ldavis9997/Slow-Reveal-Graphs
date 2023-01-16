@@ -45,12 +45,12 @@ function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax =Inf, data)
                                           ymin = ymin, ymax = ymax))
 }
 
-ggplot(iraq_data)+
-  geom_ribbon(aes(x=year1, ymax=exports, ymin=imports), fill='#844747', alpha=.2)+
-  geom_ribbon(aes(x=year2, ymax=exports, ymin=imports), fill='#daa855', alpha=.2)+
-   geom_line(aes(x= year, y=imports), size=1.5, color='#daa855')+
-  geom_line(aes(x=year, y=exports,group=1), size=1.5, color='#844747')+
-  scale_y_continuous(breaks = c(0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,195), limits= c(5,200), expand= expansion(mult=c(0,0)))+ scale_x_continuous(breaks = c(0,10,30,50,70), limits= c(1,70),expand= expansion(mult=c(0,.1)))+
+ggplot(iraq_data1)+
+  geom_ribbon(aes(x=year2, ymax=exports, ymin=imports), fill='#844747', alpha=.2)+
+  geom_ribbon(aes(x=year3, ymax=exports, ymin=imports), fill='#daa855', alpha=.2)+
+   geom_line(aes(x= year1, y=imports), size=1.5, color='#daa855')+
+  geom_line(aes(x=year1, y=exports,group=1), size=1.5, color='#844747')+
+  scale_y_continuous(breaks = c(0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,195), limits= c(5,200), expand= expansion(mult=c(0,0)))+ scale_x_continuous(breaks = c(0,10,30,50,88), limits= c(1,88),expand= expansion(mult=c(0,.1)))+
   theme_bw()+
   theme(axis.ticks = element_blank(),
         panel.grid = element_blank(),
@@ -142,12 +142,12 @@ segments(x0=25, x1=25, y0=52, y1=507, lwd = 3, lty = "solid")+
   text(587,35, substitute(paste(bold("from"))), family = "Rokkitt", cex = 1.3, col = "black")+
   text(623,35, substitute(paste(bold("1700"))), family = "Rokkitt", cex = 1.3, col = "black")+
   text(664,35, substitute(paste(bold("to 1780."))), family = "Rokkitt", cex = 1.3, col = "black")+
-  text(217,350, substitute(paste(bold("Line"))), family = "Rokkitt", cex = 1.3, col = "black", srt=-10)+
-   text(240,359, substitute(paste(bold("of"))), family = "Rokkitt", cex = 1.3, col = "black", srt=-20)+
-  text(270,373, substitute(paste(bold("Exports"))), family = "Rokkitt", cex = 1.3, col = "black", srt=-25)+
-  text(212,282, substitute(paste(bold("Line"))), family = "Rokkitt", cex = 1.3, col = "black", srt=20)+
+  text(217,356, substitute(paste(bold("Line"))), family = "Rokkitt", cex = 1.3, col = "black", srt=-15)+
+   text(239,365, substitute(paste(bold("of"))), family = "Rokkitt", cex = 1.3, col = "black", srt=-20)+
+  text(270,377, substitute(paste(bold("Exports"))), family = "Rokkitt", cex = 1.3, col = "black", srt=-23)+
+  text(212,280, substitute(paste(bold("Line"))), family = "Rokkitt", cex = 1.3, col = "black", srt=20)+
   text(237,274, substitute(paste(bold("of"))), family = "Rokkitt", cex = 1.3, col = "black", srt=5)+
-  text(272,281, substitute(paste(bold("Imports"))), family = "Rokkitt", cex = 1.3, col = "black", srt=-15)+
+  text(272,282.5, substitute(paste(bold("Imports"))), family = "Rokkitt", cex = 1.3, col = "black", srt=-15)+
   text(269,324, substitute(paste(bold("B"))), family = "Baskerville", cex = 1.8, col = "black", srt=-30)+
   text(282,331, substitute(paste(bold("A"))), family = "Baskerville", cex = 1.6, col = "black", srt=-40)+
   text(293,340, substitute(paste(bold("L"))), family = "Baskerville", cex = 1.4, col = "black", srt=-35)+
@@ -179,12 +179,4 @@ segments(x0=25, x1=25, y0=52, y1=507, lwd = 3, lty = "solid")+
 dev.off()
 image_write(img, path = here::here("Playfair", "lines.png"), format = "png")
 
-```
-```{r}
-ggplot(iraq_data1)+
-  geom_line(aes(x=year, y=exports,group=1), size=1.5, color='#844747')+
-  geom_line(aes(x= year, y=imports), size=1.5, color='#daa855')
-
-
-  
 ```
