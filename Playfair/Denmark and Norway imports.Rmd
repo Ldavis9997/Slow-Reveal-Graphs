@@ -24,7 +24,6 @@ library(magick)
 ```
 ```{r,fig.height= 10, fig.width= 16}
 pop_colors <- (c('#844747','#daa855'))
-iraq_data<- read_sheet('https://docs.google.com/spreadsheets/d/1Lp2rckYcsKCbqbaUs_h16ubJ6hf2J69EGJbd0p9ISvo/edit?usp=sharing')
 
 iraq_data1<- read_sheet('https://docs.google.com/spreadsheets/d/1HiTvrMNR7SQ5K4amUPixDYVfJIWUEwPT09iOY0tqaug/edit?usp=sharing')
 
@@ -190,7 +189,6 @@ segments(x0=25, x1=25, y0=52, y1=507, lwd = 3, lty = "solid")+
   
   
 dev.off()
-image_write(img, path = here::here("Playfair", "lines.png"), format = "png")
-ggsave('final2.png')
+image_write(img, path = here::here("Playfair", "Denmark and Norway Imports.png"), format = "png")
 
 ```
