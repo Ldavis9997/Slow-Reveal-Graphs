@@ -14,7 +14,7 @@ library(showtext)
 library(grid)
 ```
 
-```{r, fig.height= 4, fig.width= 7.5}
+```{r, fig.height= 1.5, fig.width= 3}
 font_add(family="Open", regular= 	"OpenSans-Bold.ttf")
 showtext_auto()
 
@@ -113,7 +113,7 @@ annotation_custom(grob = grid::textGrob(label = "Million b/d", hjust=0, gp=gpar(
   annotation_custom(grob = linesGrob(), xmin = 20.27, xmax = 20.85, ymin = .5, ymax = .75)
 
 final
-ggsave("final.pdf")
+ggsave("final.png")
 
 
 
