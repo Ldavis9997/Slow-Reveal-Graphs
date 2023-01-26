@@ -9,15 +9,12 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r}
-
-
 library(gridExtra)
-
 library(tidyverse)
 library(ggtext)
 library(ggrepel)
 library(grid)
-library(ggforce)
+#library(ggforce)
 library(showtext)
 library(magick)
 
@@ -119,5 +116,5 @@ text(147, 133, "Very heavy", family = "Text", cex = .9, col = "black")+
   
   
 dev.off()
-image_write(img, path = here::here("Data vis for Iraq's Petroleum and Gas Infrastructure", "Picture1.png"), format = "png")
+image_write(img, path = here::here("Types of Iraqi Oil", "Types of Iraqi Oil.png"), format = "png")
 ```
