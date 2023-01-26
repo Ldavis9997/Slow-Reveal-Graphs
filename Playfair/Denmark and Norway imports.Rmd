@@ -31,9 +31,9 @@ iraq_data1<- read_sheet('https://docs.google.com/spreadsheets/d/1HiTvrMNR7SQ5K4a
 ```
 
 ```{r}
-font_files() %>% tibble() %>% filter(str_detect(family, "Arial")) %>% pull(file)
+font_files() %>% tibble() %>% filter(str_detect(family, "Playfair")) %>% pull(file)
 names(pdfFonts())
-# font_add(family = "Arial", regular = "Arial Bold Italic.ttf")
+font_add(family = "Playfair", regular = "PlayfairDisplay-MediumItalic.ttf")
 font_add(family = "Playball", regular = "Playball-Regular.ttf")
 font_add(family = "Rokkitt", regular = "Rokkitt-Regular.ttf")
 
@@ -153,27 +153,27 @@ segments(x0=25, x1=25, y0=52, y1=507, lwd = 3, lty = "solid")+
   text(212,280, substitute(paste(bold("Line"))), family = "Rokkitt", cex = 1.3, col = "black", srt=20)+
   text(237,274, substitute(paste(bold("of"))), family = "Rokkitt", cex = 1.3, col = "black", srt=5)+
   text(272,282.5, substitute(paste(bold("Imports"))), family = "Rokkitt", cex = 1.3, col = "black", srt=-15)+
-  text(269,324, substitute(paste(bold("B"))), family = "Playball", cex = 1.8, col = "black", srt=-30)+#change back to arial.
-  text(282,331, substitute(paste(bold("A"))), family = "Playball", cex = 1.6, col = "black", srt=-40)+
-  text(293,340, substitute(paste(bold("L"))), family = "Playball", cex = 1.4, col = "black", srt=-35)+
-  text(305,342, substitute(paste(bold("A"))), family = "Playball", cex = 1.4, col = "black", srt=-15)+
-  text(316,344, substitute(paste(bold("N"))), family = "Playball", cex = 1.4, col = "black", srt=-10)+
-  text(328,344, substitute(paste(bold("C"))), family = "Playball", cex = 1.4, col = "black", srt=-5)+
-  text(342,345, substitute(paste(bold("E"))), family = "Playball", cex = 1.4, col = "black", srt=0)+
-  text(357,338, substitute(paste(bold("A"))), family = "Playball", cex = 1.6, col = "black", srt=15)+
-  text(368,334, substitute(paste(bold("G"))), family = "Playball", cex = 1.5, col = "black", srt=15)+
-  text(378,328, substitute(paste(bold("A"))), family = "Playball", cex = 1.5, col = "black", srt=13)+
+  text(269,324, substitute(paste(bold("B"))), family = "Playfair", cex = 1.8, col = "black", srt=-30)+#change back to arial.
+  text(282,331, substitute(paste(bold("A"))), family = "Playfairl", cex = 1.6, col = "black", srt=-40)+
+  text(293,340, substitute(paste(bold("L"))), family = "Playfair", cex = 1.4, col = "black", srt=-35)+
+  text(305,342, substitute(paste(bold("A"))), family = "Playfair", cex = 1.4, col = "black", srt=-15)+
+  text(316,344, substitute(paste(bold("N"))), family = "Playfair", cex = 1.4, col = "black", srt=-10)+
+  text(328,344, substitute(paste(bold("C"))), family = "Playfair", cex = 1.4, col = "black", srt=-5)+
+  text(342,345, substitute(paste(bold("E"))), family = "Playfair", cex = 1.4, col = "black", srt=0)+
+  text(357,338, substitute(paste(bold("A"))), family = "Playfair", cex = 1.6, col = "black", srt=15)+
+  text(368,334, substitute(paste(bold("G"))), family = "Playfair", cex = 1.5, col = "black", srt=15)+
+  text(378,328, substitute(paste(bold("A"))), family = "Playfair", cex = 1.5, col = "black", srt=13)+
   text(386,325, substitute(paste(bold("I"))), family = "Playball", cex = 1.5, col = "black", srt=13)+
-  text(394,323, substitute(paste(bold("N"))), family = "Playball", cex = 1.5, col = "black", srt=10)+
-  text(405,320, substitute(paste(bold("S"))), family = "Playball", cex = 1.5, col = "black", srt=7)+
-  text(418,320, substitute(paste(bold("T"))), family = "Playball", cex = 1.45, col = "black", srt=-7)+
-  text(600,211, substitute(paste(bold("BALANCE"))), family = "Playball", cex = 1.4, col = "black", srt=0)+
-    text(655,212, substitute(paste(bold("in"))), family = "Playball", cex = 1.2, col = "black", srt=0)+
-  text(604,234, substitute(paste(bold("FAVOUR"))), family = "Playball", cex = 1.4, col = "black", srt=0)+
-  text(655,236, substitute(paste(bold("of"))), family = "Playball", cex = 1.2, col = "black", srt=0)+
-  text(610,256, substitute(paste(bold("E N G L A N D"))), family = "Playball", cex = 1.5, col = "black", srt=0)+#change font
+  text(394,323, substitute(paste(bold("N"))), family = "Playfair", cex = 1.5, col = "black", srt=10)+
+  text(405,320, substitute(paste(bold("S"))), family = "Playfair", cex = 1.5, col = "black", srt=7)+
+  text(418,320, substitute(paste(bold("T"))), family = "Playfair", cex = 1.45, col = "black", srt=-7)+
+  text(600,211, substitute(paste(bold("BALANCE"))), family = "Playfair", cex = 1.4, col = "black", srt=0)+
+    text(655,212, substitute(paste(bold("in"))), family = "Playfair", cex = 1.2, col = "black", srt=0)+
+  text(604,234, substitute(paste(bold("FAVOUR"))), family = "Playfair", cex = 1.4, col = "black", srt=0)+
+  text(655,236, substitute(paste(bold("of"))), family = "Playfair", cex = 1.2, col = "black", srt=0)+
+  text(610,256, substitute(paste(bold("E N G L A N D"))), family = "Playfair", cex = 1.5, col = "black", srt=0)+#change font
   text(620,320, substitute(paste(bold("Imports"))), family = "Rokkitt", cex = 1.35, col = "black", srt=20)+
-    text(578,163, substitute(paste(bold("Exports"))), family = "Rokkitt", cex = 1.35, col = "black", srt=35)#change. 
+    text(578,163, substitute(paste(bold("Exports"))), family = "Rokkitt", cex = 1.35, col = "black", srt=35)
   
   
   
