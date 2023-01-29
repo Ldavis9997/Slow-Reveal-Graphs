@@ -173,7 +173,7 @@ segments(x0=25, x1=25, y0=52, y1=507, lwd = 3, lty = "solid")+
   text(655,236, substitute(paste(bold("of"))), family = "Playball", cex = 1.2, col = "black", srt=0)+
   text(610,256, substitute(paste(bold("E N G L A N D"))), family = "Playball", cex = 1.5, col = "black", srt=0)+#change font
   text(620,320, substitute(paste(bold("Imports"))), family = "Rokkitt", cex = 1.35, col = "black", srt=20)+
-    text(578,163, substitute(paste(bold("Exports"))), family = "Playfair", cex = 1.35, col = "black", srt=35)
+    text(578,163, substitute(paste(bold("Exports"))), family = "Playball", cex = 1.35, col = "black", srt=35)
   
   
   
