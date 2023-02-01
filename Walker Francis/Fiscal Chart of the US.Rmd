@@ -16,7 +16,7 @@ library(tidyverse)
 library(grid)
 library(rlang)
 library(ggtext)
-
+library(showtext)
 
 ```
 
