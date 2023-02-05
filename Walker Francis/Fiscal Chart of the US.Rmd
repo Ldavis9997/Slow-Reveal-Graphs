@@ -37,7 +37,7 @@ firstbar <- tibble(
   #mutate(vote_type = factor(vote_type, levels = type_levels),
          #pop_group = factor(pop_group, levels = year_levels),
          #fill = factor(fill, levels = pop_colors))
-area<- ((ggplot(firstbar, aes(x = pop_group, 
+area<- ((ggplot(firstbar, aes(x = rev(pop_group), 
                       y = amount, fill=fill, label=''))+
   geom_col(color = "black", size= .2, width=.7)) + scale_fill_manual(labels= type_levels, values= c( "#c0c3b7","#b2a961",'#737165' ,'#e19d91',"#a48048" ,"#fedcc6", "#ffe383" ), name = "")+
   
