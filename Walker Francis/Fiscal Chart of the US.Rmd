@@ -77,15 +77,97 @@ function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax =Inf, data)
            panel.grid.minor = element_blank(),
            axis.ticks = element_blank(),
            axis.line.y = element_blank(),
-           axis.text.y=element_blank(),
+           axis.text.y= element_text(),
            axis.text.x=element_blank(),
            axis.title=element_blank(),
            axis.line.x = element_blank(),
            legend.position='none',
-           plot.margin = unit(c(.5,.5,.5,.5), "cm")) + scale_y_continuous(limits= c(0,101), expand=c(0,0)) + scale_x_discrete(expand=c(0,5))) + coord_flip()
+           plot.margin = unit(c(.5,1,.5,1), "cm")) + scale_y_continuous(limits= c(0,101), expand=c(0,0)) + scale_x_discrete(expand=c(0,3))) + coord_flip()
 dev.off()
 img <- image_draw(picture)
- text(340,10, substitute(paste(bold("1. REVENUE"))), family = "Rokkitt", cex = 1.35, col = "black")
+ text(320,10, substitute(paste(bold("1. REVENUE"))), family = "Rokkitt", cex = 1.35, col = "black")
+   #plotting y axis labels to the right of the bars
+   text(620,731, "411.3", cex = .75, col = "black")+
+     text(620,722, "370.9", cex = .75, col = "black")+
+     text(620,713, "405.6", cex = .75, col = "black")+
+     text(620,704, "489.9", cex = .75, col = "black")+
+     text(620,695, "619.6", cex = .75, col = "black")+
+     text(620,686, "323.1", cex = .75, col = "black")+
+     text(620,677, "262.7", cex = .75, col = "black")+
+     text(620,668, "112.1", cex = .75, col = "black")+
+     text(620,659, "51.9", cex = .75, col = "black")+
+     text(620,650, "41.5", cex = .75, col = "black")+
+     text(620,641, "56.1", cex = .75, col = "black")+
+     text(620,632, "52.8", cex = .75, col = "black")+
+     text(620,623, "46.7", cex = .75, col = "black")+
+     text(620,614, "69.0", cex = .75, col = "black")+
+     text(620,605, "74.1", cex = .75, col = "black")+
+     text(620,596, "65.4", cex = .75, col = "black")+
+     text(620,587, "73.8", cex = .75, col = "black")+
+     text(620,578, "61.5", cex = .75, col = "black")+
+     text(620,569, "49.8", cex = .75, col = "black")+
+     text(620,560, "52.6", cex = .75, col = "black")+
+     text(620,551, "43.6", cex = .75, col = "black")+
+     text(620,542, "30.7", cex = .75, col = "black")+
+     text(620,533, "35.7", cex = .75, col = "black")+
+     text(620,524, "26.4", cex = .75, col = "black")+
+     text(620,515, "29.7", cex = .75, col = "black")+
+     text(620,506, "29.9", cex = .75, col = "black")+
+     text(620,497, "37.6", cex = .75, col = "black")+
+     text(620,488, "20.0", cex = .75, col = "black")+
+     text(620,479, "16.9", cex = .75, col = "black")+
+     text(620,470, "19.4", cex = .75, col = "black")+
+     text(620,461, "30.0", cex = .75, col = "black")+
+     text(620,452, "26.3", cex = .75, col = "black")+
+     text(620,443, "24.9", cex = .75, col = "black")+
+     text(620,434, "50.8", cex = .75, col = "black")+
+     text(620,425, "35.4", cex = .75, col = "black")+
+     text(620,416, "21.8", cex = .75, col = "black")+
+     text(620,407, "33.9", cex = .75, col = "black")+
+     text(620,398, "31.9", cex = .75, col = "black")+
+     text(620,389, "28.5", cex = .75, col = "black")+
+     text(620,380, "24.8", cex = .75, col = "black")+
+     text(620,371, "24.8", cex = .75, col = "black")+
+     text(620,362, "24.8", cex = .75, col = "black")+
+     text(620,353, "23.0", cex = .75, col = "black")+
+     text(620,344, "25.3", cex = .75, col = "black")+
+     text(620,334, "21.8", cex = .75, col = "black")+
+     text(620,326, "19.4", cex = .75, col = "black")+
+     text(620,317, "20.5", cex = .75, col = "black")+
+     text(620,308, "20.2", cex = .75, col = "black")+
+     text(620,299, "14.6", cex = .75, col = "black")+
+     text(620,290, "17.8", cex = .75, col = "black")+
+     text(620,281, "24.6", cex = .75, col = "black")+
+     text(620,272, "21.6", cex = .75, col = "black")+
+     text(620,263, "33.1", cex = .75, col = "black")+
+     text(620,254, "47.7", cex = .75, col = "black")+
+     text(620,245, "15.7", cex = .75, col = "black")+
+     text(620,236, "11.2", cex = .75, col = "black")+
+     text(620,227, "14.3", cex = .75, col = "black")+
+     text(620,218, "9.8", cex = .75, col = "black")+
+     text(620,209, "14.4", cex = .75, col = "black")+
+     text(620,200, "9.4", cex = .75, col = "black")+
+     text(620,191, "7.8", cex = .75, col = "black")+
+     text(620,182, "17.1", cex = .75, col = "black")+
+     text(620,173, "16.4", cex = .75, col = "black")+
+     text(620,164, "15.6", cex = .75, col = "black")+
+     text(620,155, "13.6", cex = .75, col = "black")+
+     text(620,146, "11.8", cex = .75, col = "black")+
+     text(620,137, "11.1", cex = .75, col = "black")+
+     text(620,128, "15.0", cex = .75, col = "black")+
+     text(620,119, "12.9", cex = .75, col = "black")+
+     text(620,110, "10.8", cex = .75, col = "black")+
+     text(620,101, "7.5", cex = .75, col = "black")+
+     text(620,92, "7.9", cex = .75, col = "black")+
+     text(620,83, "8.7", cex = .75, col = "black")+
+     text(620,74, "8.4", cex = .75, col = "black")+
+     text(620,65, "6.1", cex = .75, col = "black")+
+     text(620,56, "5.4", cex = .75, col = "black")+
+     text(620,47, "4.7", cex = .75, col = "black")+
+     text(620,38, "3.7", cex = .75, col = "black")+
+     text(620,29, "4.4", cex = .75, col = "black")
+     
+   
 
 
 dev.off()
