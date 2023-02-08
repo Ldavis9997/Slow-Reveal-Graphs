@@ -1,0 +1,70 @@
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(tidyverse)
+library("ggtext")
+library(grid)
+library(rlang)
+```
+
+```{r,fig.height= 2, fig.width= 2.8}
+#This plot shows the plot before using custom line segments. The y axis line is too long. 
+age_groups= c("2017 Scaled" , "2018 Scaled", "2019 scaled")
+types= c("2017 scaled", "2018 scaled", "2019 sclaed")
+pop_colors <- c("#e6cdcb", "#c58887", "#af5d62")
+
+twentytwenty_data<- tibble(
+  vote_type = rep(types, 1),
+  pop_groups= rep(age_groups, c(1,1,1)),
+  amount= c(143.4375, 166.5, 169.875),
+  amount1= c("143", "167", "170"),
+  fill= rep(pop_colors, 1)
+)
+vote_labels <- tibble(
+  vote_type= factor(types, levels= types),
+)
+twentytwenty_data<- twentytwenty_data%>%
+  mutate(vote_type = factor(vote_type, levels= types),
+         pop_groups= factor(pop_groups, levels= age_groups),
+         fill= factor(fill, levels= pop_colors))
+
+area<- (ggplot(twentytwenty_data, aes(x = pop_groups, 
+                      y = amount, 
+                      fill = fill, 
+                      label = amount1)) +
+  geom_col(color = "black", size= .5, width= .5, position= position_dodge(width= .2))+
+    geom_text(size = 3, 
+            position = position_dodge(width=1), aes(y= amount), vjust =-.8, color= "black")+
+ labs(title =  "<span style = 'font-size:12pt; color:#af5d62'><b>2020 ITE Mean Scaled Scores per Residency Year.</span></p>",
+       subtitle = "(16 total residents per year)",
+       y = "",
+       x = "",
+       caption = "Helen Devos Children's Hospital") + scale_fill_manual(labels= types, values= pop_colors, name = ""))
+new2<- (area + theme_classic()+
+  theme(
+           # Needed for using HTML syntax in plot title
+          
+           # Cleaned up some redundancies and combined your theme changes into one layer
+           panel.grid = element_blank(),
+           plot.background = element_rect(fill = "white", color = "black"),
+           panel.grid.major = element_blank(),
+           panel.grid.minor = element_blank(),
+           plot.title = element_markdown(hjust=.1),
+           plot.title.position = "plot",
+           plot.caption.position = "plot",
+           plot.subtitle = element_text(size = 10, color = "black", hjust=.03), 
+           plot.caption = element_text(size = 10, color = "black", hjust = 0),
+           axis.ticks = element_blank(),
+           axis.line.y = element_blank(),
+           axis.text.y= element_blank(),
+           legend.position= "none",
+           axis.line.x = element_line(size=.1),
+           axis.text.x= element_text(color= "black"),
+           plot.margin = unit(c(.5,.5,.5,.5), "cm"))
++ scale_x_discrete(expand=c(.2,0))
++ scale_y_continuous(expand = expansion(mult = c(0, 0.21))))
+new2 
+
+
+```

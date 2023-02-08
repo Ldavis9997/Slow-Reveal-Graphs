@@ -1,0 +1,85 @@
+---
+title: "Figure 9"
+author: "lauryn davis"
+date: "6/29/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+# I like this for coloring text: https://wilkelab.org/ggtext/
+library("ggtext")
+library(grid)
+library(rlang)
+library(lemon)
+```
+
+```{r,fig.height= 3, fig.width= 5}
+#This plot shows the plot before using custom line segments. The y axis line is too long. 
+age_groups= c("Year 1", "Year 2", "Year3")
+types= c("Year 1", "Year 2", "Year 3")
+Resident_Number <- c("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14",'15', "16")
+score<- c(10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180)
+pop_colors <- c("#971c3c","#e6cdcb","#c58887")
+
+vote_data<- tibble(
+  vote_type = rep(types, 16),
+  pop_groups= rep(year_levels, c(3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3)),
+  Score= c(133, 187, 182, 145, 181, 159, 160, 173, 159, 154, 159, 169, 145, 185, 188, 161, 170, 164, 154, 196, 184, 104, 139, 156, 137, 166, 182, 181, 173, 176, 149, 170, 169, 117, 143, 148, 215, 163, 204, 105, 150, 134, 120, 166, 169, 115, 143, 175),
+   fill= rep(pop_colors, 16)
+)
+
+vote_data<- vote_data%>%
+  mutate(vote_type = factor(vote_type, levels= types),
+         Resident_Number= factor(pop_groups, levels=  Resident_Number),
+         fill= factor(fill, levels= pop_colors))
+
+area<- (ggplot(data= vote_data, aes(x= Resident_Number, y= Score, group = vote_type, color= vote_type))+ geom_line(aes(color=vote_type), size =1.1)+ geom_point(aes(color=vote_type),size=2.3)+ scale_color_manual(values=pop_colors, guide_legend(label.vjust=2)))
+new<- (area + theme_classic()+
+  theme(
+           # Needed for using HTML syntax in plot title
+           # plot.title = element_markdown(), 
+           # Cleaned up some redundancies and combined your theme changes into one layer
+           panel.grid = element_blank(),
+           plot.background = element_rect(fill = "white", color = "black"),
+           panel.grid.major = element_blank(),
+           panel.grid.minor = element_blank(),
+           plot.title = element_markdown(hjust= .05),
+           plot.title.position = "plot",
+           plot.caption.position = "plot",
+           plot.subtitle = element_markdown(hjust=.01), 
+           plot.caption = element_text(size = 8, color = "black", hjust = 0),
+           axis.ticks = element_blank(),
+           axis.line.y = element_line(size=.2, color= "black"),
+           axis.text.y= element_text(size=11, color="black"),
+           axis.ticks.y= element_line(size=.2),
+           axis.line.x.bottom = element_line(size=.2, color= "black", linetype="solid"),
+           axis.text.x= element_text(color= "black", size=11),
+           legend.key.height= unit(.2, 'cm'), legend.key.width= unit(.9, 'cm'),
+           legend.spacing.x = unit(.1, 'cm'),
+            plot.margin = unit(c(.5,.5,.5,.5), "cm"),
+           legend.text=element_text(margin=margin(t= 3, b=2), size=12),
+           legend.title= element_blank(),
+           legend.direction='vertical',
+           legend.spacing = unit(10, 'cm'),
+           legend.position = 'left',
+           axis.ticks.length=unit(0.15,"inch"))
++ scale_x_discrete(expand=c(.05,.05))+ scale_y_continuous(breaks = c(100,120,140,160,180,200,220), limits= c(100,220), expand= expansion(mult=c(0,0))))
+
+new
+        
+
+
+
+
+
+
+
+
+
+
+```
