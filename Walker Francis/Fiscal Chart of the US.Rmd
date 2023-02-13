@@ -67,7 +67,7 @@ function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax =Inf, data)
                                           ymin = ymin, ymax = ymax))
 }
 
-(ggplot(firstbar, aes(x = rev(pop_group), 
+(ggplot(firstbar, aes(x = pop_group, 
                       y = amount, fill=fill, label=''))+
   geom_col(color = "black", size= .3, width=1) + scale_fill_manual(labels= '', values= pop_colors, name = "")+
   
