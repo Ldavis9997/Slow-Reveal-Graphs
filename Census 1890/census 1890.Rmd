@@ -44,7 +44,7 @@ firstbar <- firstbar %>%
   mutate(vote_type = factor(vote_type, levels = type_levels),
          pop_group = factor(pop_group, levels = year_levels),
          fill = factor(fill, levels = pop_colors))
-picture <- image_graph(width = 595, height = 250)
+picture <- image_graph(width = 528, height = 250)
 annotation_custom2 <- 
 function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax =Inf, data) 
 {
@@ -87,7 +87,7 @@ text(35,160, "MASS", cex = 2, col = "black", family = 'Rokkitt')+
    text(342,60, "50%", cex = 1.5, col = "black", family = 'Rokkitt')+
   segments(x0=383, x1=383, y0=75, y1=205, lwd = 1, lty = "solid")+
   text(387,60, "60%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=428, x1=428, y0=75, y1=130, lwd = 1, lty = "solid")+
+  segments(x0=440, x1=440, y0=75, y1=130, lwd = 1, lty = "solid")+
   text(428,60, "70%", cex = 1.5, col = "black", family = 'Rokkitt')+
   text(473,60, "80%", cex = 1.5, col = "black", family = 'Rokkitt')+
   
