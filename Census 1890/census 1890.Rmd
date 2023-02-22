@@ -1,0 +1,79 @@
+---
+title: "Census Figure 6"
+author: "lauryn davis"
+date: "6/7/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(grid)
+library(rlang)
+library(ggtext)
+library(showtext)
+library(extrafont)
+library(grid)
+library(magick)
+```
+```{r}
+pop_colors<- c('black')
+font_files() %>% tibble() %>% filter(str_detect(family, "Playfair")) %>% pull(file)
+names(pdfFonts())
+font_add(family = "Playfair", regular = "PlayfairDisplay-MediumItalic.ttf")
+font_add(family = "Playball", regular = "Playball-Regular.ttf")
+font_add(family = "Rokkitt", regular = "Rokkitt-Regular.ttf")
+font_add_google(name = "Barlow Condensed", family = "Circle")
+
+showtext_auto()
+
+type_levels= c("All")
+year_levels <- c('1790', '1800', '1810', '1820', '1830', '1840', '1850', '1860', '1870', '1880', '1890')
+
+firstbar <- tibble(
+  vote_type = rep(type_levels, 11),
+  # Need to rep the pop_group within each vote_type
+  pop_group = rep(year_levels,c(1)),
+  amount = c(7.77,12.15,14.40,16.1,20.49, 39.20, 32.95, 50.25, 76.57, 83.25, 100),
+  fill = rep(pop_colors, 11))
+
+firstbar <- firstbar %>% 
+  mutate(vote_type = factor(vote_type, levels = type_levels),
+         pop_group = factor(pop_group, levels = year_levels),
+         fill = factor(fill, levels = pop_colors))
+picture <- image_graph(width = 340, height = 190)
+annotation_custom2 <- 
+function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax =Inf, data) 
+{
+  layer(data = data, stat = StatIdentity, position = PositionIdentity, 
+        geom = ggplot2:::GeomCustomAnn, 
+        inherit.aes = TRUE, params = list(grob = grob, 
+                                          xmin = xmin, xmax = xmax, 
+                                          ymin = ymin, ymax = ymax))
+}
+ggplot(firstbar, aes(x = pop_group, 
+                      y = amount, fill=fill, label=''))+
+  geom_col(color = "black", size= .01, width=.3) + scale_fill_manual(labels= '', values= pop_colors, name = "") +
+  
+  theme_classic()+
+    theme( panel.grid = element_blank(),
+           panel.grid.major = element_blank(),
+           panel.grid.minor = element_blank(),
+           axis.ticks = element_blank(),
+           axis.line.y = element_blank(),
+           axis.text.y= element_text(color='black', family='Rokkitt', size=12),
+           axis.text.x=element_blank(),
+           axis.title=element_blank(),
+           axis.line.x = element_blank(),
+           legend.position='none',
+           plot.margin = unit(c(0,0,0,0), "cm"))+ scale_y_continuous(limits= c(0,101), expand=c(0,0)) + scale_x_discrete(expand=c(0,3)) + coord_flip()
+dev.off()
+img <- image_draw(picture)
+dev.off()
+image_write(img, path = here::here('Walker Francis', "save.png"), format = "png")
+     
+
+```
