@@ -44,7 +44,7 @@ firstbar <- firstbar %>%
   mutate(vote_type = factor(vote_type, levels = type_levels),
          pop_group = factor(pop_group, levels = year_levels),
          fill = factor(fill, levels = pop_colors))
-picture <- image_graph(width = 520, height = 250)
+picture <- image_graph(width = 590, height = 290)
 annotation_custom2 <- 
 function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax =Inf, data) 
 {
@@ -69,34 +69,42 @@ ggplot(firstbar, aes(x = pop_group,
            axis.title=element_blank(),
            axis.line.x = element_blank(),
            legend.position='none',
-           plot.margin = unit(c(2,3,0,3), "cm"))+ scale_y_continuous(limits= c(0,101), expand=c(0,0)) + scale_x_discrete(expand=c(0,3)) + coord_flip()
+           plot.margin = unit(c(1.5,4.75,0,3), "cm"))+ scale_y_continuous(limits= c(0,101), expand=c(0,0)) + scale_x_discrete(expand=c(0,3)) + coord_flip()
 dev.off()
 img <- image_draw(picture)
 text(35,160, "MASS", cex = 2, col = "black", family = 'Rokkitt')+
   segments(x0=113, x1=113, y0=75, y1=228, lwd = 1, lty = "solid")+
   text(118,60, "0%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=160, x1=160, y0=75, y1=228, lwd = 1, lty = "solid")+
+  segments(x0=167, x1=167, y0=75, y1=228, lwd = 1, lty = "solid")+
   text(163,60, "10%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=205, x1=205, y0=75, y1=228, lwd = 1, lty = "solid")+
+  segments(x0=221, x1=221, y0=75, y1=228, lwd = 1, lty = "solid")+
   text(209,60, "20%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=250, x1=250, y0=75, y1=228, lwd = 1, lty = "solid")+
+  segments(x0=275, x1=275, y0=75, y1=228, lwd = 1, lty = "solid")+
   text(254,60, "30%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=295, x1=295, y0=75, y1=228, lwd = 1, lty = "solid")+
+  segments(x0=329, x1=329, y0=75, y1=228, lwd = 1, lty = "solid")+
    text(297,60, "40%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=340, x1=340, y0=75, y1=228, lwd = 1, lty = "solid")+
+  segments(x0=383, x1=383, y0=75, y1=228, lwd = 1, lty = "solid")+
    text(342,60, "50%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=385, x1=385, y0=75, y1=228, lwd = 1, lty = "solid")+
+  segments(x0=437, x1=437, y0=75, y1=228, lwd = 1, lty = "solid")+
   text(387,60, "60%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=432, x1=432, y0=75, y1=145, lwd = 1, lty = "solid")+
+  segments(x0=491, x1=491, y0=75, y1=145, lwd = 1, lty = "solid")+
   text(432,60, "70%", cex = 1.5, col = "black", family = 'Rokkitt')+
   text(473,60, "80%", cex = 1.5, col = "black", family = 'Rokkitt')+
   
-  text(300,40, "[Colorado, Nevada, and Florida are not shown, because these States had urban population in 1880 and 1800 only.]", cex = .75, col = "black", family = 'Rokkitt1')+
-  text(20,20, "22.", cex = 1, col = "black", family = 'Rokkitt1')+
-  text(70,20, "PROPORTION", cex = 1.1, col = "black", family = 'Rokkitt1')+
-  text(122,20, "OF", cex = 1, col = "black", family = 'Rokkitt1')+
-   text(162s,20, "URBAN", cex = 1.1, col = "black", family = 'Rokkitt1')+
-  text(198,20, "TO", cex = 1, col = "black", family = 'Rokkitt1')
+  text(280,40, "[Colorado, Nevada, and Florida are not shown, because these States had urban population in 1880 and 1800 only.]", cex = .85, col = "black", family = 'Rokkitt1')+
+  text(20,20, "22.", cex = .8, col = "black", family = 'Rokkitt1')+
+  text(62,20, "PROPORTION", cex = .9, col = "black", family = 'Rokkitt1')+
+  text(105,20, "OF", cex = .8, col = "black", family = 'Rokkitt1')+
+   text(133,20, "URBAN", cex = .9, col = "black", family = 'Rokkitt1')+
+  text(162,20, "TO", cex = .8, col = "black", family = 'Rokkitt1')+
+  text(190,20, "TOTAL", cex = .9, col = "black", family = 'Rokkitt1')+
+  text(245,20, "POPULATION,", cex = .9, col = "black", family = 'Rokkitt1')+
+  text(288,20, "BY", cex = .8, col = "black", family = 'Rokkitt1')+
+  text(315,20, "STATES", cex = .9, col = "black", family = 'Rokkitt1')+
+  text(347,20, "AND", cex = .8, col = "black", family = 'Rokkitt1')+
+  text(433,20, "TERRITORIES-HISTORICAL : ", cex = .9, col = "black", family = 'Rokkitt1')+
+  text(530,20, "1790 TO 1890", cex = .8, col = "black", family = 'Rokkitt1')
+  
 dev.off()
 image_write(img, path = here::here('Census 1890', "save.png"), format = "png")
      
