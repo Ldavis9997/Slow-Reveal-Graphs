@@ -29,7 +29,8 @@ font_add(family = "Rokkitt", regular = "RobotoCondensed-Light.ttf")
 font_add_google(name = "Barlow Condensed", family = "Circle")
 
 showtext_auto()
-
+arrow <- image_read(here::here("Census 1890", "arrow.png"))
+plot(as.raster(arrow))
 type_levels= c("All")
 year_levels <- c('1790', '1800', '1810', '1820', '1830', '1840', '1850', '1860', '1870', '1880', '1890')
 
@@ -69,27 +70,28 @@ ggplot(firstbar, aes(x = pop_group,
            axis.title=element_blank(),
            axis.line.x = element_blank(),
            legend.position='none',
-           plot.margin = unit(c(1.5,4.75,0,3), "cm"))+ scale_y_continuous(limits= c(0,101), expand=c(0,0)) + scale_x_discrete(expand=c(0,3)) + coord_flip()
+           plot.margin = unit(c(1.5,4.3,0,3), "cm"))+ scale_y_continuous(limits= c(0,101), expand=c(0,0)) + scale_x_discrete(expand=c(0,3)) + coord_flip()
 dev.off()
 img <- image_draw(picture)
+grid.raster(arrow, .13, .4, height = .65)+
 text(35,160, "MASS", cex = 2, col = "black", family = 'Rokkitt')+
-  segments(x0=113, x1=113, y0=75, y1=228, lwd = 1, lty = "solid")+
+  segments(x0=113, x1=113, y0=73, y1=255, lwd = 1, lty = "solid")+
   text(118,60, "0%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=167, x1=167, y0=75, y1=228, lwd = 1, lty = "solid")+
-  text(163,60, "10%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=221, x1=221, y0=75, y1=228, lwd = 1, lty = "solid")+
-  text(209,60, "20%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=275, x1=275, y0=75, y1=228, lwd = 1, lty = "solid")+
-  text(254,60, "30%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=329, x1=329, y0=75, y1=228, lwd = 1, lty = "solid")+
-   text(297,60, "40%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=383, x1=383, y0=75, y1=228, lwd = 1, lty = "solid")+
-   text(342,60, "50%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=437, x1=437, y0=75, y1=228, lwd = 1, lty = "solid")+
-  text(387,60, "60%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  segments(x0=491, x1=491, y0=75, y1=145, lwd = 1, lty = "solid")+
-  text(432,60, "70%", cex = 1.5, col = "black", family = 'Rokkitt')+
-  text(473,60, "80%", cex = 1.5, col = "black", family = 'Rokkitt')+
+  segments(x0=165, x1=165, y0=73, y1=255, lwd = 1, lty = "solid")+
+  text(169,60, "10%", cex = 1.5, col = "black", family = 'Rokkitt')+
+  segments(x0=219, x1=219, y0=73, y1=255, lwd = 1, lty = "solid")+
+  text(224,60, "20%", cex = 1.5, col = "black", family = 'Rokkitt')+
+  segments(x0=270, x1=270, y0=73, y1=255, lwd = 1, lty = "solid")+
+  segments(x0=317, x1=317, y0=73, y1=255, lwd = 1, lty = "solid")+
+  text(273,60, "30%", cex = 1.5, col = "black", family = 'Rokkitt')+
+  segments(x0=363, x1=363, y0=73, y1=255, lwd = 1, lty = "solid")+
+   text(320,60, "40%", cex = 1.5, col = "black", family = 'Rokkitt')+
+  segments(x0=416, x1=416, y0=73, y1=255, lwd = 1, lty = "solid")+
+   text(365,60, "50%", cex = 1.5, col = "black", family = 'Rokkitt')+
+  segments(x0=465, x1=465, y0=73, y1=145, lwd = 1, lty = "solid")+
+  text(420,60, "60%", cex = 1.5, col = "black", family = 'Rokkitt')+
+  text(468,60, "70%", cex = 1.5, col = "black", family = 'Rokkitt')+
+  text(513,60, "80%", cex = 1.5, col = "black", family = 'Rokkitt')+
   
   text(280,40, "[Colorado, Nevada, and Florida are not shown, because these States had urban population in 1880 and 1800 only.]", cex = .85, col = "black", family = 'Rokkitt1')+
   text(20,20, "22.", cex = .8, col = "black", family = 'Rokkitt1')+
