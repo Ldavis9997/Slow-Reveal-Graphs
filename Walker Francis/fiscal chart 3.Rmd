@@ -170,7 +170,10 @@ text(19,711, "519.1", cex = .9, col = "black", family = 'Rokkitt')+
   polygon(c(327, 510, 510, 327), c(20, 20, 37, 37), border = "black", col =  "#aea596")+
   segments(x0=35, x1=35, y0=20, y1=750, lwd = 1, lty = "solid")+
   text(23,30, "3.1", cex = .9, col = "black", family = 'Rokkitt')+
-  text(529.5,30, "1791", cex = 1.05, col = "black", family = 'Rokkitt')
+  text(529.5,30, "1791", cex = 1.05, col = "black", family = 'Rokkitt')+
+  text(443,30, "From May 4. 1789 to Dec. 31", cex = .95, col = "black", family = 'Rokkitt')+
+  text(463,510, "Jan 1 1843 to June 30.", cex = .9, col = "black", family = 'Rokkitt')+
+  text(544,515, "*", cex = 1, col = "black", family = 'Rokkitt')
   
   
   
