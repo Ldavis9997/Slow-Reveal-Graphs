@@ -120,7 +120,7 @@ text(19,711, "519.1", cex = .9, col = "black", family = 'Rokkitt')+
   text(21,420, "25.3", cex = .9, col = "black", family = 'Rokkitt')+
   text(21,411, "34.6", cex = .9, col = "black", family = 'Rokkitt')+
   text(21,402, "30.0", cex = .9, col = "black", family = 'Rokkitt')+
-  text(21,393, "24.6", cex = .9, col = "black", family = 'Rokkitt')+
+  text(21,391, "24.6", cex = .9, col = "black", family = 'Rokkitt')+
   text(21,382, "25.1", cex = .9, col = "black", family = 'Rokkitt')+
   text(21,373, "25.4", cex = .9, col = "black", family = 'Rokkitt')+
   text(21,364, "22.7", cex = .9, col = "black", family = 'Rokkitt')+
@@ -137,7 +137,7 @@ text(19,711, "519.1", cex = .9, col = "black", family = 'Rokkitt')+
   text(21,261, "35.0", cex = .9, col = "black", family = 'Rokkitt')+
   text(21,252, "32.9", cex = .9, col = "black", family = 'Rokkitt')+
   text(21,243, "34.7", cex = .9, col = "black", family = 'Rokkitt')+
-  text(21,232, "31.7", cex = .9, col = "black", family = 'Rokkitt')+
+  text(21,234, "31.7", cex = .9, col = "black", family = 'Rokkitt')+
   text(21,223, "20.3", cex = .9, col = "black", family = 'Rokkitt')+
   text(21,214, "11.0", cex = .9, col = "black", family = 'Rokkitt')+
   text(21,205, "13.6", cex = .9, col = "black", family = 'Rokkitt')+
@@ -161,7 +161,19 @@ text(19,711, "519.1", cex = .9, col = "black", family = 'Rokkitt')+
   text(23,42, "4.3", cex = .9, col = "black", family = 'Rokkitt')+
   
   
-  polygon(c(35, 130, 130, 35), c(20, 20, 37, 37), border = "black", col = "#ddd9cb")
+  polygon(c(35, 130, 130, 35), c(20, 20, 37, 37), border = "black", col = "#ddd9cb")+
+  polygon(c(130, 160, 160, 130), c(20, 20, 37, 37), border = "black", col = "#886a6d")+
+  polygon(c(160, 210, 210, 160), c(20, 20, 37, 37), border = "black", col = "#787734")+
+  polygon(c(210, 213.5, 213.5, 210), c(20, 20, 37, 37), border = "black", col = "#d69083")+
+  polygon(c(213.5, 215, 215, 213.5), c(20, 20, 37, 37), border = "black", col =  "#fee6a9")+
+  polygon(c(215, 327, 327, 215), c(20, 20, 37, 37), border = "black", col =  "#eac85c")+
+  polygon(c(327, 510, 510, 327), c(20, 20, 37, 37), border = "black", col =  "#aea596")+
+  segments(x0=35, x1=35, y0=20, y1=750, lwd = 1, lty = "solid")+
+  text(23,30, "3.1", cex = .9, col = "black", family = 'Rokkitt')+
+  text(529.5,30, "1791", cex = 1.05, col = "black", family = 'Rokkitt')
+  
+  
+  
   
 dev.off()
 image_write(img, path = here::here('Walker Francis', "save1.png"), format = "png")
