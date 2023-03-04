@@ -1,0 +1,76 @@
+---
+title: "Figure 4"
+author: "lauryn davis"
+date: "6/27/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(ggtext)
+library(googlesheets4)
+library(ggrepel)
+library(showtext)
+library(extrafont)
+library(grid)
+library(magick)
+```
+```{r}
+type_levels <- c('one')
+year_levels <- c(1860,1859,1858,1857,1856,1855,1854,1853,1852,1851,1850,1849,1848,1847,1846,1845,1844,1842,1841,1840,1839,1838,1837,1836,1835,1834,1833,1832,1831,1830,1829,1828,1827,1826,1825,1824,1823,1822,1821,1820,1819,1818,1817,1816,1815,1814,1813,1812,1811,1810,1809,1808,1807,1806,1805,1804,1803,1802,1801,1800,1799,1798,1797,1796,1795,1794,1793,1792)
+year_levels1<- rev(year_levels)
+pop_colors<- c("#d69083")
+firstbar <- tibble(
+  vote_type = rep(type_levels, 68),
+  # Need to rep the pop_group within each vote_type
+  pop_group = rep(year_levels,c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)),
+  amount = c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+  fill = rep(pop_colors, 68))
+picture <- image_graph(width = 570, height = 790)
+annotation_custom2 <- 
+function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax =Inf, data) 
+{
+  layer(data = data, stat = StatIdentity, position = PositionIdentity, 
+        geom = ggplot2:::GeomCustomAnn, 
+        inherit.aes = TRUE, params = list(grob = grob, 
+                                          xmin = xmin, xmax = xmax, 
+                                          ymin = ymin, ymax = ymax))
+}
+ggplot(firstbar, aes(x = pop_group, 
+                      y = amount, fill=fill, label=''))+
+  geom_col(color = "black", size= .3, width=1)+ 
+  coord_flip()+
+theme_classic()+
+    theme( panel.grid = element_blank(),
+           panel.grid.major = element_blank(),
+           panel.grid.minor = element_blank(),
+           axis.ticks = element_blank(),
+           axis.line.y = element_blank(),
+           axis.text.y= element_text(color='black', family='Rokkitt', size=12, margin = unit(0,'cm')),
+           axis.text.x=element_blank(),
+           axis.title=element_blank(),
+           axis.line.x = element_blank(),
+           legend.position='none',
+           plot.margin = unit(c(.5,1,.5,1.2), "cm")) + scale_y_continuous(limits= c(0,101), expand=c(0,0)) + scale_x_discrete(position='top',expand=c(0,3))
+dev.off()
+img <- image_draw(picture)
+ segments(x0=30.7, x1=538, y0=750, y1=750, lwd = 1, lty = "solid")+
+   segments(x0=19.1, x1=550, y0=740, y1=740, lwd = 1, lty = "solid")
+ 
+ polygon(c(30.7, 538, 550, 19.1), c(750, 750, 740, 740), border = "black", col = "#d69083")+
+   polygon(c(19.1, 550, 552, 16), c(740, 740, 730, 730), border = "black", col = "#d69083")+
+   polygon(c(16, 552, 561, 10), c(730, 730, 720, 720), border = "black", col = "#d69083")+
+   polygon(c(10, 561, 570, 1.7), c(720, 720, 710, 710), border = "black", col = "#d69083")+
+   polygon(c(1.7, 570, 560, 10), c(710, 710, 700, 700), border = "black", col = "#d69083")+
+   polygon(c(10, 560, 473, 101), c(700, 700, 690, 690), border = "black", col = "#d69083")+
+   polygon(c(101, 473, 399, 169), c(690, 690, 680, 680), border = "black", col = "#d69083")
+dev.off()
+image_write(img, path = here::here('Walker Francis', "save3.png"), format = "png")
+
+
+
+```
