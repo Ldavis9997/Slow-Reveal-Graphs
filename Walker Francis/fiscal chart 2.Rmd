@@ -20,6 +20,13 @@ library(grid)
 library(magick)
 ```
 ```{r}
+font_files() %>% tibble() %>% filter(str_detect(family, "Rokkitt")) %>% pull(file)
+names(pdfFonts())
+
+font_add(family = "Rokkitt1", regular = "Rokkitt-SemiBold.ttf")
+font_add(family = "Rokkitt", regular = "Rokkitt-Regular.ttf")
+font_add_google(name = "Barlow Condensed", family = "Circle")
+showtext_auto()
 type_levels <- c('one')
 year_levels <- c(1860,1859,1858,1857,1856,1855,1854,1853,1852,1851,1850,1849,1848,1847,1846,1845,1844,1842,1841,1840,1839,1838,1837,1836,1835,1834,1833,1832,1831,1830,1829,1828,1827,1826,1825,1824,1823,1822,1821,1820,1819,1818,1817,1816,1815,1814,1813,1812,1811,1810,1809,1808,1807,1806,1805,1804,1803,1802,1801,1800,1799,1798,1797,1796,1795,1794,1793,1792)
 year_levels1<- rev(year_levels)
@@ -139,7 +146,7 @@ img <- image_draw(picture)
     polygon(c(270, 289, 289, 271), c(90, 90, 80, 80), border = "black", col = "#d69083")+
    polygon(c(271, 289, 289, 271), c(80, 80, 70, 70), border = "black", col = "#d69083")+
    
-   text(45,851, substitute(bold("1870")), cex = .9, col = "black", family = 'Rokkitt')
+   text(45,851, substitute(bold("1870")), cex = 1, col = "black", family = 'Rokkitt1')
 dev.off()
 image_write(img, path = here::here('Walker Francis', "save3.png"), format = "png")
 
