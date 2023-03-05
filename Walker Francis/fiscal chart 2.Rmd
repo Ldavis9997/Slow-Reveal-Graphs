@@ -137,7 +137,9 @@ img <- image_draw(picture)
    polygon(c(270, 289, 289, 270), c(110, 110, 100, 100), border = "black", col = "#d69083")+
     polygon(c(270, 289, 289, 270), c(100, 100, 90, 90), border = "black", col = "#d69083")+
     polygon(c(270, 289, 289, 271), c(90, 90, 80, 80), border = "black", col = "#d69083")+
-   polygon(c(271, 289, 289, 271), c(80, 80, 70, 70), border = "black", col = "#d69083")
+   polygon(c(271, 289, 289, 271), c(80, 80, 70, 70), border = "black", col = "#d69083")+
+   
+   text(45,851, substitute(bold("1870")), cex = .9, col = "black", family = 'Rokkitt')
 dev.off()
 image_write(img, path = here::here('Walker Francis', "save3.png"), format = "png")
 
