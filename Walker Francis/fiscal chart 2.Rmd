@@ -20,11 +20,13 @@ library(grid)
 library(magick)
 ```
 ```{r}
-font_files() %>% tibble() %>% filter(str_detect(family, "Rokkitt")) %>% pull(file)
+font_files() %>% tibble() %>% filter(str_detect(family, "Playfair")) %>% pull(file)
 names(pdfFonts())
 
 font_add(family = "Rokkitt1", regular = "Rokkitt-SemiBold.ttf")
 font_add(family = "Rokkitt", regular = "Rokkitt-Regular.ttf")
+font_add(family = "playfair", regular = "PlayfairDisplay-MediumItalic.ttf")
+
 font_add_google(name = "Barlow Condensed", family = "Circle")
 showtext_auto()
 type_levels <- c('one')
@@ -186,290 +188,292 @@ img <- image_draw(picture)
  
    text(253,760, substitute(bold("1861")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,758, substitute(bold("90.6")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,758, substitute(bold("90.  6")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,750, substitute(bold("1860")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,748, substitute(bold("64.8")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,748, substitute(bold("64.  8")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,740, substitute(bold("1859")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,738, substitute(bold("58.5")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,738, substitute(bold("58.  5")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,730, substitute(bold("1858")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,728, substitute(bold("44.9")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,728, substitute(bold("44.  9")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,720, substitute(bold("1857")), cex = 1, col = "black", family = 'Rokkitt1')+
     
-   text(310,718, substitute(bold("28.7")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,718, substitute(bold("28.  7")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,710, substitute(bold("1856")), cex = 1, col = "black", family = 'Rokkitt1')+
      
-   text(310,708, substitute(bold("32.0")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,708, substitute(bold("32.  0")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,700, substitute(bold("1855")), cex = 1, col = "black", family = 'Rokkitt1')+
      
-   text(310,698, substitute(bold("35.6")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,698, substitute(bold("35.  6")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,690, substitute(bold("1854")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,688, substitute(bold("42.2")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,688, substitute(bold("42.  2")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,680, substitute(bold("1853")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,678, substitute(bold("59.8")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,678, substitute(bold("59.  8")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    
    text(255,670, substitute(bold("1852")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,668, substitute(bold("66.2")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,668, substitute(bold("66.  2")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,660, substitute(bold("1851")), cex = 1, col = "black", family = 'Rokkitt1')+
     
-   text(310,658, substitute(bold("68.3")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,658, substitute(bold("68.  3")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    
     text(255,650, substitute(bold("1850")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,648, substitute(bold("63.5")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,648, substitute(bold("63.  5")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,640, substitute(bold("1849")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,638, substitute(bold("63.1")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,638, substitute(bold("63.  1")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,630, substitute(bold("1848")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,628, substitute(bold("47.0")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,628, substitute(bold("47.  0")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,620, substitute(bold("1847")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,618, substitute(bold("38.8")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,618, substitute(bold("38.  8")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,610, substitute(bold("1846")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,608, substitute(bold("15.6")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,608, substitute(bold("15.  6")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,600, substitute(bold("1845")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,598, substitute(bold("15.9")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,598, substitute(bold("15.  9")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,590, substitute(bold("1844")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,588, substitute(bold("23.5")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,588, substitute(bold("23.  5")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(238,581, substitute(bold("July 1. 1843")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,578, substitute(bold("32.7")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,578, substitute(bold("32.  7")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,570, substitute(bold("1842")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,568, substitute(bold("20.6")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,568, substitute(bold("20.  6")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,560, substitute(bold("1841")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,558, substitute(bold("13.6")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,558, substitute(bold("13.  6")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,550, substitute(bold("1840")), cex = 1, col = "black", family = 'Rokkitt1')+
-   text(310,548, substitute(bold("5.3")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,548, substitute(bold("5.  3")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,540, substitute(bold("1839")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,538, substitute(bold("3.6")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,538, substitute(bold("3.  6")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,530, substitute(bold("1838")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-     text(310,528, substitute(bold("10.4")), cex = 1, col = "black", family = 'Rokkitt1')+
+     text(312,528, substitute(bold("10.  4")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,520, substitute(bold("1837")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-     text(310,518, substitute(bold("3.3")), cex = 1, col = "black", family = 'Rokkitt1')+
+     text(312,518, substitute(bold("3.  3")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,510, substitute(bold("1836")), cex = 1, col = "black", family = 'Rokkitt1')+
     
-     text(310,508, substitute(bold("0.3")), cex = 1, col = "black", family = 'Rokkitt1')+
+     text(312,508, substitute(bold("0.  3")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,500, substitute(bold("1835")), cex = 1, col = "black", family = 'Rokkitt1')+
     
-     text(310,498, substitute(bold("0.0")), cex = 1, col = "black", family = 'Rokkitt1')+
+     text(312,498, substitute(bold("0.  0")), cex = 1, col = "black", family = 'Rokkitt1')+
  
     text(255,490, substitute(bold("1834")), cex = 1, col = "black", family = 'Rokkitt1')+
     
-     text(310,488, substitute(bold("4.8")), cex = 1, col = "black", family = 'Rokkitt1')+
+     text(312,488, substitute(bold("4.  8")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,480, substitute(bold("1833")), cex = 1, col = "black", family = 'Rokkitt1')+
     
-     text(310,478, substitute(bold("7.0")), cex = 1, col = "black", family = 'Rokkitt1')+
+     text(312,478, substitute(bold("7.  0")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,470, substitute(bold("1832")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-     text(310,468, substitute(bold("24.3")), cex = 1, col = "black", family = 'Rokkitt1')+
+     text(312,468, substitute(bold("24.  3")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,460, substitute(bold("1831")), cex = 1, col = "black", family = 'Rokkitt1')+
       
-     text(310,458, substitute(bold("39.1")), cex = 1, col = "black", family = 'Rokkitt1')+
+     text(312,458, substitute(bold("39.  1")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,450, substitute(bold("1830")), cex = 1, col = "black", family = 'Rokkitt1')+
     
-     text(310,448, substitute(bold("48.6")), cex = 1, col = "black", family = 'Rokkitt1')+
+     text(312,448, substitute(bold("48.  6")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,440, substitute(bold("1829")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,438, substitute(bold("58.4")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,438, substitute(bold("58.  4")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,430, substitute(bold("1828")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,428, substitute(bold("67.5")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,428, substitute(bold("67.  5")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,420, substitute(bold("1827")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,418, substitute(bold("74.0")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,418, substitute(bold("74.  0")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,410, substitute(bold("1826")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,408, substitute(bold("81.0")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,408, substitute(bold("81.  0")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,400, substitute(bold("1825")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,398, substitute(bold("83.8")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,398, substitute(bold("83.  8")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,390, substitute(bold("1824")), cex = 1, col = "black", family = 'Rokkitt1')+
     
-    text(310,388, substitute(bold("90.3")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,388, substitute(bold("90.  3")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,380, substitute(bold("1823")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,378, substitute(bold("90.9")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,378, substitute(bold("90.  9")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,370, substitute(bold("1822")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,368, substitute(bold("93.5")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,368, substitute(bold("93.  5")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,360, substitute(bold("1821")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,358, substitute(bold("90.0")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,358, substitute(bold("90.  0")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,350, substitute(bold("1820")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,348, substitute(bold("91.0")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,348, substitute(bold("91.  0")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,340, substitute(bold("1819")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,338, substitute(bold("95.5")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,338, substitute(bold("95.  5")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,330, substitute(bold("1818")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,328, substitute(bold("103.5")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,328, substitute(bold("103.  5")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,320, substitute(bold("1817")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,318, substitute(bold("123.5")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,318, substitute(bold("123.  5")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,310, substitute(bold("1816")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,308, substitute(bold("127.3")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,308, substitute(bold("127.  3")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,300, substitute(bold("1815")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,298, substitute(bold("99.8")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,298, substitute(bold("99.  8")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,290, substitute(bold("1814")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,288, substitute(bold("81.5")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,288, substitute(bold("81.  5")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,280, substitute(bold("1813")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,278, substitute(bold("56.0")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,278, substitute(bold("56.  0")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,270, substitute(bold("1812")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,268, substitute(bold("45.2")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,268, substitute(bold("45.  2")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,260, substitute(bold("1811")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,258, substitute(bold("48.0")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,258, substitute(bold("48.  0")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    text(255,250, substitute(bold("1810")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,248, substitute(bold("53.2")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,248, substitute(bold("53.  2")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    
    
-    text(310,238, substitute(bold("57.0")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,238, substitute(bold("57.  0")), cex = 1, col = "black", family = 'Rokkitt1')+
  
    
    
-    text(310,228, substitute(bold("65.2")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,228, substitute(bold("65.  2")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,220, substitute(bold("1809")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,240, substitute(bold("1809")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,218, substitute(bold("69.2")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,218, substitute(bold("69.  2")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,210, substitute(bold("1808")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,230, substitute(bold("1808")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,188, substitute(bold("75.7")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,208, substitute(bold("75.  7")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,200, substitute(bold("1807")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,220, substitute(bold("1807")), cex = 1, col = "black", family = 'Rokkitt1')+
     
-    text(310,178, substitute(bold("82.3")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,198, substitute(bold("82.  3")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,190, substitute(bold("1806")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,210, substitute(bold("1806")), cex = 1, col = "black", family = 'Rokkitt1')+
     
-    text(310,168, substitute(bold("86.4")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,188, substitute(bold("86.  4")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,180, substitute(bold("1805")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,200, substitute(bold("1805")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,158, substitute(bold("77.1")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,178, substitute(bold("77.  1")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,170, substitute(bold("1804")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,190, substitute(bold("1804")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,148, substitute(bold("80.7")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,168, substitute(bold("80.  7")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,160, substitute(bold("1803")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,180, substitute(bold("1803")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-     text(310,128, substitute(bold("83.0")), cex = 1, col = "black", family = 'Rokkitt1')+
-   text(310,138, substitute(bold("83.0")), cex = 1, col = "black", family = 'Rokkitt1')+
+     text(312,158, substitute(bold("83.  0")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,148, substitute(bold("83.  0")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,150, substitute(bold("1802")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,170, substitute(bold("1802")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-     text(310,118, substitute(bold("78.4")), cex = 1, col = "black", family = 'Rokkitt1')+
+     text(312,138, substitute(bold("78.  4")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,140, substitute(bold("1801")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,160, substitute(bold("1801")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,108, substitute(bold("79.2")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,128, substitute(bold("79.  2")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,130, substitute(bold("1800")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,150, substitute(bold("1800")), cex = 1, col = "black", family = 'Rokkitt1')+
     
-    text(310,98, substitute(bold("82.1")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,118, substitute(bold("82.  1")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,120, substitute(bold("1799")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,140, substitute(bold("1799")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,88, substitute(bold("83.8")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,108, substitute(bold("83.  8")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,110, substitute(bold("1798")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,130, substitute(bold("1798")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,78, substitute(bold("80.7")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,98, substitute(bold("80.  7")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,100, substitute(bold("1797")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,120, substitute(bold("1797")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,68, substitute(bold("78.4")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,88, substitute(bold("78.  4")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,90, substitute(bold("1796")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,110, substitute(bold("1796")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,58, substitute(bold("80.4")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,78, substitute(bold("80.  4")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,80, substitute(bold("1795")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,100, substitute(bold("1795")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-    text(310,48, substitute(bold("77.2")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(312,68, substitute(bold("77.  2")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,70, substitute(bold("1794")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,90, substitute(bold("1794")), cex = 1, col = "black", family = 'Rokkitt1')+
    
-   text(310,38, substitute(bold("75.5")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(312,58, substitute(bold("75.  5")), cex = 1, col = "black", family = 'Rokkitt1')+
  
-   text(255,60, substitute(bold("1793")), cex = 1, col = "black", family = 'Rokkitt1')+
-   text(255,50, substitute(bold("1792")), cex = 1, col = "black", family = 'Rokkitt1')+
-   text(241,40, substitute(bold("Jan 1. 1791")), cex = 1, col = "black", family = 'Rokkitt1')
+   text(255,80, substitute(bold("1793")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,70, substitute(bold("1792")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(241,60, substitute(bold("Jan 1. 1791")), cex = 1, col = "black", family = 'Rokkitt1')+
    
+    text(278,35, substitute(bold('(00,000 omitted)')), cex = .9, col = "black", family = 'playfair')+
+   text(278,23, substitute(bold('In millions and tenths')), cex = .9, col = "black", family = 'playfair')
    
 dev.off()
 image_write(img, path = here::here('Walker Francis', "save3.png"), format = "png")
