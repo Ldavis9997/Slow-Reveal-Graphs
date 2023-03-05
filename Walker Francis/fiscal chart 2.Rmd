@@ -146,7 +146,62 @@ img <- image_draw(picture)
     polygon(c(270, 289, 289, 271), c(90, 90, 80, 80), border = "black", col = "#d69083")+
    polygon(c(271, 289, 289, 271), c(80, 80, 70, 70), border = "black", col = "#d69083")+
    
-   text(45,851, substitute(bold("1870")), cex = 1, col = "black", family = 'Rokkitt1')
+   text(45,851, substitute(bold("1870")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(34,841, substitute(bold("1869")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(32,831, substitute(bold("1868")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(28,821, substitute(bold("1867")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(24,811, substitute(bold("1866")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(34,801, substitute(bold("1865")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(65,789, substitute(bold("1864")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(150,778, substitute(bold("1863")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(201,770, substitute(bold("1862")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(253,760, substitute(bold("1861")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,750, substitute(bold("1860")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,740, substitute(bold("1859")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,730, substitute(bold("1858")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,720, substitute(bold("1857")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,710, substitute(bold("1856")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,700, substitute(bold("1855")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,690, substitute(bold("1854")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,680, substitute(bold("1853")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,670, substitute(bold("1852")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,660, substitute(bold("1851")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,650, substitute(bold("1850")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,640, substitute(bold("1849")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,630, substitute(bold("1848")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,620, substitute(bold("1847")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,610, substitute(bold("1846")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,600, substitute(bold("1845")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,590, substitute(bold("1844")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,580, substitute(bold("1843")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,570, substitute(bold("1842")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,560, substitute(bold("1841")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,550, substitute(bold("1840")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,540, substitute(bold("1839")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,530, substitute(bold("1838")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,520, substitute(bold("1837")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,510, substitute(bold("1836")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,500, substitute(bold("1835")), cex = 1, col = "black", family = 'Rokkitt1')+
+    text(255,490, substitute(bold("1834")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,480, substitute(bold("1833")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,470, substitute(bold("1832")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,460, substitute(bold("1831")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,450, substitute(bold("1830")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,440, substitute(bold("1829")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,430, substitute(bold("1828")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,420, substitute(bold("1827")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,410, substitute(bold("1826")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,400, substitute(bold("1825")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,390, substitute(bold("1824")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,380, substitute(bold("1823")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,370, substitute(bold("1822")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,360, substitute(bold("1821")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,350, substitute(bold("1820")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,340, substitute(bold("1819")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,330, substitute(bold("1818")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,320, substitute(bold("1817")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(255,450, substitute(bold("1830")), cex = 1, col = "black", family = 'Rokkitt1')
+   
 dev.off()
 image_write(img, path = here::here('Walker Francis', "save3.png"), format = "png")
 
