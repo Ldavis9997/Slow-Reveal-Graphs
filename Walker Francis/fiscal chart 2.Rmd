@@ -446,11 +446,10 @@ img <- image_draw(picture)
  
    text(255,80, substitute(bold("1793")), cex = 1, col = "black", family = 'Rokkitt1')+
    text(255,70, substitute(bold("1792")), cex = 1, col = "black", family = 'Rokkitt1')+
-   text(241,60, substitute(bold("Jan 1. 1791")), cex = 1, col = "black", family = 'Rokkitt1')+
+   text(241,60, substitute(bold("Jan 1. 1791")), cex = 1, col = "black", family = 'Rokkitt1')
    
-    text(278,35, substitute(bold('(00,000 omitted)')), cex = .9, col = "black", family = 'playfair')+
-   text(278,23, substitute(bold('In millions and tenths')), cex = .9, col = "black", family = 'playfair')
-   
+
+  
 dev.off()
 image_write(img, path = here::here('Walker Francis', "save3.png"), format = "png")
 

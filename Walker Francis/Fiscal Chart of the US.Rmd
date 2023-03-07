@@ -86,7 +86,7 @@ function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax =Inf, data)
            plot.margin = unit(c(.5,1,.5,1), "cm")) + scale_y_continuous(limits= c(0,101), expand=c(0,0)) + scale_x_discrete(expand=c(0,3))) + coord_flip()
 dev.off()
 img <- image_draw(picture)
- text(320,10, substitute(paste(bold("1. REVENUE"))), family = "Rokkitt", cex = 1.35, col = "black")
+
    #plotting y axis labels to the right of the bars
    text(620,747, "411.3", cex = .9, col = "black", family = 'Rokkitt')+
      text(620,739, "370.9", cex = .9, col = "black", family = 'Rokkitt')+
