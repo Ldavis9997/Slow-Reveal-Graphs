@@ -90,10 +90,21 @@ text(1385,215, substitute(bold("3.- EXPENDITURES.")), cex = 1.3, col = "black", 
   segments(x0=830, x1=895, y0=197, y1=197, lwd = 1, lty = "solid")+
   
   polygon(c(90,115, 115, 90), c(40, 40, 53, 53), border = "black", col = "#c0c3b7")+
+  text(171,45, substitute(bold("From Public Lands")), cex = .9, col = "black", family = 'playfair')+
   polygon(c(90,115, 115, 90), c(65, 65, 78, 78), border = "black", col ="#b2a961")+
+  text(171,70, substitute(bold("-    Bank Stock")), cex = .9, col = "black", family = 'playfair')+
    polygon(c(90,115, 115, 90), c(90, 90, 103, 103), border = "black", col ="#fedcc6")+
+  text(171,95, substitute(bold("          -    Internal Revenue")), cex = .9, col = "black", family = 'playfair')+
   polygon(c(90,115, 115, 90), c(115, 115, 128, 128), border = "black", col ="#ffe383")+
-   polygon(c(90,115, 115, 90), c(140, 140, 153, 153), border = "black", col ="#a48048")
+  text(164,120, substitute(bold("-    Customs")), cex = .9, col = "black", family = 'playfair')+
+   polygon(c(90,115, 115, 90), c(140, 140, 153, 153), border = "black", col ="#a48048")+
+  text(164,145, substitute(bold("    -    Direct Tax")), cex = .9, col = "black", family = 'playfair')+
+  polygon(c(90,115, 115, 90), c(165, 165, 178, 178), border = "black", col ='#e19d91')+
+  text(162,170, substitute(bold("-    Postage")), cex = .9, col = "black", family = 'playfair')+
+  polygon(c(90,115, 115, 90), c(190, 190, 203, 203), border = "black", col ='#737165')+
+  text(162,195, substitute(bold("           -    Miscellaneous")), cex = .9, col = "black", family = 'playfair')+
+  
+   polygon(c(1450,1475, 1475, 1450), c(40, 40, 53, 53), border = "black", col = "#ddd9cb")
 
 
 dev.off()
