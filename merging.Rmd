@@ -104,7 +104,26 @@ text(1385,215, substitute(bold("3.- EXPENDITURES.")), cex = 1.3, col = "black", 
   polygon(c(90,115, 115, 90), c(190, 190, 203, 203), border = "black", col ='#737165')+
   text(162,195, substitute(bold("           -    Miscellaneous")), cex = .9, col = "black", family = 'playfair')+
   
-   polygon(c(1450,1475, 1475, 1450), c(40, 40, 53, 53), border = "black", col = "#ddd9cb")
+   polygon(c(1500,1525, 1525, 1500), c(10, 10, 23, 23), border = "black", col = "#ddd9cb")+
+  text(1550,18, substitute(bold("Army")), cex = .9, col = "black", family = 'playfair')+
+   polygon(c(1500,1525, 1525, 1500), c(30, 30, 43, 43), border = "black", col = "#a1aba6")+
+  text(1550,36, substitute(bold("Navy")), cex = .9, col = "black", family = 'playfair')+
+  polygon(c(1500,1525, 1525, 1500), c(50, 50, 63, 63), border = "black", col = "#886a6d")+
+  text(1555,54, substitute(bold("  Pensions")), cex = .9, col = "black", family = 'playfair')+
+  polygon(c(1500,1525, 1525, 1500), c(70, 70, 83,83), border = "black", col = "#eac85c")+
+  text(1549,75, substitute(bold("Civil")), cex = .9, col = "black", family = 'playfair')+
+  polygon(c(1500,1525, 1525, 1500), c(90, 90, 103, 103), border = "black", col = "#d69083")+
+  text(1554,95, substitute(bold("Indians")), cex = .9, col = "black", family = 'playfair')+
+  polygon(c(1500,1525, 1525, 1500), c(110, 110, 123, 123), border = "black", col = "#fee6a9")+
+   text(1569,135, substitute(bold("Miscellaneous")), cex = .9, col = "black", family = 'playfair')+
+  polygon(c(1500,1525, 1525, 1500), c(130, 130, 143, 143), border = "black", col = "#787734")+
+  text(1554,116, substitute(bold("Foreign")), cex = .9, col = "black", family = 'playfair')+
+  polygon(c(1500,1525, 1525, 1500), c(150, 150, 163, 163), border = "black", col = "#292323")+
+  text(1592,155, substitute(bold("Premium on Pub. Debt.")), cex = .9, col = "black", family = 'playfair')+
+  polygon(c(1500,1525, 1525, 1500), c(170, 170, 183, 183), border = "black", col = "#777367")+
+  text(1591,175, substitute(bold("Principal of Pub. Debt.")), cex = .9, col = "black", family = 'playfair')+
+  polygon(c(1500,1525, 1525, 1500), c(190, 190, 203, 203), border = "black", col = "#aea596")+
+  text(1589,195, substitute(bold("Interest on Pub. Debt.")), cex = .9, col = "black", family = 'playfair')
 
 
 dev.off()
