@@ -168,6 +168,7 @@ img <- image_draw(picture)
      text(620,41, "3.7",cex = .9, col = "black", family = 'Rokkitt')+
      text(620,30, "4.4", cex = .9, col = "black", family = 'Rokkitt')+
      text(15,518, "Jan. 1", cex = .9, col = "black", family = 'Rokkitt')+
+      text(93,518, "to June 30. 1844", cex = .9, col = "black", family = 'Rokkitt')+
      polygon(c(56, 606, 606, 56), c(20, 20, 37, 37), border = "black", col = "#ffe383")+ text(88,30, "May 4.  1789 to Dec 31. 1791.", cex = 1, col = "black", family = 'Rokkitt')
    
 
