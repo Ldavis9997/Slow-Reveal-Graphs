@@ -36,7 +36,6 @@ line<- (ggplot(data) +geom_line(aes(x = year_levels, y = amount), color= "black"
         panel.grid.minor.x= element_blank(),
         panel.grid.major.y= element_line(color="black", size=.15),
         panel.grid.minor.y= element_blank(),
-        axis.text.x= element_text(color='black'),
         axis.text.y = element_text(color='black'),
    plot.margin=unit(c(0,.5,.5,.5), "cm"),
 ))
