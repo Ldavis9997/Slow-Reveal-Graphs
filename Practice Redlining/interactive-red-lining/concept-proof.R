@@ -1,0 +1,65 @@
+library(tidyverse)
+library(leaflet)
+library(sf)
+library(tidycensus)
+library(maps)
+
+# Examples: 
+# https://rstudio.github.io/leaflet/json.html
+# https://r-charts.com/spatial/interactive-maps-leaflet/
+# https://juliasilge.com/blog/using-tidycensus/
+
+gr_geojson <- "https://dsl.richmond.edu/panorama/redlining/static/downloads/geojson/MIGrandRapids1937.geojson"
+
+gr_shape <- read_sf(gr_geojson)
+gr_shape <- st_transform(gr_shape)
+
+# colors: A, B, C, D
+rl_pal <- colorFactor(c("#76a856", "#7cb5bd", "#ffff00", "#d9838d"), levels = levels(gr_shape$holc_grade))
+previewColors(rl_pal, LETTERS[1:4])
+
+states_map <- map("state", fill = TRUE, plot = FALSE)
+
+leaflet(data = states_map) %>% 
+  addProviderTiles(provider = "CartoDB.Positron") %>%
+  addPolygons(data = gr_shape, color = ~rl_pal(gr_shape$holc_grade), stroke = FALSE, fillOpacity = 0.7)
+
+# bring in median home value
+gr_medhome <- get_acs(geography = "tract", variables = "B25077_001", state = "MI", county = "Kent", geometry = TRUE)
+
+medhome_pal <- colorNumeric(palette = "Greys",
+                            domain = gr_medhome$estimate,
+                            na.color = "#534582")
+
+gr_map <- gr_medhome %>% 
+  st_transform(crs = "+init=epsg:4326") %>% 
+  leaflet() %>% 
+  setView(lng = -85.67017, 
+          lat = 42.96546, 
+          zoom = 12) %>% 
+  addProviderTiles(provider = "CartoDB.Positron") %>%
+  addPolygons(data = gr_shape,
+              stroke = FALSE,
+              smoothFactor = 0,
+              fillOpacity = 0.8,
+              color = ~rl_pal(gr_shape$holc_grade) ) %>%
+  addLegend("bottomright", 
+            pal = rl_pal, 
+            values = gr_shape$holc_grade,
+            title = "HOLC Grade",
+            opacity = 1) %>% 
+  addPolygons(popup = ~ str_extract(NAME, "^([^,]*)"),
+              stroke = FALSE,
+              smoothFactor = 0,
+              fillOpacity = 0.4,
+              color = ~ medhome_pal(estimate)) %>%
+  addLegend("bottomright", 
+            pal = medhome_pal, 
+            values = ~ estimate,
+            title = "Median Home Value",
+            labFormat = labelFormat(prefix = "$"),
+            opacity = 1)
+gr_map
+
+# print proof
+mapview::mapshot(gr_map, file = here::here("img", "gr_map.png"))
