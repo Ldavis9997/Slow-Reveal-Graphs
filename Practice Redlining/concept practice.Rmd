@@ -18,7 +18,7 @@ gr_geojson <- "https://dsl.richmond.edu/panorama/redlining/static/downloads/geoj
 
 gr_shape <- read_sf(gr_geojson)
 gr_shape <- st_transform(gr_shape)
-
+gr_shape <- gr_shape %>%  mutate(holc_grade = as_factor(holc_grade))
 # colors: A, B, C, D
 rl_pal <- colorFactor(c("#76a856", "#7cb5bd", "#ffff00", "#d9838d"), levels = levels(gr_shape$holc_grade))
 previewColors(rl_pal, LETTERS[1:4])
