@@ -361,5 +361,3 @@ image_write(img, path = here::here('World-population-growth', "fourth.png"), for
 
 
 
-
-
