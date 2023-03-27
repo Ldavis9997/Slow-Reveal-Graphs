@@ -4,21 +4,17 @@ library(tidyverse)
 library(ggtext)
 library(ggrepel)
 library(grid)
-#library(ggforce)
 library(showtext)
 library(magick)
 
-# DESCRIPTION: Types of Iraqi Oil. 
+# DESCRIPTION:Types of Iraqi Oil Part of a large inforgraphic
 #Original Source: https://www.loc.gov/resource/g7611h.ct002114/?r=0.082,0.19,0.258,0.119,0
 
-# SLOW REVEAL ORDER:
-# No slow reveal, just completely recreated.
+# SLOW REVEAL ORDER:No slow reveal, just completely recreated. 
+
 
 # AUTHORS:
-# Lauryn Davis (Last edit: 3/27/23)
-
-# Recreated Graphic:
-
+#   Lauryn Davis (Last edit: 3/27/23)
 font_files() %>% tibble() %>% filter(str_detect(family,"Open"))
 picture <- image_graph(width = 340, height = 490)
 annotation_custom2 <- 
