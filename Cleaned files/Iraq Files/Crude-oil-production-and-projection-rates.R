@@ -8,7 +8,11 @@ library(grid)
 # DESCRIPTION:Crude oil production and projection rates. Part of a large inforgraphic
 #Original Source: https://www.loc.gov/resource/g7611h.ct002114/?r=0.082,0.19,0.258,0.119,0
 
-# SLOW REVEAL ORDER:No slow reveal, just completly recreated. 
+# SLOW REVEAL ORDER:No slow reveal, just completely recreated. 
+
+
+# AUTHORS:
+#   Lauryn Davis (Last edit: 3/27/23)
 
 font_add(family="Open", regular= 	"OpenSans-Bold.ttf")
 showtext_auto()
