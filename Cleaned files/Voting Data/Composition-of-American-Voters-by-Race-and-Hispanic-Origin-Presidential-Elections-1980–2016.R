@@ -11,6 +11,9 @@ library(ggtext)
 
 # SLOW REVEAL ORDER: No slow reveal, just completely recreated. 
 
+# AUTHORS:
+#   Lauryn Davis (Last edit: 3/27/23)
+
 type_levels= c("White non-Hispanic", "Black non-Hispanic", "Other race non-Hispanic", "Hispanic")
 year_levels <- c("1980","1984", "1988", "1992","1996","2000", "2004", "2008", "2012","2016")
 pop_colors <- c("#971c3c", "#af5d62","#c58887", "#e6cdcb" )

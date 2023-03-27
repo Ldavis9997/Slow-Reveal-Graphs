@@ -9,6 +9,9 @@ library(ggtext)
 
 # SLOW REVEAL ORDER: No slow reveal, just completely recreated. 
 
+# AUTHORS:
+#   Lauryn Davis (Last edit: 3/27/23)
+
 type_levels= c("65 years and older", "45-64 year olds", "30-44 year olds", "18-29 year olds")
 
 year_levels <- c("1980","1984", "1988", "1992","1996","2000", "2004", "2008", "2012","2016")

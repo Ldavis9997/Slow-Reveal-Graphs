@@ -9,6 +9,9 @@ library(ggtext)
 
 # SLOW REVEAL ORDER: No slow reveal, just completly recreated. 
 
+# AUTHORS:
+#   Lauryn Davis (Last edit: 3/27/23)
+
 # Create group levels
 type_levels <- c("Noncitizens", 
                  "No response to\nvoting question", 
