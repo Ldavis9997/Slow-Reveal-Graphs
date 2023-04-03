@@ -73,8 +73,7 @@ data<- tibble(
             3.51),
   Label= "<span style = 'font-size:9pt; color:#000000'><i><b>Projected production<sup>a</sup></span>" 
 )
-```
-```{r, fig.height= 4, fig.width= 7}
+
 line<- (ggplot(data) +geom_area(mapping = aes(x = year_levels, y = amount), fill = "#6D8E2C", color= "black", size= .2)+
           scale_x_continuous(breaks = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49), labels= x_label, limits= c(0,49.2), expand= expansion(mult=c(.01,.0)))+
           scale_y_continuous(breaks = c(0,.5,1,1.5,2,2.5,3,3.5,4), limits= c(0,4.5), expand= expansion(mult=c(0,0))))
